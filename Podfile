@@ -8,5 +8,9 @@ target 'Mission Connect' do
   # Pods for Mission Connect
   # add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
+  pod 'AppAuth'
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

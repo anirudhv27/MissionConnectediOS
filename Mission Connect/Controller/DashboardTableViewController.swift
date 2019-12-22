@@ -11,6 +11,7 @@ import UIKit
 class DashboardTableViewController: UITableViewController {
     
     let data: [Event] = [Event(eventTitle: "Anouncement 1", clubName: "Club A", eventDescription: "a club"), Event(eventTitle: "Anouncement 2", clubName: "Club B", eventDescription: "a club"), Event(eventTitle: "Anouncement 3", clubName: "Club C", eventDescription: "a club"), Event(eventTitle: "Anouncement 4", clubName: "Club D", eventDescription: "a club"), Event(eventTitle: "Anouncement 5", clubName: "Club E", eventDescription: "a club"), Event(eventTitle: "Anouncement 6", clubName: "Club F", eventDescription: "a club"), Event(eventTitle: "Anouncement 7", clubName: "Club G", eventDescription: "a club"), Event(eventTitle: "Anouncement 8", clubName: "Club H", eventDescription: "a club"), Event(eventTitle: "Anouncement 9", clubName: "Club I", eventDescription: "a club"), Event(eventTitle: "Anouncement 10", clubName: "Club J", eventDescription: "a club"), Event(eventTitle: "Anouncement 11", clubName: "Club K", eventDescription: "a club"), Event(eventTitle: "Anouncement 12", clubName: "Club L", eventDescription: "a club"), Event(eventTitle: "Anouncement 13", clubName: "Club M", eventDescription: "a club")]
+    var selectedEvent: Event!
     
     //Properties
     override func viewDidLoad() {
@@ -45,6 +46,13 @@ class DashboardTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 87.0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedEvent = data[indexPath.row]
+        performSegue(withIdentifier: "eventDetailSegue", sender: nil)
+        
     }
 
     /*
@@ -82,15 +90,12 @@ class DashboardTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let detailsController = segue.destination as! EventDetailsViewController
+        detailsController.event = selectedEvent
     }
-    */
 }
 
 class AnnouncementCell: UITableViewCell {

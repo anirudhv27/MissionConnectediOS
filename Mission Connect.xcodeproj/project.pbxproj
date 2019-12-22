@@ -8,33 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		1007349C2390586B007695DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349B2390586B007695DA /* AppDelegate.swift */; };
-		1007349E2390586B007695DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349D2390586B007695DA /* ViewController.swift */; };
+		1007349E2390586B007695DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349D2390586B007695DA /* LoginViewController.swift */; };
 		100734A12390586B007695DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007349F2390586B007695DA /* Main.storyboard */; };
-		100734A32390586D007695DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100734A22390586D007695DA /* Assets.xcassets */; };
 		100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100734A42390586D007695DA /* LaunchScreen.storyboard */; };
 		100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100734AD239058D1007695DA /* GoogleService-Info.plist */; };
+		10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */; };
 		105C25F22393894F000D1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F12393894F000D1D96 /* Event.swift */; };
 		105C25F423939160000D1D96 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F323939160000D1D96 /* Club.swift */; };
 		105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */; };
 		105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */; };
 		10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */; };
+		10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10BCB5842394C5270089EE56 /* Assets.xcassets */; };
 		480E0A301A61170DE50DE2F0 /* Pods_Mission_Connect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		100734982390586B007695DA /* Mission Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1007349B2390586B007695DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1007349D2390586B007695DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1007349D2390586B007695DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		100734A02390586B007695DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		100734A22390586D007695DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		100734A52390586D007695DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100734A72390586E007695DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100734AD239058D1007695DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		105C25F12393894F000D1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		105C25F323939160000D1D96 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsTableViewController.swift; sourceTree = "<group>"; };
 		105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailsViewController.swift; sourceTree = "<group>"; };
+		108C33B6239A214100944F82 /* Mission Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mission Connect.entitlements"; sourceTree = "<group>"; };
 		10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
+		10BCB5842394C5270089EE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9A47206584422745FBA0EC /* Pods-Mission Connect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mission Connect.release.xcconfig"; path = "Target Support Files/Pods-Mission Connect/Pods-Mission Connect.release.xcconfig"; sourceTree = "<group>"; };
 		5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mission_Connect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95906A2C2FE0B1CB429B296 /* Pods-Mission Connect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mission Connect.debug.xcconfig"; path = "Target Support Files/Pods-Mission Connect/Pods-Mission Connect.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,20 +76,46 @@
 		1007349A2390586B007695DA /* Mission Connect */ = {
 			isa = PBXGroup;
 			children = (
+				108C33B6239A214100944F82 /* Mission Connect.entitlements */,
+				10303B782394861E00F7C2F5 /* Controller */,
+				10303B772394860700F7C2F5 /* View */,
+				10303B76239485E900F7C2F5 /* Model */,
 				1007349B2390586B007695DA /* AppDelegate.swift */,
-				1007349D2390586B007695DA /* ViewController.swift */,
-				1007349F2390586B007695DA /* Main.storyboard */,
-				100734A22390586D007695DA /* Assets.xcassets */,
-				100734A42390586D007695DA /* LaunchScreen.storyboard */,
 				100734AD239058D1007695DA /* GoogleService-Info.plist */,
 				100734A72390586E007695DA /* Info.plist */,
-				10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */,
-				105C25F12393894F000D1D96 /* Event.swift */,
-				105C25F323939160000D1D96 /* Club.swift */,
-				105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */,
-				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
 			);
 			path = "Mission Connect";
+			sourceTree = "<group>";
+		};
+		10303B76239485E900F7C2F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				105C25F323939160000D1D96 /* Club.swift */,
+				105C25F12393894F000D1D96 /* Event.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		10303B772394860700F7C2F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1007349F2390586B007695DA /* Main.storyboard */,
+				10BCB5842394C5270089EE56 /* Assets.xcassets */,
+				100734A42390586D007695DA /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		10303B782394861E00F7C2F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */,
+				105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */,
+				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
+				1007349D2390586B007695DA /* LoginViewController.swift */,
+				10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		613C4FBFF76B065A16D1D432 /* Pods */ = {
@@ -118,6 +147,7 @@
 				100734952390586B007695DA /* Frameworks */,
 				100734962390586B007695DA /* Resources */,
 				18DEA372816D1B16F9D609E2 /* [CP] Embed Pods Frameworks */,
+				168A944049669059C8AEB0F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,6 +170,11 @@
 				TargetAttributes = {
 					100734972390586B007695DA = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -168,7 +203,7 @@
 			files = (
 				100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */,
 				100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */,
-				100734A32390586D007695DA /* Assets.xcassets in Resources */,
+				10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */,
 				100734A12390586B007695DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +211,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		168A944049669059C8AEB0F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		18DEA372816D1B16F9D609E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,8 +276,9 @@
 			files = (
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
-				1007349E2390586B007695DA /* ViewController.swift in Sources */,
+				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
+				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */,
 				1007349C2390586B007695DA /* AppDelegate.swift in Sources */,
@@ -375,6 +428,7 @@
 			baseConfigurationReference = F95906A2C2FE0B1CB429B296 /* Pods-Mission Connect.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Mission Connect/Mission Connect.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV72DZ8F32;
 				INFOPLIST_FILE = "Mission Connect/Info.plist";
@@ -394,6 +448,7 @@
 			baseConfigurationReference = 4B9A47206584422745FBA0EC /* Pods-Mission Connect.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Mission Connect/Mission Connect.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV72DZ8F32;
 				INFOPLIST_FILE = "Mission Connect/Info.plist";

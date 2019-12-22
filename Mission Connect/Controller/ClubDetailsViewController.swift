@@ -21,8 +21,11 @@ class ClubDetailsViewController: UIViewController {
     }
 
     @IBAction func subscribeButtonPressed(_ sender: Any) {
+        let okActionBtn = UIAlertAction(title: "Ok", style: .cancel, handler: { _ in
+              self.navigationController?.popToRootViewController(animated: true)
+        })
         let alert: UIAlertController = UIAlertController(title: "Sorry!", message: "Subscribe Functionality is still in development!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alert, animated: true)
+        alert.addAction(okActionBtn)
+        self.present(alert, animated: true)
     }
 }

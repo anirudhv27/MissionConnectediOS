@@ -8,20 +8,66 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
+import FirebaseAuth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
     
-    
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    //TODO - Implement SignInFor
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            // ...
+            print("Failed to log in to Google", error)
+            return
+        }
+        
+        print("Success!", user.userID as Any)
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        
+        let email: String = user.profile.email;
+        let domain: String = email.components(separatedBy: "@")[1]
+        
+        if (domain == "fusdk12.net"){
+            Auth.auth().signIn(with: credential, completion: { (u, error) in
+                if let error = error {
+                    print("Failed to create a Firebase User with google Account", error)
+                }
+                
+                print("Success for Firebase User!", user.userID as Any)
+                
+                self.window?.rootViewController!.performSegue(withIdentifier: "officerLoginSegue", sender: LoginViewController.self)
+            })
+        } else {
+            let alert: UIAlertController = UIAlertController(title: "Invalid Sign In", message: "Please try again with your FUSD GAFE account.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.window?.rootViewController!.present(alert, animated: true)
+        }
+        // ...
+    }
 
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
