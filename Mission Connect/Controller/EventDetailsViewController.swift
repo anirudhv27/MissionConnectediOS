@@ -18,9 +18,9 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        eventNameLabel.text = event.eventTitle
-        clubNameLabel.text = event.clubName
-        eventDescriptionLabel.text = event.eventDescription
+        eventNameLabel.text = event.event_name
+        clubNameLabel.text = event.event_club
+        eventDescriptionLabel.text = event.event_description
         
         // Do any additional setup after loading the view.
     }

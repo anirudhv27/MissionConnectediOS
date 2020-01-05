@@ -10,6 +10,7 @@ target 'Mission Connect' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'GoogleSignIn'
   pod 'AppAuth'
   # https://firebase.google.com/docs/ios/setup#available-pods

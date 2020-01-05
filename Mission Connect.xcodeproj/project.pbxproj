@@ -13,6 +13,9 @@
 		100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100734A42390586D007695DA /* LaunchScreen.storyboard */; };
 		100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100734AD239058D1007695DA /* GoogleService-Info.plist */; };
 		10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */; };
+		1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */; };
+		103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A984923B08B4400363972 /* ClubListTableViewController.swift */; };
+		104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A136023BEE1F100AF7AB7 /* DataService.swift */; };
 		105C25F22393894F000D1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F12393894F000D1D96 /* Event.swift */; };
 		105C25F423939160000D1D96 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F323939160000D1D96 /* Club.swift */; };
 		105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */; };
@@ -31,6 +34,9 @@
 		100734A72390586E007695DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100734AD239058D1007695DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsForClubTableViewController.swift; sourceTree = "<group>"; };
+		103A984923B08B4400363972 /* ClubListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListTableViewController.swift; sourceTree = "<group>"; };
+		104A136023BEE1F100AF7AB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		105C25F12393894F000D1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		105C25F323939160000D1D96 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsTableViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,7 @@
 		1007348F2390586B007695DA = {
 			isa = PBXGroup;
 			children = (
+				104A135F23BEE1D700AF7AB7 /* Services */,
 				1007349A2390586B007695DA /* Mission Connect */,
 				100734992390586B007695DA /* Products */,
 				613C4FBFF76B065A16D1D432 /* Pods */,
@@ -114,8 +121,18 @@
 				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
 				1007349D2390586B007695DA /* LoginViewController.swift */,
 				10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */,
+				103A984923B08B4400363972 /* ClubListTableViewController.swift */,
+				1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		104A135F23BEE1D700AF7AB7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				104A136023BEE1F100AF7AB7 /* DataService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		613C4FBFF76B065A16D1D432 /* Pods */ = {
@@ -277,11 +294,14 @@
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
 				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
+				1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */,
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
 				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
+				103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */,
 				10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */,
 				1007349C2390586B007695DA /* AppDelegate.swift in Sources */,
+				104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

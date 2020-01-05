@@ -28,12 +28,13 @@ class LoginViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     /*
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
         isSignIn = !isSignIn

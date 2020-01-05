@@ -9,13 +9,7 @@
 import Foundation
 
 class Event {
-    var eventTitle: String
-    var clubName: String
-    var eventDescription: String
-    
-    init(eventTitle: String, clubName: String, eventDescription: String) {
-        self.eventTitle = eventTitle
-        self.clubName = clubName
-        self.eventDescription = eventDescription
-    }
+    var event_name: String?
+    var event_club: String?
+    var event_description: String?
 }

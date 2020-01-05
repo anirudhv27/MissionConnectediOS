@@ -1,24 +1,27 @@
 //
-//  DashboardTableViewController.swift
+//  EventsForClubTableViewController.swift
 //  Mission Connect
 //
-//  Created by Anirudh Valiveru on 11/30/19.
-//  Copyright © 2019 Anirudh Valiveru. All rights reserved.
+//  Created by Anirudh Valiveru on 1/3/20.
+//  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import os
 
-class DashboardTableViewController: UITableViewController {
+class EventsForClubTableViewController: UITableViewController {
     
     var data: [Event] = []
-    var events: [String] = []
-    var clubs: [String] = []
+    var eventNames: [String] = []
     
+    var club: Club!
     var selectedEvent: Event!
     let user = Auth.auth().currentUser
     
-    //Properties
+    let CLUB_REF = Database.database().reference().child("clubs")
+    let EVENT_REF = Database.database().reference().child("events")
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,24 +31,19 @@ class DashboardTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         fetchEvents()
-        
     }
-    
+
+    // MARK: - Table view data source
+
     func fetchEvents() {
-        Database.database().reference().child("users").child(user!.uid).child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
-            self.clubs.append(snapshot.key)
+        var clubKey = club.clubName
+        clubKey = clubKey?.lowercased().replacingOccurrences(of: " ", with: "")
+        CLUB_REF.child(clubKey!).child("events").observe(.childAdded, with: { (snapshot) -> Void in
+            self.eventNames.append(snapshot.key)
         })
         
-        Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
-            if self.clubs.contains(snapshot.key){
-                if let dictionary = snapshot.value as? [String: AnyObject]{
-                    self.events += Array((dictionary["events"]?.allKeys)!) as! [String]
-                }
-            }
-        })
-        
-        Database.database().reference().child("events").observe(.childAdded, with: { (snapshot) -> Void in
-            if self.events.contains(snapshot.key) {
+        EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if self.eventNames.contains(snapshot.key) {
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     
                     let event = Event()
@@ -58,9 +56,6 @@ class DashboardTableViewController: UITableViewController {
             }
         })
     }
-
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -73,7 +68,6 @@ class DashboardTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! AnnouncementCell
-        // Configure the cell...
         cell.eventTitleLabel.text = data[indexPath.row].event_name
         cell.clubNameLabel.text = data[indexPath.row].event_club
         return cell
@@ -84,21 +78,12 @@ class DashboardTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         selectedEvent = data[indexPath.row]
-        performSegue(withIdentifier: "eventDetailSegue", sender: nil)
-        
+        performSegue(withIdentifier: "eventForClubDetals", sender: nil)
     }
-
-    // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailsController = segue.destination as! EventDetailsViewController
         detailsController.event = selectedEvent
     }
-}
-
-class AnnouncementCell: UITableViewCell {
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var clubNameLabel: UILabel!
 }

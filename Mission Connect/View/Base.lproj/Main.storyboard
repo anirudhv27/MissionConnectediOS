@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7850.3999999999996" y="-2103.5982008995502"/>
+            <point key="canvasLocation" x="-7841" y="-2364"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tJ6-z5-2w4">
@@ -82,9 +82,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqA-rn-OuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6983" y="-2593"/>
+            <point key="canvasLocation" x="-6983" y="-2692"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="F7o-qg-Vd2">
             <objects>
                 <tableViewController id="wT3-N4-d3p" sceneMemberID="viewController">
@@ -107,11 +107,11 @@
                             <outlet property="delegate" destination="wT3-N4-d3p" id="dlE-cd-E4X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Yp7-YA-Hp5"/>
+                    <navigationItem key="navigationItem" id="Yp7-YA-Hp5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpV-9S-pxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5202" y="-2850"/>
+            <point key="canvasLocation" x="-5202" y="-3294"/>
         </scene>
         <!--Publish-->
         <scene sceneID="G7k-tM-l3l">
@@ -128,7 +128,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaZ-lC-C0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6055" y="-2850"/>
+            <point key="canvasLocation" x="-6076" y="-3293"/>
         </scene>
         <!--Dashboard Table View Controller-->
         <scene sceneID="AU5-jV-ZU9">
@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiy-CJ-mqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5202" y="-2104"/>
+            <point key="canvasLocation" x="-5202" y="-2364"/>
         </scene>
         <!--Event Details View Controller-->
         <scene sceneID="HbG-ed-OqR">
@@ -224,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVL-NR-A44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4424.8000000000002" y="-2105.3973013493255"/>
+            <point key="canvasLocation" x="-3559" y="-2104"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="U8a-5a-GWq">
@@ -243,7 +243,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5K-JM-aGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6052" y="-2103"/>
+            <point key="canvasLocation" x="-6076" y="-2364"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vIc-Mu-4Gj">
@@ -261,12 +261,11 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1M-FH-oTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6983" y="-1567"/>
+            <point key="canvasLocation" x="-6983" y="-1923"/>
         </scene>
         <!--Clubs-->
         <scene sceneID="jOC-nI-XfD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Udn-LW-SxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="w7D-20-7lM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Clubs" id="L95-01-AAR"/>
                     <toolbarItems/>
@@ -279,25 +278,39 @@
                         <segue destination="qmf-vP-knd" kind="relationship" relationship="rootViewController" id="dP1-VT-P8o"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Udn-LW-SxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6055" y="-1037"/>
+            <point key="canvasLocation" x="-6076" y="-1260"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Club List Table View Controller-->
         <scene sceneID="K1s-ns-3Nz">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="qmf-vP-knd" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="qmf-vP-knd" customClass="ClubListTableViewController" customModule="Mission_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VIQ-SC-Xlx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GNt-m9-hsU">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ClubCell" rowHeight="87" id="xvW-YT-qgi" customClass="ClubCell" customModule="Mission_Connect" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GNt-m9-hsU" id="tWR-VK-YUx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xvW-YT-qgi" id="tgg-n6-snJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="348" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Club Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOM-e6-ke8">
+                                            <rect key="frame" x="16" y="5" width="343" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="clubNameLabel" destination="xOM-e6-ke8" id="T27-9w-41P"/>
+                                    <segue destination="PEA-1n-BnR" kind="show" identifier="toEventsList" trigger="accessoryAction" id="mCp-gS-dcM"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -315,7 +328,59 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YkG-2K-slf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5239" y="-1039"/>
+            <point key="canvasLocation" x="-5202" y="-1351"/>
+        </scene>
+        <!--Events For Club Table View Controller-->
+        <scene sceneID="Ugv-oz-uZe">
+            <objects>
+                <tableViewController id="PEA-1n-BnR" customClass="EventsForClubTableViewController" customModule="Mission_Connect" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HsE-Vc-3OM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="87" id="ulr-55-wOH" customClass="AnnouncementCell" customModule="Mission_Connect" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="87"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ulr-55-wOH" id="mu6-Vt-xSk">
+                                    <rect key="frame" x="0.0" y="0.0" width="348" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozx-0u-R8x">
+                                            <rect key="frame" x="20" y="11" width="339" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Club Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpy-fc-jgj">
+                                            <rect key="frame" x="20" y="59" width="339" height="11"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="clubNameLabel" destination="mpy-fc-jgj" id="2kl-8y-xwi"/>
+                                    <outlet property="eventTitleLabel" destination="ozx-0u-R8x" id="vjd-47-w62"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PEA-1n-BnR" id="0ND-Dw-dy4"/>
+                            <outlet property="delegate" destination="PEA-1n-BnR" id="arZ-ch-GJW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Vl3-Zb-sW3"/>
+                    <connections>
+                        <segue destination="yKo-mF-c7n" kind="show" identifier="eventForClubDetals" id="nIb-NG-mgv"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="buK-8a-YOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4383" y="-1483"/>
         </scene>
         <!--Clubs Table View Controller-->
         <scene sceneID="mEW-ed-1h1">
@@ -355,28 +420,11 @@
                     <navigationItem key="navigationItem" id="EzH-vs-A0M"/>
                     <connections>
                         <segue destination="Ofv-gu-AWJ" kind="show" identifier="clubDetailsSegue" id="SXJ-Z1-UFZ"/>
-                        <segue destination="hCD-UW-zy0" kind="show" identifier="toAddClubScreen" id="2Kt-8D-2MM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ej-mH-XCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4425" y="-1039"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Zic-Hf-28t">
-            <objects>
-                <viewController id="hCD-UW-zy0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="70p-zn-gQh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gPq-ZF-2a9"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="PU3-Cs-htw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wgi-Wf-nYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3316" y="-1413"/>
+            <point key="canvasLocation" x="-4404" y="-696"/>
         </scene>
         <!--Club Details View Controller-->
         <scene sceneID="ckp-au-r1e">
@@ -423,11 +471,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjC-Vf-HK2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3316" y="-685"/>
+            <point key="canvasLocation" x="-3642" y="-684"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Gs4-eM-mT9"/>
-        <segue reference="fO9-I2-xl6"/>
+        <segue reference="U0x-7E-ysc"/>
+        <segue reference="nIb-NG-mgv"/>
     </inferredMetricsTieBreakers>
 </document>

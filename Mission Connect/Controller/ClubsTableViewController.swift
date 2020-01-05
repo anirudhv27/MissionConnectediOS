@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class ClubsTableViewController: UITableViewController {
     
-    let clubs: [Club] = [Club(clubName: "Computer Science Club", clubDescription: "A Club where we do fun Compsci Algorithms and Projects!"), Club(clubName: "AI Club", clubDescription: "Join if you want to learn more about the impacts of Artificial Intelligence and how to implement them!"), Club(clubName: "App Development Club", clubDescription: "A Club where we learn how to make apps!"), Club(clubName: "Peer Resource", clubDescription: "Subscribe to learn more about our advisory events and our various other programs!"), Club(clubName: "MSJHS 2019-2020", clubDescription: "Your place for all things MSJ, including Friday activities and other important information!"), Club(clubName: "Chess Club", clubDescription: "Learn how to out-smart and strategize against your peers! Flex your smartness!"), Club(clubName: "Medcorps", clubDescription: "Learn more abbout how to get into the medical field! Don't miss our guest speakers!"), Club(clubName: "Relay For Life", clubDescription: "Subscribe to learn about our annual event and stay informed!")]
+    var clubs: [Club] = []
+    
     var selectedClub: Club!
+    let user = Auth.auth().currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +24,22 @@ class ClubsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        fetchClubs()
     }
 
     // MARK: - Table view data source
-
+    func fetchClubs() {
+        Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let club = Club()
+                club.clubName = dictionary["club_name"] as? String
+                club.clubDescription = dictionary["club_description"] as? String
+                self.clubs.append(club)
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

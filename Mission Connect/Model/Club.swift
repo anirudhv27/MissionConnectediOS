@@ -8,12 +8,11 @@
 
 import Foundation
 
-class Club {
-    var clubName: String
-    var clubDescription: String
+class Club: Codable {
+    var clubName: String?
+    var clubDescription: String?
     
-    init(clubName: String, clubDescription: String) {
-        self.clubName = clubName
-        self.clubDescription = clubDescription
+    static func ==(lhs: Club, rhs: Club) -> Bool {
+        return lhs.clubName == rhs.clubName && lhs.clubDescription == rhs.clubDescription
     }
 }

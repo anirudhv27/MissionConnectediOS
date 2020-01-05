@@ -13,7 +13,6 @@ import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
         
         return true
     }
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let email: String = user.profile.email;
         let domain: String = email.components(separatedBy: "@")[1]
         
-        if (domain == "fusdk12.net"){
+        if (true){ //domain == "fusdk12.net"
             Auth.auth().signIn(with: credential, completion: { (u, error) in
                 if let error = error {
                     print("Failed to create a Firebase User with google Account", error)
@@ -56,14 +56,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 print("Success for Firebase User!", user.userID as Any)
                 
-                self.window?.rootViewController!.performSegue(withIdentifier: "officerLoginSegue", sender: LoginViewController.self)
+                if Auth.auth().currentUser != nil {
+                    self.window?.rootViewController!.performSegue(withIdentifier: "officerLoginSegue", sender: LoginViewController.self)
+                }
+                
             })
         } else {
+            
             let alert: UIAlertController = UIAlertController(title: "Invalid Sign In", message: "Please try again with your FUSD GAFE account.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.window?.rootViewController!.present(alert, animated: true)
         }
-        // ...
     }
 
     
@@ -80,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        GIDSignIn.sharedInstance()?.signIn()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
