@@ -52,5 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow to pic event image.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow to select event image.</string>
 </dict>
 </plist>

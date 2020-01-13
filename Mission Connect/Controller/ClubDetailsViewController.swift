@@ -28,7 +28,7 @@ class ClubDetailsViewController: UIViewController, UINavigationControllerDelegat
 
     @IBAction func subscribeButtonPressed(_ sender: Any) {
         
-        let alert: UIAlertController = UIAlertController(title: "Subscribe?", message: "Subscribe to \(String(describing: club.clubName))?", preferredStyle: .alert)
+        let alert: UIAlertController = UIAlertController(title: "Subscribe?", message: "Subscribe to \(club.clubName ?? "")?", preferredStyle: .alert)
         let cancelActionBtn = UIAlertAction(title: "No", style: .cancel, handler: { _ in
               self.navigationController?.popToRootViewController(animated: true)
         })
