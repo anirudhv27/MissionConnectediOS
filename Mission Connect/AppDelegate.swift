@@ -14,6 +14,8 @@ import FirebaseAuth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
+     var privateSideMenuController: MASliderViewController?
+    var navigationController: UINavigationController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -21,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
+        self.gotoRouteScreen()
         
         return true
     }
@@ -94,6 +96,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK: - Helper methods for SideMenu
+    func gotoRouteScreen() {
+        
+       
+        navigationController = UINavigationController.init(rootViewController: sideMenuController)
+        navigationController.navigationBar.isHidden = true
+        window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        window!.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+    func setNavigationController(navigation:UINavigationController) {
+        navigation.navigationBar.isTranslucent = false
+        navigation.interactivePopGestureRecognizer?.isEnabled = false
+        navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigation.navigationBar.shadowImage = UIImage()
+        navigation.navigationBar.isHidden = true
+    }
+    
+    var sideMenuController: MASliderViewController {
+        
+        
+        if let privateSideMenuController = privateSideMenuController {
+            return privateSideMenuController
+        }
+        
+        let mainViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+        let drawerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        let centerNavController = UINavigationController.init(rootViewController: mainViewController)
+        privateSideMenuController?.navigationController?.navigationBar.isHidden = true;
+        let sliderViewController = MASliderViewController()
+        self.setNavigationController(navigation: centerNavController)
+        sliderViewController.leftViewController = drawerViewController
+        sliderViewController.centerViewController = centerNavController
+        sliderViewController.leftDrawerWidth = 300
+        privateSideMenuController = sliderViewController
+        return privateSideMenuController!
+    }
 
 }
 

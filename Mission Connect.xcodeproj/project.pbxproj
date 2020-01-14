@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054AD56B23CE0D1B007A9A1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56A23CE0D1B007A9A1C /* HomeViewController.swift */; };
+		054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56C23CE0D2A007A9A1C /* SideMenuViewController.swift */; };
+		054AD56F23CE0D44007A9A1C /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */; };
+		054AD57623CE16EE007A9A1C /* MASliderSpringAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57123CE16EE007A9A1C /* MASliderSpringAnimator.swift */; };
+		054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57223CE16EE007A9A1C /* MASliderViewController.swift */; };
+		054AD57823CE16EE007A9A1C /* Helper1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57323CE16EE007A9A1C /* Helper1ViewController.swift */; };
+		054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57423CE16EE007A9A1C /* MASliderAnimating.swift */; };
+		054AD57A23CE16EE007A9A1C /* MASliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57523CE16EE007A9A1C /* MASliderView.swift */; };
+		054AD57D23CE1AAB007A9A1C /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */; };
+		054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */; };
+		054AD58123CE20C8007A9A1C /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */; };
 		05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECA0B023CB906A00635360 /* AddEventViewController.swift */; };
 		1007349C2390586B007695DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349B2390586B007695DA /* AppDelegate.swift */; };
 		1007349E2390586B007695DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349D2390586B007695DA /* LoginViewController.swift */; };
@@ -27,6 +38,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		054AD56A23CE0D1B007A9A1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		054AD56C23CE0D2A007A9A1C /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewCell.swift; sourceTree = "<group>"; };
+		054AD57123CE16EE007A9A1C /* MASliderSpringAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderSpringAnimator.swift; sourceTree = "<group>"; };
+		054AD57223CE16EE007A9A1C /* MASliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderViewController.swift; sourceTree = "<group>"; };
+		054AD57323CE16EE007A9A1C /* Helper1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper1ViewController.swift; sourceTree = "<group>"; };
+		054AD57423CE16EE007A9A1C /* MASliderAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderAnimating.swift; sourceTree = "<group>"; };
+		054AD57523CE16EE007A9A1C /* MASliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderView.swift; sourceTree = "<group>"; };
+		054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAggrementViewController.swift; sourceTree = "<group>"; };
+		054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		05ECA0B023CB906A00635360 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		100734982390586B007695DA /* Mission Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1007349B2390586B007695DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +85,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054AD56923CE0D03007A9A1C /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				054AD56A23CE0D1B007A9A1C /* HomeViewController.swift */,
+				054AD56C23CE0D2A007A9A1C /* SideMenuViewController.swift */,
+				054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		054AD57023CE16EE007A9A1C /* SideMenuClass */ = {
+			isa = PBXGroup;
+			children = (
+				054AD57123CE16EE007A9A1C /* MASliderSpringAnimator.swift */,
+				054AD57223CE16EE007A9A1C /* MASliderViewController.swift */,
+				054AD57323CE16EE007A9A1C /* Helper1ViewController.swift */,
+				054AD57423CE16EE007A9A1C /* MASliderAnimating.swift */,
+				054AD57523CE16EE007A9A1C /* MASliderView.swift */,
+			);
+			path = SideMenuClass;
+			sourceTree = "<group>";
+		};
+		054AD57B23CE1A92007A9A1C /* StaticViewController */ = {
+			isa = PBXGroup;
+			children = (
+				054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */,
+				054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */,
+				054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */,
+			);
+			path = StaticViewController;
+			sourceTree = "<group>";
+		};
 		1007348F2390586B007695DA = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +172,9 @@
 		10303B782394861E00F7C2F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				054AD57B23CE1A92007A9A1C /* StaticViewController */,
+				054AD57023CE16EE007A9A1C /* SideMenuClass */,
+				054AD56923CE0D03007A9A1C /* HomeViewController */,
 				10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */,
 				105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */,
 				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
@@ -294,18 +351,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054AD58123CE20C8007A9A1C /* PrivacyViewController.swift in Sources */,
+				054AD56F23CE0D44007A9A1C /* SideTableViewCell.swift in Sources */,
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */,
 				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
+				054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */,
 				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
+				054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */,
+				054AD57623CE16EE007A9A1C /* MASliderSpringAnimator.swift in Sources */,
 				1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */,
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
 				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
+				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
+				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,
 				103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */,
 				10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */,
+				054AD57823CE16EE007A9A1C /* Helper1ViewController.swift in Sources */,
 				1007349C2390586B007695DA /* AppDelegate.swift in Sources */,
+				054AD57A23CE16EE007A9A1C /* MASliderView.swift in Sources */,
+				054AD56B23CE0D1B007A9A1C /* HomeViewController.swift in Sources */,
 				104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */,
+				054AD57D23CE1AAB007A9A1C /* SupportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
