@@ -1,11 +1,3 @@
-//
-//  MASliderView.swift
-//  CarTrade
-//
-//  Created by Acesoft on 09/10/15.
-//  Copyright (c) 2015 Acesoft. All rights reserved.
-//
-
 import UIKit
 
 open class MASliderView: UIView {

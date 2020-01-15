@@ -12,6 +12,8 @@ class SideTableViewCell: UITableViewCell {
 
     @IBOutlet weak var menuImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+     @IBOutlet weak var subTitleLabel: UILabel!
+     @IBOutlet weak var memberLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

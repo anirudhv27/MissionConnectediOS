@@ -1,12 +1,4 @@
-//
-//  MASliderAnimating.swift
-//  CarTrade
-//
-//  Created by Acesoft on 09/10/15.
-//  Copyright (c) 2015 Acesoft. All rights reserved.
-//
 
-//import Foundation
 import UIKit
 
 public protocol MASliderAnimating {
