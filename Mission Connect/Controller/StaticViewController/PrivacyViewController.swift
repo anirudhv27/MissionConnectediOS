@@ -2,8 +2,8 @@
 //  PrivacyViewController.swift
 //  Mission Connect
 //
-//  Created by Venkata Valiveru on 1/14/20.
-//  Copyright © 2020 Anirudh Valiveru. All rights reserved.
+//  Created by Anirudh Valiveru on 12/22/19.
+//  Copyright © 2019 Anirudh Valiveru. All rights reserved.
 //
 
 import UIKit

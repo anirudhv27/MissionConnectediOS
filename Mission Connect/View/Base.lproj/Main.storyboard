@@ -1147,6 +1147,36 @@ Translations: Can you help translate this site into</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9Q-Rh-5cN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4b-7N-86Y">
+                                        <rect key="frame" x="5" y="5" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="1Mk-fl-Me3"/>
+                                            <constraint firstAttribute="height" constant="44" id="zlm-RB-dj2"/>
+                                        </constraints>
+                                        <state key="normal" image="backBlack"/>
+                                        <connections>
+                                            <action selector="backBtnAction:" destination="wJV-QG-ntq" eventType="touchUpInside" id="n7G-4C-gWy"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Clubs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-Rc-zof">
+                                        <rect key="frame" x="152" y="16.5" width="71.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="0fq-k5-rR2"/>
+                                    <constraint firstItem="N4b-7N-86Y" firstAttribute="leading" secondItem="n9Q-Rh-5cN" secondAttribute="leading" constant="5" id="I0P-ov-NeT"/>
+                                    <constraint firstItem="ILo-Rc-zof" firstAttribute="centerY" secondItem="n9Q-Rh-5cN" secondAttribute="centerY" id="QI9-U9-Rf6"/>
+                                    <constraint firstItem="N4b-7N-86Y" firstAttribute="centerY" secondItem="n9Q-Rh-5cN" secondAttribute="centerY" id="Qz6-4R-3gx"/>
+                                    <constraint firstItem="ILo-Rc-zof" firstAttribute="centerX" secondItem="n9Q-Rh-5cN" secondAttribute="centerX" id="R7D-kN-EE9"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="54J-7H-s6S">
                                 <rect key="frame" x="0.0" y="54" width="375" height="613"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1224,36 +1254,6 @@ Translations: Can you help translate this site into</string>
                                     <outlet property="delegate" destination="wJV-QG-ntq" id="1r9-iA-pJ0"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9Q-Rh-5cN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4b-7N-86Y">
-                                        <rect key="frame" x="5" y="5" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="1Mk-fl-Me3"/>
-                                            <constraint firstAttribute="height" constant="44" id="zlm-RB-dj2"/>
-                                        </constraints>
-                                        <state key="normal" image="backBlack"/>
-                                        <connections>
-                                            <action selector="backBtnAction:" destination="wJV-QG-ntq" eventType="touchUpInside" id="n7G-4C-gWy"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Clubs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-Rc-zof">
-                                        <rect key="frame" x="152" y="16.5" width="71.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="0fq-k5-rR2"/>
-                                    <constraint firstItem="N4b-7N-86Y" firstAttribute="leading" secondItem="n9Q-Rh-5cN" secondAttribute="leading" constant="5" id="I0P-ov-NeT"/>
-                                    <constraint firstItem="ILo-Rc-zof" firstAttribute="centerY" secondItem="n9Q-Rh-5cN" secondAttribute="centerY" id="QI9-U9-Rf6"/>
-                                    <constraint firstItem="N4b-7N-86Y" firstAttribute="centerY" secondItem="n9Q-Rh-5cN" secondAttribute="centerY" id="Qz6-4R-3gx"/>
-                                    <constraint firstItem="ILo-Rc-zof" firstAttribute="centerX" secondItem="n9Q-Rh-5cN" secondAttribute="centerX" id="R7D-kN-EE9"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
