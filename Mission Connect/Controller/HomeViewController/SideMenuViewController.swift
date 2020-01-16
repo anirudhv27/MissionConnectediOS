@@ -2,7 +2,7 @@
 //  SideMenuViewController.swift
 //  Mission Connect
 //
-//  Created by Venkata Valiveru on 1/14/20.
+//  Created by Anirudh Valiveru on 1/14/20.
 //  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
@@ -22,8 +22,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        menuList = ["Support","User Aggreement","Privacy Policy","Security","Version","Settings","Dashboard","Clubs","Events","SignOut"]
-        imageList = ["Support","information","information","security","information","setting","information","information","information","logout"]
+        menuList = ["Support","User Aggreement","Privacy Policy","Security","Version","Settings","Dashboard","Clubs","Events","LogOut"]
+        imageList = ["support","document","privacypolicy","security","version","settings","home","clubs","events","logout"]
         self.profileImageView.layer.cornerRadius = 50.0
         self.profileImageView.clipsToBounds = true
     }

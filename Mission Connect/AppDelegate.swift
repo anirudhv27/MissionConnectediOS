@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        self.gotoRouteScreen()
+        self.gotoDummyScreen()
         
         return true
     }
@@ -97,6 +97,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
 
     //MARK: - Helper methods for SideMenu
+    func gotoDummyScreen() {
+        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "PublishViewController") as! PublishViewController
+       
+        navigationController = UINavigationController.init(rootViewController: objvc)
+        navigationController.navigationBar.isHidden = true
+        window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        window!.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
     func gotoRouteScreen() {
         
        

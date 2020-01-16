@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533BAF523D01E8E009B3D3A /* SecurityViewController.swift */; };
+		0533BAF823D0AE77009B3D3A /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0533BAF723D0AE77009B3D3A /* Other.storyboard */; };
+		0533BAFA23D0AEEA009B3D3A /* ClubsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533BAF923D0AEEA009B3D3A /* ClubsDetailsViewController.swift */; };
+		0533BAFD23D0BFA2009B3D3A /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533BAFC23D0BFA2009B3D3A /* PublishViewController.swift */; };
 		054AD56B23CE0D1B007A9A1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56A23CE0D1B007A9A1C /* HomeViewController.swift */; };
 		054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56C23CE0D2A007A9A1C /* SideMenuViewController.swift */; };
 		054AD56F23CE0D44007A9A1C /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */; };
@@ -41,6 +45,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0533BAF523D01E8E009B3D3A /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
+		0533BAF723D0AE77009B3D3A /* Other.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Other.storyboard; sourceTree = "<group>"; };
+		0533BAF923D0AEEA009B3D3A /* ClubsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsDetailsViewController.swift; sourceTree = "<group>"; };
+		0533BAFC23D0BFA2009B3D3A /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		054AD56A23CE0D1B007A9A1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		054AD56C23CE0D2A007A9A1C /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0533BAFB23D0BF91009B3D3A /* PublishScreens */ = {
+			isa = PBXGroup;
+			children = (
+				0533BAFC23D0BFA2009B3D3A /* PublishViewController.swift */,
+			);
+			path = PublishScreens;
+			sourceTree = "<group>";
+		};
 		054AD56923CE0D03007A9A1C /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +137,7 @@
 				054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */,
 				054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */,
 				054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */,
+				0533BAF523D01E8E009B3D3A /* SecurityViewController.swift */,
 			);
 			path = StaticViewController;
 			sourceTree = "<group>";
@@ -129,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				054AD58523CF64FE007A9A1C /* ClubViewController.swift */,
+				0533BAF923D0AEEA009B3D3A /* ClubsDetailsViewController.swift */,
 			);
 			path = ClubsViewController;
 			sourceTree = "<group>";
@@ -181,6 +199,7 @@
 				1007349F2390586B007695DA /* Main.storyboard */,
 				10BCB5842394C5270089EE56 /* Assets.xcassets */,
 				100734A42390586D007695DA /* LaunchScreen.storyboard */,
+				0533BAF723D0AE77009B3D3A /* Other.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +207,7 @@
 		10303B782394861E00F7C2F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0533BAFB23D0BF91009B3D3A /* PublishScreens */,
 				054AD58423CF64D0007A9A1C /* ClubsViewController */,
 				054AD57B23CE1A92007A9A1C /* StaticViewController */,
 				054AD57023CE16EE007A9A1C /* SideMenuClass */,
@@ -296,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */,
+				0533BAF823D0AE77009B3D3A /* Other.storyboard in Resources */,
 				100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */,
 				10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */,
 				100734A12390586B007695DA /* Main.storyboard in Resources */,
@@ -370,6 +391,7 @@
 			files = (
 				054AD58123CE20C8007A9A1C /* PrivacyViewController.swift in Sources */,
 				054AD56F23CE0D44007A9A1C /* SideTableViewCell.swift in Sources */,
+				0533BAFD23D0BFA2009B3D3A /* PublishViewController.swift in Sources */,
 				054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */,
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */,
@@ -382,6 +404,7 @@
 				1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */,
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
 				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
+				0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
 				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,
@@ -393,6 +416,7 @@
 				054AD57A23CE16EE007A9A1C /* MASliderView.swift in Sources */,
 				054AD56B23CE0D1B007A9A1C /* HomeViewController.swift in Sources */,
 				104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */,
+				0533BAFA23D0AEEA009B3D3A /* ClubsDetailsViewController.swift in Sources */,
 				054AD57D23CE1AAB007A9A1C /* SupportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,28 +1,24 @@
 //
-//  EventDetailsViewController.swift
+//  SecurityViewController.swift
 //  Mission Connect
 //
-//  Created by Anirudh Valiveru on 1/15/20.
-//  Copyright © 2020 Anirudh Valiveru. All rights reserved.
+//  Created by Anirudh Valiveru on 12/22/19.
+//  Copyright © 2019 Anirudh Valiveru. All rights reserved.
 //
 
 import UIKit
 
-class EventDetailsViewController1: UIViewController {
+class SecurityViewController: UIViewController {
 
-    @IBOutlet weak var letBtn: UIButton!
-    @IBOutlet weak var topView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        topView.setShadow()
-        self.letBtn.layer.cornerRadius = 4.0
     }
     
-    @IBAction func backBtnAction(_ sender: Any) {
-           self.navigationController?.popViewController(animated: true)
-       }
+    @IBAction func menuBtnAction(_ sender: Any) {
+        self.toggleSlider()
+    }
     /*
     // MARK: - Navigation
 

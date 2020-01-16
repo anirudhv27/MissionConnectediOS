@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  Mission Connect
 //
-//  Created by Venkata Valiveru on 1/14/20.
+//  Created by Anirudh Valiveru on 1/14/20.
 //  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
@@ -83,6 +83,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: 120.0, height: 138)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
+        self.navigationController?.pushViewController(objvc, animated: true)
     }
     
     //MARK: - UItableView Delegate and DataSource Methods
