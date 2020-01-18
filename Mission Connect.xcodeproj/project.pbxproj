@@ -26,6 +26,8 @@
 		054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58523CF64FE007A9A1C /* ClubViewController.swift */; };
 		054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */; };
 		05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECA0B023CB906A00635360 /* AddEventViewController.swift */; };
+		05FCBA2323D368600077F3F5 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */; };
+		05FCBA2523D374390077F3F5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2423D374390077F3F5 /* RouteViewController.swift */; };
 		1007349C2390586B007695DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349B2390586B007695DA /* AppDelegate.swift */; };
 		1007349E2390586B007695DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349D2390586B007695DA /* LoginViewController.swift */; };
 		100734A12390586B007695DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007349F2390586B007695DA /* Main.storyboard */; };
@@ -64,6 +66,8 @@
 		054AD58523CF64FE007A9A1C /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController1.swift; sourceTree = "<group>"; };
 		05ECA0B023CB906A00635360 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		05FCBA2423D374390077F3F5 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		100734982390586B007695DA /* Mission Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1007349B2390586B007695DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1007349D2390586B007695DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				054AD56E23CE0D44007A9A1C /* SideTableViewCell.swift */,
 				054AD58223CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift */,
 				054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */,
+				05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */,
+				05FCBA2423D374390077F3F5 /* RouteViewController.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -414,7 +420,9 @@
 				1007349C2390586B007695DA /* AppDelegate.swift in Sources */,
 				054AD58323CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift in Sources */,
 				054AD57A23CE16EE007A9A1C /* MASliderView.swift in Sources */,
+				05FCBA2523D374390077F3F5 /* RouteViewController.swift in Sources */,
 				054AD56B23CE0D1B007A9A1C /* HomeViewController.swift in Sources */,
+				05FCBA2323D368600077F3F5 /* CustomTabBarViewController.swift in Sources */,
 				104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */,
 				0533BAFA23D0AEEA009B3D3A /* ClubsDetailsViewController.swift in Sources */,
 				054AD57D23CE1AAB007A9A1C /* SupportViewController.swift in Sources */,

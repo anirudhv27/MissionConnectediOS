@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        self.gotoDummyScreen()
+     self.gotoDummyScreen()
+       // self.gotoRouteScreen()
         
         return true
     }
@@ -98,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     //MARK: - Helper methods for SideMenu
     func gotoDummyScreen() {
-        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "PublishViewController") as! PublishViewController
+        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RouteViewController") as! RouteViewController
        
         navigationController = UINavigationController.init(rootViewController: objvc)
         navigationController.navigationBar.isHidden = true
@@ -106,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         window!.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
+    
     func gotoRouteScreen() {
         
        
@@ -130,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return privateSideMenuController
         }
         
-        let mainViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let mainViewController = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
         let drawerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         let centerNavController = UINavigationController.init(rootViewController: mainViewController)

@@ -11,6 +11,7 @@ import UIKit
 class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var startClubLabel: UILabel!
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var myClubLabel: UILabel!
     @IBOutlet weak var allClubLabel: UILabel!
     @IBOutlet weak var startClubBtn: UIButton!
@@ -18,12 +19,17 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var allClubBtn: UIButton!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
+    var isFromSideMenu = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.topView.setShadow()
         self.resetButtonAtIndex(index: 0)
+        if isFromSideMenu == false {
+            self.backBtn.isHidden = true
+        }
     }
     
     func resetButtonAtIndex(index: Int) {

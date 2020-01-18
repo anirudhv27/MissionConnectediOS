@@ -12,12 +12,18 @@ class EventDetailsViewController1: UIViewController {
 
     @IBOutlet weak var letBtn: UIButton!
     @IBOutlet weak var topView: UIView!
+    var isOfficer = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         topView.setShadow()
         self.letBtn.layer.cornerRadius = 4.0
+        
+        if isOfficer {
+            letBtn.isHidden = true
+        }
+        
     }
     
     @IBAction func backBtnAction(_ sender: Any) {

@@ -66,6 +66,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     @IBAction func seeAllClubBtnAction(_ sender: Any) {
         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
+        objVC.isFromSideMenu = true
         self.navigationController?.pushViewController(objVC, animated: true)
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
@@ -106,7 +107,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 125
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -125,6 +126,17 @@ extension UIView {
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
         self.layer.cornerRadius = 0.0
+        
+    }
+    
+    func setShadowWithZeroSize() {
+        
+        self.layer.shadowColor = UIColor.darkGray.cgColor
+        self.layer.shadowOffset =  CGSize.zero
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 0.5
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = 35.0
         
     }
 }

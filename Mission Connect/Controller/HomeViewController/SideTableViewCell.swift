@@ -10,6 +10,9 @@ import UIKit
 
 class SideTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var menuImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
      @IBOutlet weak var subTitleLabel: UILabel!

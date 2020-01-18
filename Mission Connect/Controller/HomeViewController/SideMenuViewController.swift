@@ -85,7 +85,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
              break
         case 3:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
@@ -94,7 +94,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 4:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
@@ -103,7 +103,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 5:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
@@ -112,7 +112,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 6:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
@@ -121,7 +121,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 7:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
@@ -130,7 +130,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 8:
          
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
