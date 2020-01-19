@@ -21,7 +21,9 @@ class RouteViewController: UIViewController {
     
     @IBAction func signInBtnAction(_ sender: Any) {
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
-        APPDELEGATE.gotoRouteScreen()
+        let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        self.navigationController?.pushViewController(objVC, animated: true)
+      //  APPDELEGATE.gotoRouteScreen()
     }
     
     /*

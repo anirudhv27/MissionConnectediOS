@@ -20,7 +20,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
     var isFromSideMenu = false
-    
+    var selectedTab = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,10 +35,10 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     func resetButtonAtIndex(index: Int) {
         self.allClubBtn.setTitleColor(.lightGray, for: .normal)
         self.myClubBtn.setTitleColor(.lightGray, for: .normal)
-        self.startClubBtn.setTitleColor(.lightGray, for: .normal)
+    
         self.allClubLabel.isHidden = true
         self.myClubLabel.isHidden = true
-        self.startClubLabel.isHidden = true
+    
         
         if index == 0{
             self.allClubBtn.setTitleColor(.black, for: .normal)
@@ -47,9 +47,9 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.myClubBtn.setTitleColor(.black, for: .normal)
             self.myClubLabel.isHidden = false
         }else {
-            self.startClubBtn.setTitleColor(.black, for: .normal)
-            self.startClubLabel.isHidden = false
+            
         }
+        self.selectedTab = index
     }
     
     @IBAction func startClubBtnAction(_ sender: Any) {
@@ -88,6 +88,9 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
+        if selectedTab == 1 {
+            objvc.isFromMyClub = true
+        }
                self.navigationController?.pushViewController(objvc, animated: true)
     }
     /*

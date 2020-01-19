@@ -127,7 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var sideMenuController: MASliderViewController {
         
-        
         if let privateSideMenuController = privateSideMenuController {
             return privateSideMenuController
         }

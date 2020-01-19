@@ -225,7 +225,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         cell.menuImageView.image = UIImage.init(named: "event")
         cell.titleLabel.text = "14 January 2020 14:00"
-        cell.endDateLabel.text = "16 January 2020 14:00"
+       // cell.endDateLabel.text = "16 January 2020 14:00"
         cell.subTitleLabel.text = "Event Title"
         cell.memberLabel.text = "Club name"
         
