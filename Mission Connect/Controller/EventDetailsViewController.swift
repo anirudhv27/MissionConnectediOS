@@ -13,16 +13,15 @@ class EventDetailsViewController: UIViewController {
     var event: Event!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var clubNameLabel: UILabel!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
+   @IBOutlet weak var myTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventNameLabel.text = event.event_name
         clubNameLabel.text = event.event_club
-        eventDescriptionLabel.text = event.event_description
-        
-        // Do any additional setup after loading the view.
+       
+     
     }
     
 

@@ -8,6 +8,8 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import GoogleSignIn
+import FirebaseStorage
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
@@ -16,6 +18,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var fullNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var nickNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var profileImageView: UIImageView!
+    var user : GIDGoogleUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
        
       //  graduationTextField.addto
         self.addToolBar(textField: graduationTextField)
+        fullNameTextField.text = user.profile.name
+        
     }
     
     //MARK:- ImagePickerMethods
@@ -170,9 +175,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }else {
             message = "Event publish successfully."
             
-            let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+            self.updateProfileImage()
+            
+          //  let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
              
-              APPDELEGATE.gotoRouteScreen()
+           //   APPDELEGATE.gotoRouteScreen()
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
@@ -184,15 +191,37 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
-    /*
-    // MARK: - Navigation
+    func updateProfileImage() {
+           
+        let storageRef = Storage.storage().reference().child("userimages").child("user\(Date().timeIntervalSince1970).jpeg")
+          
+            
+            let data = profileImageView.image?.pngData()
+          //  showHud()
+            if data != nil {
+               let uploadTask = storageRef.putData(data!, metadata: nil) { (metadata, error) in
+                    //hideHud()
+                    guard let metadata = metadata else {
+                       
+                        return
+                    }
+                    print("complete inside")
+                   storageRef.downloadURL(completion: { (imageURL, error) in
+                        if error != nil {
+                           print("error - \(error?.localizedDescription)")
+                            return
+                        }
+                       
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+                    })
+                    
+                }
+    
+            }
+       
+            
+        }
+        
 
 }
 

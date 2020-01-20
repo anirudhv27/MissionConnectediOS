@@ -113,7 +113,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventDetailsViewController1") as! EventDetailsViewController1
-        self.navigationController?.pushViewController(objVC, animated: true)
+        let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+        APPDELEGATE.navigationController?.pushViewController(objVC, animated: true)
     }
 
 }

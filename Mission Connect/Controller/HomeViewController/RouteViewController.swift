@@ -7,8 +7,10 @@
 //
 
 import UIKit
-
-class RouteViewController: UIViewController {
+import GoogleSignIn
+class RouteViewController: UIViewController, GIDSignInDelegate {
+    
+    
 
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var signInBtn: UIButton!
@@ -20,11 +22,32 @@ class RouteViewController: UIViewController {
     }
     
     @IBAction func signInBtnAction(_ sender: Any) {
-        let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
-        let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        self.navigationController?.pushViewController(objVC, animated: true)
+       // let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+      //  let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+       // self.navigationController?.pushViewController(objVC, animated: true)
       //  APPDELEGATE.gotoRouteScreen()
+        self.sigInWithGoogle()
     }
+    
+    func sigInWithGoogle() {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+       
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error == nil {
+            print(user)
+              let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+            objVC.user = user
+             self.navigationController?.pushViewController(objVC, animated: true)
+        }else {
+            print(error.localizedDescription)
+        }
+    }
+   
     
     /*
     // MARK: - Navigation

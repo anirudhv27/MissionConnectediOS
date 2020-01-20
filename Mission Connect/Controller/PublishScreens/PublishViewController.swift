@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SkyFloatingLabelTextField
+
 
 class PublishViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var clubNametextField: UITextField!
     @IBOutlet weak var eventImageView: UIImageView!
+    @IBOutlet weak var eventStartDateTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var eventNameTextField: UITextField!
+    @IBOutlet weak var eventEnddatetextField: SkyFloatingLabelTextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var datePickerView: UIView!
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -30,9 +34,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.dateBtn.layer.cornerRadius = 4.0
-        self.dateBtn.layer.borderWidth = 1
-        self.dateBtn.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
+        
         self.descriptionTextView.layer.cornerRadius = 4.0
         self.descriptionTextView.layer.borderWidth = 1
         self.descriptionTextView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
@@ -41,9 +43,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.eventImageView.layer.borderWidth = 1
         self.eventImageView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
         
-        self.enddateBtn.layer.cornerRadius = 4.0
-        self.enddateBtn.layer.borderWidth = 1
-        self.enddateBtn.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
+       
         datePickerView.isHidden = true
         datePicker.datePickerMode = .dateAndTime
         datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
@@ -57,9 +57,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
         if let day = components.day, let month = components.month, let year = components.year, let hour = components.hour, let minute = components.minute {
             if isFromStartDate {
-                dateBtn.setTitle("\(day)/\(month)/\(year) : \(hour):\(minute)", for: .normal)
+                eventStartDateTextField.text = "\(day)/\(month)/\(year) : \(hour):\(minute)"
             }else {
-                enddateBtn.setTitle("\(day)/\(month)/\(year) : \(hour):\(minute)", for: .normal)
+                eventEnddatetextField.text = "\(day)/\(month)/\(year) : \(hour):\(minute)"
             }
             
         }
@@ -136,10 +136,12 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBAction func enddateBtnAction(_ sender: Any) {
         self.isFromStartDate = false
         self.datePickerView.isHidden = false
+        self.view.endEditing(true)
     }
     @IBAction func dateBtn(_ sender: Any) {
         self.isFromStartDate = true
         self.datePickerView.isHidden = false
+        self.view.endEditing(true)
     }
     @IBAction func allEventBtnAction(_ sender: Any) {
         allEventBtn.setTitleColor(.black, for: .normal)
@@ -159,9 +161,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             message = "Please select Club"
         }else if eventNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
             message = "Please enter Event title"
-        }else if dateBtn.titleLabel?.text?.count == 0 {
+        }else if eventStartDateTextField.text?.count == 0 {
             message = "Please select Event Start Date"
-        }else if enddateBtn.titleLabel?.text?.count == 0{
+        }else if eventEnddatetextField.text?.count == 0{
             message = "Please select Event End Date"
         }else if descriptionTextView.text.trimmingCharacters(in: .whitespaces).count  == 0{
             message = "Please enter Event description"
@@ -193,6 +195,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     @IBAction func dateBtnAction(_ sender: Any) {
         self.datePickerView.isHidden = true
+        self.view.endEditing(true)
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
