@@ -1,0 +1,101 @@
+{
+  "users": {
+    "user-id1": {
+      "AvatarURL": "AvatarURL link 1",
+      "Email": "user1@gmail.com",
+      "FullName": "user1 FullName",
+      "NickName": "user1 NickName",
+      "School": "MySchool",
+      "GraduationYear": 2020,
+      "CreatedTimestamp": 1459361875666
+    },
+    "user-id2": {
+      "AvatarURL": "AvatarURL link 2",
+      "Email": "user2@gmail.com",
+      "FullName": "user2 FullName",
+      "NickName": "user2 NickName",
+      "School": "MySchool",
+      "GraduationYear": 2020,
+      "CreatedTimestamp": 1459361875666
+    },
+    "user-id3": {
+      "AvatarURL": "AvatarURL link 3",
+      "Email": "user3@gmail.com",
+      "FullName": "user3 FullName",
+      "NickName": "user3 NickName",
+      "School": "MySchool",
+      "GraduationYear": 2020,
+      "CreatedTimestamp": 1459361875666
+    }
+  },
+  "clubs": {
+    "Club-id1": {
+      "Clubname": "Club1 Name",
+      "ClubImageURL": "Club1 ImageURL",
+      "ClubCreatedTimestamp": 1459361875666
+    },
+    "Club-id2": {
+      "Clubname": "Club2 Name",
+      "ClubImageURL": "Club2 ImageURL",
+      "ClubCreatedTimestamp": 1459361875666
+    }
+  },
+  "clubMembers" :{
+	  "Club-id1": {
+		  "user-id1": 
+		  	{ 
+			    "rank": "officer",
+			    "clubJoinTimestamp": 1459361875666
+			},
+		  "user-id2": 
+		  	{ 
+			    "rank": "member",
+			    "clubJoinTimestamp": 1459361875666
+			}
+    },
+	  "Club-id2": {
+		  "user-id3": 
+		  	{ 
+			    "rank": "officer",
+			    "clubJoinTimestamp": 1459361875666
+			},
+	           "user-id1":
+                        {
+                            "rank": "member",
+                            "clubJoinTimestamp": 1459361875666
+                        }
+    }
+  },
+"events": {
+      "Event-id1": {
+      "Eventname": "Event1 Name",
+      "EventImageURL": "Event1 ImageURL",
+      "EventDescription": "Event1 Description",
+      "EventCreatedTimestamp": 1459361875666
+    },
+    "Event-id2": {
+      "Eventname": "Event2 Name",
+      "EventImageURL": "Event2 ImageURL",
+      "EventDescription": "Event2 Description",
+      "EventCreatedTimestamp": 1459361875666
+    }
+},
+"eventClubsUsers": {
+   "Event-id1": {
+      "Club-id1" : true,
+      "user-id1": {
+        "going": true,
+        "like": true
+      },
+      "user-id2": {
+        "going": true,
+      },
+      "user-id3": {
+        "like": true
+      }
+    },
+    "Event-id2": {
+      "Club-id2" : true
+    }
+}
+}

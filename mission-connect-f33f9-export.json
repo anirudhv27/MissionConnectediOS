@@ -1,0 +1,391 @@
+{
+  "clubs" : {
+    "americancancersociety" : {
+      "club_description" : "Advisor: Ms. Evans \n American Cancer Society raises awareness among students as well as gives students a chance to help out cancer patients. To stay involved, members of the club help out at local fundraisers that the club conducts and/or participates in events such as Relay for Life and Strides for Breast Cancer. ",
+      "club_name" : "American Cancer Society",
+      "events" : {
+        "event16" : true,
+        "event17" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "chinesecultureclub" : {
+      "club_description" : "Advisor: Ms. Zhang \n The purpose of the Chinese Culture Club is to help students learn more about Chinese culture and language, unite students who share Chinese heritages, and provide a platform for students to make friends and acclimate (some of them might be new to this country). Students will actively interact and have fun. By joining our club, students gain the opportunity to casually interact with native Chinese speakers and fellow enthusiastic learners. They will be exposed to traditional Chinese costumes, festivals, and arts.  We aim to nurture students in a friendly and symbiotic environment, where Chinese learners and those who are interested in Chinese culture can feel free to contribute ideas and opinions. ",
+      "club_name" : "Chinese Culture Club",
+      "events" : {
+        "event14" : true,
+        "event15" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "missionconnect" : {
+      "club_description" : "Dummy Club",
+      "club_name" : "Mission Connect",
+      "events" : {
+        "event4" : true,
+        "event5" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjacademicchallenge" : {
+      "club_description" : "Advisor: Mr. Brucker \n  Affectionately dubbed Academically Challenged by its members, Academic Challenge is a club that organizes students to participate in various science, engineering, and jeopardy-style competitions against other schools. Students compete in Science Olympiad, Science Bowl, Quiz Bowl, Ocean Science Bowl, and History Bowl at both the regional and national levels. Our goal is to encourage the study of science, engineering, math, and the humanities, and create a tightly knit community of students that will lead MSJ to success at our competitions.",
+      "club_name" : "MSJ Academic Challenge",
+      "events" : {
+        "event18" : true,
+        "event19" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjai" : {
+      "club_description" : "Advisor: Mr. Remmers \n The Mission San Jose Artificial Intelligence Club focuses on exploring cutting-edge areas in machine learning and data science. We spend our meetings building models to solve a wide range of problems and conduct research. We inspire students to learn as much as they can about powerful techniques in AI that can be applied to any area of research. By inviting various guest speakers and holding discussions about modern day AI, we hope to inspire everyone to learn more!",
+      "club_name" : "MSJ AI Club",
+      "events" : {
+        "event20" : true,
+        "event21" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjappdevelopment" : {
+      "club_description" : "Advisor: Ms. Sultana \n MSJ App Development Club aims to serve the student body by teaching interested students how to program and develop apps using Swift and Java. Not only will we teach programming, but we will also teach UI design. To fulfill this purpose, our club will be holding meetings teaching the necessary skills to create and distribute iOS and Android applications. We’ll hold our own hackathons within the club for our members to apply their knowledge. Also, we will host guest speakers (i.e. people who work on apps at major companies) to explain their job and its impact on the real world.",
+      "club_name" : "MSJ App Development Club",
+      "events" : {
+        "event22" : true,
+        "event23" : true,
+        "event24" : true,
+        "event25" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjcomputerscience" : {
+      "club_description" : " Advisor: Ms. Kuei \n MSJ Computer Science Club (MSJCS or MSJ Compsci) is a club dedicated to promoting an interest in computer science to the students at MSJ. We aim to bring the joy and excitement of computer science to our members through activities such as lessons/presentations, competitions (USACO, ACSL, CTF, Harker Programming Invitational, Stanford ProCo, etc.), projects, guest speakers, workshops, and more! ",
+      "club_name" : "MSJ Computer Science Club",
+      "events" : {
+        "event1" : true,
+        "event2" : true,
+        "event3" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjlandcruisers" : {
+      "club_description" : "Advisor: Mr. Vierk\n Landcruisers is a skateboarding club that hosts monthly meetings for people of all levels. It is a great opportunity for people to learn new tricks or connect with other skateboarders. Meetings take place by the creek path. Come to one of our meetings to skate with us! ",
+      "club_name" : "MSJ Landcruisers",
+      "events" : {
+        "event12" : true,
+        "event13" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjmake-a-wish" : {
+      "club_description" : "Advisor: Ms. Tseng \n MSJ Make-A-Wish Club supports the Make-a-Wish Foundation, a national foundation that raises money to grant wishes to children with life-threatening medical conditions. Since 1980, the Make-A-Wish Foundation® has enriched the lives of these children through its wish-granting work. We believe that life can be measured by memories, not in years. Our club will arrange monthly meetings where we’ll brainstorm fundraising ideas, arrange trips to interact with wish grantees, and discuss methods to aid children with terminal diseases. Come join us as we celebrate the power of a wish! ",
+      "club_name" : "MSJ Make-A-Wish",
+      "events" : {
+        "event10" : true,
+        "event11" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "msjtechandrobotics" : {
+      "club_description" : "Advisor: Mr. Brucker \n MSJ Tech and Robotics exposes students to the world of robotics in order to give them an engaging hands on experience. The club will help members find local robotics and rocketry teams to compete in competitions like FRC, FTC, and TARC and teach them the essentials to learn and achieve. In addition, we will host workshops and events in the community for teams to spread the ideals of STEM and teach the next generation.",
+      "club_name" : "MSJ Tech and Robotics",
+      "events" : {
+        "event8" : true,
+        "event9" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    },
+    "phoenixartsliterarymagazine" : {
+      "club_description" : "Ms. Lee \n Mission San Jose High School’s very own art and literary magazine comprised of student submissions of all media: brush, pen/sketch, photography, graphics, poetry, prose, etc. If you’re at all interested in the arts scene at MSJ, come check us out!\n Website: phoenixmsj.tumblr.com \n 003Email: phoenixmsjhs@gmail.com ",
+      "club_name" : "Phoenix Arts & Literary Magazine",
+      "events" : {
+        "event6" : true,
+        "event7" : true
+      },
+      "members" : {
+        "user1" : true
+      },
+      "no_of_members" : 1,
+      "officers" : {
+        "user1" : true
+      }
+    }
+  },
+  "events" : {
+    "-LzNMWNMWCbHUwi87OIQ" : {
+      "ClubName" : "Club Dummy Title",
+      "EventDescription" : "Dummy description",
+      "EventEndData" : "26/1/2020 : 8:22",
+      "EventImage" : "dummurl",
+      "EventName" : "DummyEvent",
+      "EventStartDate" : "25/1/2020 : 8:22"
+    },
+    "event1" : {
+      "event_club" : "msjcomputerscience",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "Dynamic Programming Lecture"
+    },
+    "event10" : {
+      "event_club" : "msjmake-a-wish",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjmake-a-wish club. [Insert Description Here]",
+      "event_name" : "msjmake-a-wish Lecture Past Due"
+    },
+    "event11" : {
+      "event_club" : "msjmake-a-wish",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjmake-a-wish club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjmake-a-wish Lecture"
+    },
+    "event12" : {
+      "event_club" : "msjlandcruisers",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjlandcruisers club. [Insert Description Here]",
+      "event_name" : "msjlandcruisers Lecture Past Due"
+    },
+    "event13" : {
+      "event_club" : "msjlandcruisers",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjlandcruisers club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjlandcruisers Lecture"
+    },
+    "event14" : {
+      "event_club" : "chinesecultureclub",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the chinesecultureclub club. [Insert Description Here]",
+      "event_name" : "chinesecultureclub Lecture Past Due"
+    },
+    "event15" : {
+      "event_club" : "chinesecultureclub",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the chinesecultureclub club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "chinesecultureclub Lecture"
+    },
+    "event16" : {
+      "event_club" : "americancancersociety",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the americancancersociety club. [Insert Description Here]",
+      "event_name" : "americancancersociety Lecture Past Due"
+    },
+    "event17" : {
+      "event_club" : "americancancersociety",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the americancancersociety club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "americancancersociety Lecture"
+    },
+    "event18" : {
+      "event_club" : "msjacademicchallenge",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjacademicchallenge club. [Insert Description Here]",
+      "event_name" : "msjacademicchallenge Lecture Past Due"
+    },
+    "event19" : {
+      "event_club" : "msjacademicchallenge",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjacademicchallenge club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjacademicchallenge Lecture"
+    },
+    "event2" : {
+      "event_club" : "msjcomputerscience",
+      "event_date" : "01-17-2020",
+      "event_description" : "ACSL #1 Short Answer portion tomorrow (1/17) at lunch in C16! You will complete 5 questions in 30 min. The topics are:\nComputer Number Systems\nRecursive Functions\nWhat does this program do?\n\nYou can refer to the ACSL handbook here: https://drive.google.com/drive/u/4/folders/0B94KbL4jP7bea0FfLTIzbU9HdkU",
+      "event_name" : "ACSL #1 Details"
+    },
+    "event20" : {
+      "event_club" : "msjai",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjai club. [Insert Description Here]",
+      "event_name" : "msjai Lecture Past Due"
+    },
+    "event21" : {
+      "event_club" : "msjai",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjai club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjai Lecture"
+    },
+    "event22" : {
+      "event_club" : "msjappdevelopment",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjappdevelopment club. [Insert Description Here]",
+      "event_name" : "msjappdevelopment Lecture1 Past Due"
+    },
+    "event23" : {
+      "event_club" : "msjappdevelopment",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjappdevelopment club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjappdevelopment Lecture1"
+    },
+    "event24" : {
+      "event_club" : "msjappdevelopment",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjappdevelopment club. [Insert Description Here]",
+      "event_name" : "msjappdevelopment Lecture2 Past Due"
+    },
+    "event25" : {
+      "event_club" : "msjappdevelopment",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjappdevelopment club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjappdevelopment Lecture2"
+    },
+    "event3" : {
+      "event_club" : "msjcomputerscience",
+      "event_date" : "02-22-2019",
+      "event_description" : "Reminders for the ACSL:\n - Due Monday at 1 PM \n - You are not allowed to access the internet for assistance and are not allowed to access any person for assistance.\n - Your program must accept all data in one RUN of the program.  Further, if a program stops during testing, it may not be restarted to read any missed data.\n - Any language may be used, as long as we can run it.\n- Email msjhscompsci@gmail.com with your program. Please include the following comments in your program:\n\nFirst and last name\nSchool\nGrade\nDivision (Senior 3)\nACSL #.\n- Link to handbook:  https://drive.google.com/drive/u/4/folders/0B94KbL4jP7bea0FfLTIzbU9HdkU  SAVE THIS LINK!\n\nThe short answer portion for ACSL #1 will be next Tuesday, 12/17. The topics are:\nComputer Number Systems\nRecursive Functions\nWhat does this program do?",
+      "event_name" : "Reminders for the ACSL"
+    },
+    "event4" : {
+      "event_club" : "missionconnect",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the mission connect club. [Insert Description Here]",
+      "event_name" : "DynamicProgramming Lecture Past Due"
+    },
+    "event5" : {
+      "event_club" : "missionconnect",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the mission connect club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "DynamicProgramming Lecture"
+    },
+    "event6" : {
+      "event_club" : "phoenixarts&literarymagazine",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the phoenixarts&literarymagazine club. [Insert Description Here]",
+      "event_name" : "phoenixarts&literarymagazine Lecture Past Due"
+    },
+    "event7" : {
+      "event_club" : "phoenixarts&literarymagazine",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the phoenixarts&literarymagazine club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "phoenixarts&literarymagazine Lecture"
+    },
+    "event8" : {
+      "event_club" : "msjtechandrobotics",
+      "event_date" : "02-22-2019",
+      "event_description" : "This should not show in app. Its past date. It is for the msjtechandrobotics club. [Insert Description Here]",
+      "event_name" : "msjtechandrobotics Lecture Past Due"
+    },
+    "event9" : {
+      "event_club" : "msjtechandrobotics",
+      "event_date" : "02-22-2020",
+      "event_description" : "This should  show in app. It is for the msjtechandrobotics club. We will be going over dynamic programming next meeting. [Insert Description Here]",
+      "event_name" : "msjtechandrobotics Lecture"
+    }
+  },
+  "users" : {
+    "-LzNFnpZw-7xTddOt25R" : {
+      "Avatar" : "dsfhjgjhds",
+      "Email" : "siva.valiveru@gmail.com",
+      "FullName" : "Siva V",
+      "NickName" : "Anirudh",
+      "School" : "ABCD",
+      "Year" : "202"
+    },
+    "2CsPufXJHcScRefvYRi5y6AopNB3" : {
+      "clubs" : {
+        "americancancersociety" : true,
+        "chinesecultureclub" : true,
+        "msjacademicchallenge" : true,
+        "msjcomputerscienceclub" : true
+      }
+    },
+    "R04PoJy2CIVRc7VFdYNJDf0qk953" : {
+      "clubs" : {
+        "missionconnect" : true,
+        "msjacademicchallenge" : true,
+        "msjaiclub" : true,
+        "msjappdevelopmentclub" : true,
+        "msjcomputerscienceclub" : true,
+        "msjmake-a-wish" : true
+      }
+    },
+    "df98xNGvf2gYPE2l2ww1mGBrodk2" : {
+      "clubs" : {
+        "americancancersociety" : true,
+        "chinesecultureclub" : true,
+        "msjappdevelopmentclub" : true,
+        "msjcomputerscience" : true
+      }
+    },
+    "user1" : {
+      "clubs" : {
+        "club3" : true,
+        "missionconnect" : true,
+        "msjcomputerscience" : true
+      },
+      "full_name" : "Anirudh Valiveru",
+      "officers" : {
+        "missionconnect" : true
+      },
+      "username" : "avaliveru"
+    },
+    "user2" : {
+      "clubs" : {
+        "club3" : true,
+        "missionconnect" : true
+      },
+      "full_name" : "Siva Valiveru",
+      "officers" : {
+        "missionconnect" : true
+      },
+      "username" : "svaliveru"
+    }
+  }
+}
