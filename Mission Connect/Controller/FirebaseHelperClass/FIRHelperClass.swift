@@ -18,8 +18,8 @@ class FIRHelperClass: NSObject {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
 
-        databaseReference.child("users").childByAutoId().setValue(["Avatar":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "Year":graduationYear, "School":schoolName])
-        print(databaseReference)
+        databaseReference.child("users").childByAutoId().setValue(["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "Year":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970])
+       // print(databaseReference)
     }
     
     func updateProfileImage(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
