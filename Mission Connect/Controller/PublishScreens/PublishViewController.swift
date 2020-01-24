@@ -170,6 +170,8 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         }else if eventImageView.image == UIImage.init(named: "add") {
             message = "Please select Event Image"
         }else {
+            
+            FIRHelperClass.sharedInstance.createEvent(startDate: self.eventStartDateTextField.text!, endDate: self.eventEnddatetextField.text!, eventName: eventNameTextField.text!, clubName: clubNametextField.text!, eventDescription: descriptionTextView.text!, imageURL: "dummurl")
             message = "Event publish successfully."
             clubNametextField.text = ""
             eventNameTextField.text = ""

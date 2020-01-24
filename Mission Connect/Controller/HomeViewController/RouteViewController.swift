@@ -19,14 +19,15 @@ class RouteViewController: UIViewController, GIDSignInDelegate {
 
         centerView.setShadowWithZeroSize()
         signInBtn.layer.cornerRadius = 4.0
+        
     }
     
     @IBAction func signInBtnAction(_ sender: Any) {
-       // let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
-      //  let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-       // self.navigationController?.pushViewController(objVC, animated: true)
-      //  APPDELEGATE.gotoRouteScreen()
-        self.sigInWithGoogle()
+    //    let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+    //   let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+    //    self.navigationController?.pushViewController(objVC, animated: true)
+     //   APPDELEGATE.gotoRouteScreen()
+       self.sigInWithGoogle()
     }
     
     func sigInWithGoogle() {
@@ -40,9 +41,19 @@ class RouteViewController: UIViewController, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil {
             print(user)
-              let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-            objVC.user = user
-             self.navigationController?.pushViewController(objVC, animated: true)
+            
+            FIRHelperClass.sharedInstance.isExistUser(email: user.profile.email) { (status) in
+                if status{
+                    let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+                    APPDELEGATE.gotoRouteScreen()
+                }else {
+                    let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+                    objVC.user = user
+                     self.navigationController?.pushViewController(objVC, animated: true)
+                }
+                  
+            }
+            
         }else {
             print(error.localizedDescription)
         }

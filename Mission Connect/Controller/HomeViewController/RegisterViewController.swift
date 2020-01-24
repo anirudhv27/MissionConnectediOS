@@ -10,6 +10,7 @@ import UIKit
 import SkyFloatingLabelTextField
 import GoogleSignIn
 import FirebaseStorage
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
@@ -173,13 +174,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }else if graduationTextField.titleLabel?.text?.count == 0{
             message = "Please enter Graduation Year"
         }else {
-            message = "Event publish successfully."
             
-            self.updateProfileImage()
             
-          //  let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
-             
-           //   APPDELEGATE.gotoRouteScreen()
+            self.uploadImageOnFirebase()
+            return
+          
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
@@ -191,36 +190,33 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
-    func updateProfileImage() {
-           
-        let storageRef = Storage.storage().reference().child("userimages").child("user\(Date().timeIntervalSince1970).jpeg")
-          
-            
-            let data = profileImageView.image?.pngData()
-          //  showHud()
-            if data != nil {
-               let uploadTask = storageRef.putData(data!, metadata: nil) { (metadata, error) in
-                    //hideHud()
-                    guard let metadata = metadata else {
-                       
-                        return
-                    }
-                    print("complete inside")
-                   storageRef.downloadURL(completion: { (imageURL, error) in
-                        if error != nil {
-                           print("error - \(error?.localizedDescription)")
-                            return
-                        }
-                       
-
-                    })
-                    
-                }
-    
-            }
-       
-            
+    func sendUserDataOnFirebase(imageURL: String) {
+        
+        
+        FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
+        let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
+            let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.synchronize()
+            APPDELEGATE.gotoRouteScreen()
         }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func uploadImageOnFirebase() {
+        self.sendUserDataOnFirebase(imageURL: "dsfhjgjhds")
+        return
+       /* FIRHelperClass.sharedInstance.updateProfileImage(image: self.profileImageView.image!) { (status, imageURL) in
+            if status == true {
+                self.sendUserDataOnFirebase(imageURL: "\(imageURL!)")
+            }else {
+                
+            }
+        }*/
+    }
         
 
 }

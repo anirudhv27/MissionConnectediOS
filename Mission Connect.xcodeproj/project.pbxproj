@@ -26,6 +26,7 @@
 		054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58523CF64FE007A9A1C /* ClubViewController.swift */; };
 		054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */; };
 		05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECA0B023CB906A00635360 /* AddEventViewController.swift */; };
+		05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */; };
 		05FCBA2323D368600077F3F5 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */; };
 		05FCBA2523D374390077F3F5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2423D374390077F3F5 /* RouteViewController.swift */; };
 		05FCBA2823D49F8D0077F3F5 /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2723D49F8D0077F3F5 /* EventsListViewController.swift */; };
@@ -69,6 +70,7 @@
 		054AD58523CF64FE007A9A1C /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController1.swift; sourceTree = "<group>"; };
 		05ECA0B023CB906A00635360 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRHelperClass.swift; sourceTree = "<group>"; };
 		05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		05FCBA2423D374390077F3F5 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		05FCBA2723D49F8D0077F3F5 /* EventsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			path = ClubsViewController;
 			sourceTree = "<group>";
 		};
+		05F6BF9323DB3E5200F89259 /* FirebaseHelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */,
+			);
+			path = FirebaseHelperClass;
+			sourceTree = "<group>";
+		};
 		05FCBA2623D49F7A0077F3F5 /* EventViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +239,7 @@
 		10303B782394861E00F7C2F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				05F6BF9323DB3E5200F89259 /* FirebaseHelperClass */,
 				05FCBA2623D49F7A0077F3F5 /* EventViewController */,
 				0533BAFB23D0BF91009B3D3A /* PublishScreens */,
 				054AD58423CF64D0007A9A1C /* ClubsViewController */,
@@ -431,6 +442,7 @@
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
 				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */,
+				05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
 				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,

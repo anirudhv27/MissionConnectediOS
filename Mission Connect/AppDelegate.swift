@@ -23,8 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        self.gotoDummyScreen()
-       // self.gotoRouteScreen()
+        
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
+            self.gotoRouteScreen()
+        }else {
+            self.gotoDummyScreen()
+        }
+        
+       
         
         return true
     }

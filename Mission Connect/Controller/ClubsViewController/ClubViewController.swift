@@ -30,6 +30,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isFromSideMenu == false {
             self.backBtn.isHidden = true
         }
+        FIRHelperClass.sharedInstance.getAllClubList()
     }
     
     func resetButtonAtIndex(index: Int) {
