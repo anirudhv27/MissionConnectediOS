@@ -1,101 +1,144 @@
-{
-  "users": {
-    "user-id1": {
-      "AvatarImageURL": "AvatarImageURL link 1",
-      "Email": "user1@gmail.com",
-      "FullName": "user1 FullName",
-      "NickName": "user1 NickName",
-      "SchoolName": "MySchoolName",
-      "GraduationYear": 2020,
-      "CreatedTimestamp": 1459361875666
-    },
-    "user-id2": {
-      "AvatarImageURL": "AvatarImageURL link 2",
-      "Email": "user2@gmail.com",
-      "FullName": "user2 FullName",
-      "NickName": "user2 NickName",
-      "SchoolName": "MySchoolName",
-      "GraduationYear": 2020,
-      "CreatedTimestamp": 1459361875666
-    },
-    "user-id3": {
-      "AvatarImageURL": "AvatarImageURL link 3",
-      "Email": "user3@gmail.com",
-      "FullName": "user3 FullName",
-      "NickName": "user3 NickName",
-      "SchoolName": "MySchoolName",
-      "GraduationYear": 2020,
-      "CreatedTimestamp": 1459361875666
-    }
-  },
-  "clubs": {
-    "Club-id1": {
-      "Clubname": "Club1 Name",
-      "ClubImageURL": "Club1 ImageURL",
-      "ClubCreatedTimestamp": 1459361875666
-    },
-    "Club-id2": {
-      "Clubname": "Club2 Name",
-      "ClubImageURL": "Club2 ImageURL",
-      "ClubCreatedTimestamp": 1459361875666
-    }
-  },
-  "clubUsers" :{
-	  "Club-id1": {
-		  "user-id1": 
-		  	{ 
-			    "rank": "officer",
-			    "clubJoinTimestamp": 1459361875666
-			},
-		  "user-id2": 
-		  	{ 
-			    "rank": "member",
-			    "clubJoinTimestamp": 1459361875666
-			}
-    },
-	  "Club-id2": {
-		  "user-id3": 
-		  	{ 
-			    "rank": "officer",
-			    "clubJoinTimestamp": 1459361875666
-			},
-	    "user-id1":
-        {
-          "rank": "member",
-          "clubJoinTimestamp": 1459361875666
-       }
-    }
-  },
-"events": {
-    "Event-id1": {
-      "Eventname": "Event1 Name",
-      "EventImageURL": "Event1 ImageURL",
-      "EventDescription": "Event1 Description",
-      "EventCreatedTimestamp": 1459361875666
-    },
-    "Event-id2": {
-      "Eventname": "Event2 Name",
-      "EventImageURL": "Event2 ImageURL",
-      "EventDescription": "Event2 Description",
-      "EventCreatedTimestamp": 1459361875666
-    }
-},
-"eventClubsUsers": {
-   "Event-id1": {
-      "Club-id1" : true,
-      "user-id1": {
-        "going": true,
-        "like": true
+{ 
+   "users":{ 
+      "user-id0":{ 
+         "AvatarImageURL":"AvatarImageURL link 0",
+         "Email":"user0@gmail.com",
+         "FullName":"user0 FullName",
+         "NickName":"user0 NickName",
+         "SchoolName":"MySchoolName",
+         "GraduationYear":2020,
+         "CreatedTimestamp":1459361875666
       },
-      "user-id2": {
-        "going": true
+      "user-id1":{ 
+         "AvatarImageURL":"AvatarImageURL link 1",
+         "Email":"user1@gmail.com",
+         "FullName":"user1 FullName",
+         "NickName":"user1 NickName",
+         "SchoolName":"MySchoolName",
+         "GraduationYear":2020,
+         "CreatedTimestamp":1459361875666
       },
-      "user-id3": {
-        "like": true
+      "user-id2":{ 
+         "AvatarImageURL":"AvatarImageURL link 2",
+         "Email":"user2@gmail.com",
+         "FullName":"user2 FullName",
+         "NickName":"user2 NickName",
+         "SchoolName":"MySchoolName",
+         "GraduationYear":2020,
+         "CreatedTimestamp":1459361875666
+      },
+      "user-id3":{ 
+         "AvatarImageURL":"AvatarImageURL link 3",
+         "Email":"user3@gmail.com",
+         "FullName":"user3 FullName",
+         "NickName":"user3 NickName",
+         "SchoolName":"MySchoolName",
+         "GraduationYear":2020,
+         "CreatedTimestamp":1459361875666
       }
-    },
-    "Event-id2": {
-      "Club-id2" : true
-    }
-}
+   },
+   "clubs":{ 
+      "Club-id0":{ 
+         "Clubname":"ASB",
+         "SuperClub": true,
+         "ClubImageURL":"Club0 ImageURL",
+         "ClubTitle" : "ASB Club",
+         "ClubMiniDescription" : "Club0 : Mini Description",
+         "ClubDescription" : "Club0 Full description, This is super CLUB all officers in this club got admin access to update any club details and event details",
+         "ClubPrivacy": "private",
+         "ClubCreatedTimestamp":1459361875666
+      },
+      "Club-id1":{ 
+         "Clubname":"Club1 Name",
+         "ClubImageURL":"Club1 ImageURL",
+         "ClubTitle" : "Club1 Title",
+         "ClubMiniDescription" : "Club1 mini description",
+         "ClubDescription" : "Club1 Full description",
+         "ClubPrivacy": "public",
+         "ClubCreatedTimestamp":1459361875666
+      },
+      "Club-id2":{ 
+         "Clubname":"Club2 Name",
+         "ClubImageURL":"Club2 ImageURL",
+         "ClubTitle" : "Club2 Title",
+         "ClubMiniDescription" : "Club2 mini description",
+         "ClubDescription" : "Club2 Full description",
+         "ClubPrivacy": "public",
+         "ClubCreatedTimestamp":1459361875666
+      }
+   },
+   "clubUsers":{ 
+      "Club-id0":{ 
+         "user-id0":{ 
+            "rank":"officer",
+            "clubJoinTimestamp":1459361875666
+         }
+      },
+      "Club-id2":{ 
+         "user-id3":{ 
+            "rank":"officer",
+            "clubJoinTimestamp":1459361875666
+         },
+         "user-id1":{ 
+            "rank":"member",
+            "clubJoinTimestamp":1459361875666
+         }
+      }
+   },
+   "events":{ 
+      "Event-id1":{ 
+         "Eventname":"Event1 Name",
+         "EventImageURL":"Event1 ImageURL",
+         "EventMiniDescription":"Event1 Mini Description",
+         "EventDescription":"Event1 Description",
+         "EventLocation":"Event1 Room",
+         "EventCreatedTimestamp":1459361875666,
+         "EventStartTimestamp": 1459361875666,
+         "EventEndTimestamp": 1459361875666,
+         "EventCreatedBy":"user-id1"
+      },
+      "Event-id2":{ 
+         "Eventname":"Event2 Name",
+         "EventImageURL":"Event2 ImageURL",
+         "EventMiniDescription":"Event2 Mini Description",
+         "EventDescription":"Event2 Description",
+         "EventLocation":"Event2 Room",
+         "EventCreatedTimestamp":1459361875666,
+         "EventStartTimestamp": 1459361875666,
+         "EventEndTimestamp": 1459361875666,
+         "EventCreatedBy":"user-id2"
+      }
+   },
+   "eventDetails":{ 
+      "Event-id1":{ 
+         "Club-id1":true,
+         "users":{ 
+            "user-id1":{ 
+               "going":true,
+               "like":true
+            },
+            "user-id2":{ 
+               "going":true
+            },
+            "user-id3":{ 
+               "like":true
+            }
+         },
+         "comments":{ 
+            "comment_id_1":{ 
+               "description":"comment1",
+               "CreatedTimestamp":1459361875666,
+               "author":"user-id1"
+            },
+            "comment_id_2":{ 
+               "description":"comment2",
+               "CreatedTimestamp":1459361875667,
+               "author":"user-id2"
+            }
+         }
+      },
+      "Event-id2":{ 
+         "Club-id2":true
+      }
+   }
 }

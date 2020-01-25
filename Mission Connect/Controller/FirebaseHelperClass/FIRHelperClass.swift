@@ -17,8 +17,10 @@ class FIRHelperClass: NSObject {
     func saveUserData(emailString: String, nickName:String, fullName: String, graduationYear:String, schoolName:String, imageURL: String ) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-
-        databaseReference.child("users").childByAutoId().setValue(["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "Year":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970])
+        let userData : [String:Any] = ["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "Year":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970]
+        
+        databaseReference.child("users").childByAutoId().setValue(userData)
+        
        // print(databaseReference)
     }
     
@@ -60,8 +62,9 @@ class FIRHelperClass: NSObject {
             // Get user value
         
             let value = snapshot.value as? Dictionary<String,AnyObject>
-                let username = value?["username"] as? String ?? ""
-    // let user = User(username: username)
+            let username = value?["username"] as? String ?? ""
+            print(username)
+            // let user = User(username: username)
         
         // ...
         }) { (error) in

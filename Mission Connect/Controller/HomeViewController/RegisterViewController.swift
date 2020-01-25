@@ -176,7 +176,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }else {
             
             
-            self.uploadImageOnFirebase()
+           // self.uploadImageOnFirebase()
+            self.sendUserDataOnFirebase()
             return
           
         }
@@ -190,9 +191,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
-    func sendUserDataOnFirebase(imageURL: String) {
+    func sendUserDataOnFirebase() {
         
-        
+       // let imageURL = uploadImageOnFirebase()
+         let imageURL = "uploadImageOnFirebase"
         FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
         let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
@@ -206,19 +208,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
-    func uploadImageOnFirebase() {
-        self.sendUserDataOnFirebase(imageURL: "dsfhjgjhds")
-        return
-       /* FIRHelperClass.sharedInstance.updateProfileImage(image: self.profileImageView.image!) { (status, imageURL) in
+    func uploadImageOnFirebase() -> String {
+        FIRHelperClass.sharedInstance.updateProfileImage(image: self.profileImageView.image!) { (status, imageURL) in
             if status == true {
-                self.sendUserDataOnFirebase(imageURL: "\(imageURL!)")
-            }else {
-                
+                //self.sendUserDataOnFirebase(imageURL: "\(imageURL!)")
+                print ("status=True, uploadImageOnFirebase")
             }
-        }*/
+            else {
+                print ("status= False , uploadImageOnFirebase")
+            }
+        }
+        return "uploadImageOnFirebase"
     }
-        
-
+    
 }
 
 
