@@ -17,7 +17,7 @@ class FIRHelperClass: NSObject {
     func saveUserData(emailString: String, nickName:String, fullName: String, graduationYear:String, schoolName:String, imageURL: String ) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-        let userData : [String:Any] = ["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "Year":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970]
+        let userData : [String:Any] = ["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "GraduationYear":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970]
         
         databaseReference.child("users").childByAutoId().setValue(userData)
         
@@ -25,14 +25,14 @@ class FIRHelperClass: NSObject {
     }
     
     func updateProfileImage(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
-           var timeStamp = "user\(Date().timeIntervalSince1970).jpeg"
+        let timeStamp = "user\(Date().timeIntervalSince1970).jpeg"
         let storageRef = Storage.storage().reference().child("userimages").child(timeStamp)
           
             
             let data = image.pngData()
           //  showHud()
             if data != nil {
-                let uploadTask = storageRef.putData(data!, metadata: nil) { (metadata, error) in
+                let _ = storageRef.putData(data!, metadata: nil) { (metadata, error) in
                     //hideHud()
                 guard metadata != nil else {
                         completion(false, nil)
