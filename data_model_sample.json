@@ -54,16 +54,16 @@
       "club_name" : "Club 1",
       "club_description" : "This is a club description number 1",
       "club_mini_description" : "Club1 : Mini Description",
-      "club_image_url" : "url1"
+      "club_image_url" : "url1",
       "events" : {
         "event1" : true
       }
-    }
+    },
     "club2" : {
       "club_name" : "Club 2",
       "club_description" : "This is a club description number 2",
       "club_mini_description" : "Club2 : Mini Description",
-      "club_image_url" : "url2"
+      "club_image_url" : "url2",
       "events" : {
         "event2" : true
       }
@@ -75,7 +75,7 @@
       "event_date" : "02-22-2019",
       "event_description" : "This is a club description number 1",
       "event_name" : "Event 1"
-    }
+    },
     "event2" : {
       "event_club" : "club2",
       "event_date" : "02-22-2019",
@@ -84,4 +84,3 @@
     }
   }
 }
-
