@@ -15,10 +15,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var topView: UIView!
     
     var clubNames: [String] = []
+    var eventNames: [String] = []
     var clubs: [Club] = []
+    var events: [Event] = []
     var selectedClub: Club!
     let CLUBS_REF = Database.database().reference().child("clubs")
-    var REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
+    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
+    let EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
+    let EVENT_DETAILS_REF = Database.database().reference().child("events")
     
     //event outlet
     
@@ -32,14 +36,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var allBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchClubs()
-
         // Do any additional setup after loading the view.
         self.topView.setShadow()
         self.resetButtonAtIndex(index: 0)
         self.eventBtnView.setShadow()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchClubs()
+        print("pass 1")
+        fetchEvents()
+        print("pass 3")
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        clubs = [Club]()
+        events = [Event]()
+    }
     func resetButtonAtIndex(index:Int) {
         self.pastBtn.setTitleColor(.lightGray, for: .normal)
         self.allBtn.setTitleColor(.lightGray, for: .normal)
@@ -58,7 +69,48 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.pastLabel.isHidden = false
         }
     }
+    func fetchClubs() {
+        clubNames = [String]()
+        REF.observe(.childAdded, with: { (snapshot) -> Void in
+            self.clubNames.append(snapshot.key)
+        })
+        
+        CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if self.clubNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let club = Club()
+                    club.clubName = dictionary["club_name"] as? String
+                    club.clubDescription = dictionary["club_description"] as? String
+                    //                    if !self.clubs.contains(club) {
+                    self.clubs.append(club)
+                    self.myCollectionView.reloadData()
+                    //                    }
+                }
+            }
+        })
+    }
     
+    func fetchEvents() {
+        print("pass 2")
+        eventNames = [String]()
+        EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            self.eventNames.append(snapshot.key)
+        })
+        
+        EVENT_DETAILS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if self.eventNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let event = Event()
+                    event.event_club = dictionary["event_club"] as? String
+                    event.event_description = dictionary["event_description"] as? String
+                    event.event_name = dictionary["event_name"] as? String
+                    self.events.append(event)
+                    self.eventTableView.reloadData()
+                }
+            }
+        })
+        
+    }
     @IBAction func menuBtnAction(_ sender: Any) {
         self.toggleSlider()
     }
@@ -77,26 +129,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         objVC.isFromSideMenu = true
         self.navigationController?.pushViewController(objVC, animated: true)
     }
-    func fetchClubs() {
-            clubNames = [String]()
-            REF.observe(.childAdded, with: { (snapshot) -> Void in
-                self.clubNames.append(snapshot.key)
-            })
-            
-            CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
-                if self.clubNames.contains(snapshot.key){
-                    if let dictionary = snapshot.value as? [String: AnyObject]{
-                        let club = Club()
-                        club.clubName = dictionary["club_name"] as? String
-                        club.clubDescription = dictionary["club_description"] as? String
-    //                    if !self.clubs.contains(club) {
-                            self.clubs.append(club)
-                            self.myCollectionView.reloadData()
-    //                    }
-                    }
-                }
-            })
-        }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return clubs.count
@@ -126,16 +158,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     //MARK: - UItableView Delegate and DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
         
         cell.menuImageView.image = UIImage.init(named: "event")
-        cell.titleLabel.text = "14 January 2020 14:00"
-        cell.subTitleLabel.text = "Event Title"
-        cell.memberLabel.text = "Club name"
+        cell.titleLabel.text = events[indexPath.row].event_name
+        cell.subTitleLabel.text = events[indexPath.row].event_description
+        cell.memberLabel.text = events[indexPath.row].event_club
         return cell
     }
     

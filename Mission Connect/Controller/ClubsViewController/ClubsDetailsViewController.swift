@@ -12,6 +12,7 @@ import Firebase
 class ClubsDetailsViewController: UIViewController, UINavigationControllerDelegate {
 
     var club: Club!
+    
     @IBOutlet weak var allEventBtn: UIButton!
     @IBOutlet weak var subscribeBtn: UIButton!
     @IBOutlet weak var topView: UIView!
@@ -53,7 +54,13 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
                 let USER_REF = self.ref.child("users").child(self.user!.uid)
                 let clubKey = String(self.club.clubID!)
                 USER_REF.child("clubs").child(clubKey).setValue(true)
+                let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
+                EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+                    let event = snapshot.key
+                    USER_REF.child("events").child(event).setValue(true)
+                })
             })
+        
             
             alert.addAction(cancelActionBtn)
             alert.addAction(subscribeActionBtn)
