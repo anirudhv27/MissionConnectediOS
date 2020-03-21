@@ -10,7 +10,6 @@
       "members" : {
         "user1" : true
       },
-      "no_of_members" : 1,
       "officers" : {
         "user1" : true
       }
@@ -25,7 +24,6 @@
       "members" : {
         "user1" : true
       },
-      "no_of_members" : 1,
       "officers" : {
         "user1" : true
       }
@@ -329,6 +327,7 @@
       "event_name" : "msjtechandrobotics Lecture"
     }
   },
+  
   "users" : {
     "-LzNFnpZw-7xTddOt25R" : {
       "Avatar" : "dsfhjgjhds",
@@ -358,8 +357,12 @@
     },
     "df98xNGvf2gYPE2l2ww1mGBrodk2" : {
       "clubs" : {
-        "americancancersociety" : true,
-        "chinesecultureclub" : true,
+          "americancancersociety" : {
+              "role": "President"
+          },
+          "chinesecultureclub": {
+              "role": "member"
+          },
         "msjappdevelopmentclub" : true,
         "msjcomputerscience" : true
       }

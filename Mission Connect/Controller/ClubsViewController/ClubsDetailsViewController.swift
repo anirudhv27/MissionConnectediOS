@@ -7,25 +7,29 @@
 //
 
 import UIKit
+import Firebase
 
-class ClubsDetailsViewController: UIViewController {
+class ClubsDetailsViewController: UIViewController, UINavigationControllerDelegate {
 
+    var club: Club!
     @IBOutlet weak var allEventBtn: UIButton!
     @IBOutlet weak var subscribeBtn: UIButton!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var descriptionTxtView: UITextView!
+    @IBOutlet weak var clubTitleLabel: UILabel!
     
-    var isFromMyClub = false
+    let user = Auth.auth().currentUser
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = Database.database().reference()
+        navigationController?.delegate = self
+        clubTitleLabel.text = club.clubName
+        descriptionTxtView.text = club.clubDescription
+        
         self.topView.setShadow()
         subscribeBtn.layer.cornerRadius = 4.0
-        
-        if isFromMyClub {
-            self.subscribeBtn.backgroundColor = .systemRed
-            self.subscribeBtn.setTitle("UnSubscribe", for: .normal)
-        }
         
     }
     
@@ -40,22 +44,20 @@ class ClubsDetailsViewController: UIViewController {
     }
     
     @IBAction func subscribeBtnAction(_ sender: Any) {
-        if isFromMyClub {
-            let alertController = UIAlertController.init(title: "Alert", message: "You have unsubscribed!", preferredStyle: .alert)
-            let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        }else {
-            let alertController = UIAlertController.init(title: "Alert", message: "You have subscribed! Please enjoy.", preferredStyle: .alert)
-            let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
+            let alert: UIAlertController = UIAlertController(title: "Subscribe?", message: "Subscribe to \(club.clubName ?? "")?", preferredStyle: .alert)
+            let cancelActionBtn = UIAlertAction(title: "No", style: .cancel, handler: { _ in
+                  self.navigationController?.popToRootViewController(animated: true)
+            })
+            
+            let subscribeActionBtn = UIAlertAction(title: "Subscribe", style: .default, handler: { _ in
+                let USER_REF = self.ref.child("users").child(self.user!.uid)
+                let clubKey = String(self.club.clubID!)
+                USER_REF.child("clubs").child(clubKey).setValue(true)
+            })
+            
+            alert.addAction(cancelActionBtn)
+            alert.addAction(subscribeActionBtn)
+            self.present(alert, animated: true)
     }
     /*
     // MARK: - Navigation

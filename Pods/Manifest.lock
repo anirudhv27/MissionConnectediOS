@@ -106,6 +106,9 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SDWebImage (5.6.1):
+    - SDWebImage/Core (= 5.6.1)
+  - SDWebImage/Core (5.6.1)
   - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
@@ -116,6 +119,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GoogleSignIn
+  - SDWebImage
   - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC REPOS:
@@ -140,6 +144,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SDWebImage
     - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
@@ -163,8 +168,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 1d217aef7fb8815bdc6b83529c996e6b267566f3
+PODFILE CHECKSUM: b3788c7365586d562f24aa9edec628d4c89b2f1e
 
 COCOAPODS: 1.8.4

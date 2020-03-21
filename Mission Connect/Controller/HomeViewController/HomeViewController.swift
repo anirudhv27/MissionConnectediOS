@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var topView: UIView!
+    
+    var clubNames: [String] = []
+    var clubs: [Club] = []
+    var selectedClub: Club!
+    let CLUBS_REF = Database.database().reference().child("clubs")
+    var REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
     
     //event outlet
     
@@ -25,6 +32,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var allBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchClubs()
 
         // Do any additional setup after loading the view.
         self.topView.setShadow()
@@ -69,17 +77,41 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         objVC.isFromSideMenu = true
         self.navigationController?.pushViewController(objVC, animated: true)
     }
+    func fetchClubs() {
+            clubNames = [String]()
+            REF.observe(.childAdded, with: { (snapshot) -> Void in
+                self.clubNames.append(snapshot.key)
+            })
+            
+            CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+                if self.clubNames.contains(snapshot.key){
+                    if let dictionary = snapshot.value as? [String: AnyObject]{
+                        let club = Club()
+                        club.clubName = dictionary["club_name"] as? String
+                        club.clubDescription = dictionary["club_description"] as? String
+    //                    if !self.clubs.contains(club) {
+                            self.clubs.append(club)
+                            self.myCollectionView.reloadData()
+    //                    }
+                    }
+                }
+            })
+        }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return clubs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelCollectionViewCell", for: indexPath) as! ImageLabelCollectionViewCell
         cell.imageview.layer.cornerRadius = 10.0
         cell.imageview.clipsToBounds = true
-        cell.titleLabel.text = "Club title"
-        return cell
+        
+        let currClub = clubs[indexPath.row]
+         cell.titleLabel.text = currClub.clubName
+        
+        // cell.menuImageView.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
+         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -88,7 +120,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
-        objvc.isFromMyClub = true
+        objvc.club = clubs[indexPath.row]
         self.navigationController?.pushViewController(objvc, animated: true)
     }
     

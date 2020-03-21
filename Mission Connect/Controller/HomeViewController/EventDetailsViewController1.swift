@@ -16,7 +16,7 @@ class EventDetailsViewController1: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var topView: UIView!
     var isOfficer = false
     
-    var commentList = ["Good one", "Nice", "Beautifull"]
+    var commentList = ["Good one", "Nice", "Beautiful"]
     override func viewDidLoad() {
         super.viewDidLoad()
 

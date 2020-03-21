@@ -86,5 +86,4 @@ extension MASliderSpringAnimator: MASliderAnimating {
             options: UIView.AnimationOptions.curveLinear,
             animations: {}, completion: nil )
     }
-    
 }

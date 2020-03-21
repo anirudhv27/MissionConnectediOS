@@ -54,7 +54,7 @@ class FIRHelperClass: NSObject {
        
             
         }
-    
+          
     func getAllClubList() {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
@@ -91,27 +91,19 @@ class FIRHelperClass: NSObject {
                     completion(true)
                     break
                 }
-                
-                
-                
             }
             completion(false)
-        
         // ...
         }) { (error) in
         print(error.localizedDescription)
         }
     }
-    
-    
-    
     //Event method
     func createEvent(startDate: String, endDate:String, eventName: String, clubName:String, eventDescription:String, imageURL: String ) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
 
         databaseReference.child("events").childByAutoId().setValue(["EventImage":imageURL, "EventStartDate":startDate, "EventEndData":endDate, "EventName":eventName, "EventDescription":eventDescription, "ClubName":clubName])
-        
     }
 }
 

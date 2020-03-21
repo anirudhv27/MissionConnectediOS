@@ -11,6 +11,7 @@ import SkyFloatingLabelTextField
 
 
 class PublishViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var clubNametextField: UITextField!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventStartDateTextField: SkyFloatingLabelTextField!

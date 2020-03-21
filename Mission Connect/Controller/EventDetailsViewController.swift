@@ -20,7 +20,6 @@ class EventDetailsViewController: UIViewController {
         
         eventNameLabel.text = event.event_name
         clubNameLabel.text = event.event_club
-       
      
     }
     

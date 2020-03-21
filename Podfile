@@ -14,6 +14,7 @@ target 'Mission Connect' do
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'AppAuth'
+  pod 'SDWebImage'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

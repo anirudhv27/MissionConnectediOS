@@ -46,7 +46,13 @@
          "ClubMiniDescription" : "Club0 : Mini Description",
          "ClubDescription" : "Club0 Full description, This is super CLUB all officers in this club got admin access to update any club details and event details",
          "ClubPrivacy": "private",
-         "ClubCreatedTimestamp":1459361875666
+         "ClubCreatedTimestamp":1459361875666,
+         "users": {
+             "userid1": {
+                 "rank": "member"
+                 "clubJoinTimestamp": 123891023
+             }
+         }
       },
       "Club-id1":{ 
          "Clubname":"Club1 Name",

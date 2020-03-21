@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SDWebImage
 
 class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,6 +21,12 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var allClubBtn: UIButton!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
+    
+    var clubs: [Club] = []
+    var selectedClub: Club!
+    let user = Auth.auth().currentUser
+    let storageRef = Storage.storage().reference()
+    
     var isFromSideMenu = false
     var selectedTab = 0
     override func viewDidLoad() {
@@ -30,7 +38,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isFromSideMenu == false {
             self.backBtn.isHidden = true
         }
-        FIRHelperClass.sharedInstance.getAllClubList()
+        fetchClubs()
     }
     
     func resetButtonAtIndex(index: Int) {
@@ -67,19 +75,39 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.popViewController(animated: true)
     }
     
+    func fetchClubs() {
+        Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let club = Club()
+                club.clubName = dictionary["club_name"] as? String
+                club.clubDescription = dictionary["club_description"] as? String
+                club.clubImageURL = dictionary["club_image_url"] as? String
+                club.clubID = snapshot.key
+                self.clubs.append(club)
+                self.myTableView.reloadData()
+            }
+        })
+    }
     
     //MARK: - UItableView Delegate and DataSource Methods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return clubs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
         
-        cell.menuImageView.image = UIImage.init(named: "event")
-        cell.titleLabel.text = "Club Title"
+        let currClub = clubs[indexPath.row]
+        cell.titleLabel.text = currClub.clubName
         cell.subTitleLabel.text = "Club SubTitle"
         cell.memberLabel.text = "Member Status"
+        let imgRef = storageRef.child("clubimages/\(String(describing: currClub.clubImageURL))")
+        let placeholderImage = UIImage(named: "event")
+       // cell.menuImageView.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
         return cell
     }
     
@@ -89,9 +117,8 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
-        if selectedTab == 1 {
-            objvc.isFromMyClub = true
-        }
+        objvc.club = clubs[indexPath.row]
+        print(objvc.club.clubDescription)
                self.navigationController?.pushViewController(objvc, animated: true)
     }
     /*
@@ -103,5 +130,4 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Pass the selected object to the new view controller.
     }
     */
-
 }

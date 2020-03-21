@@ -1079,6 +1079,7 @@ Translations: Can you help translate this site into</string>
         <!--Club View Controller-->
         <scene sceneID="ZQm-3e-Bfh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQf-s7-qfY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ClubViewController" id="wJV-QG-ntq" customClass="ClubViewController" customModule="Mission_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6af-Xh-OPx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1285,7 +1286,6 @@ Translations: Can you help translate this site into</string>
                         <outlet property="topView" destination="n9Q-Rh-5cN" id="g9Z-cv-vRa"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JQf-s7-qfY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="521" y="-1012"/>
         </scene>
