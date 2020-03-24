@@ -1,18 +1,17 @@
 //
-//  ClubViewController.swift
+//  AddClubsTableViewController.swift
 //  Mission Connect
 //
-//  Created by Anirudh Valiveru on 12/22/19.
-//  Copyright © 2019 Anirudh Valiveru. All rights reserved.
+//  Created by Anirudh Valiveru on 3/21/20.
+//  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
 import UIKit
 import Firebase
 import SDWebImage
 
-class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var clubNames: [String] = []
     @IBOutlet weak var startClubLabel: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var myClubLabel: UILabel!
@@ -23,30 +22,21 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
     
-    let CLUBS_REF = Database.database().reference().child("clubs")
-    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
     
     var clubs: [Club] = []
     var selectedClub: Club!
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     
-    var isFromClubsTab = true
     var selectedTab = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.topView.setShadow()
-        if isFromClubsTab {
-            self.backBtn.removeFromSuperview()
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        clubs = [Club]()
+        myTableView.delegate = self
+        myTableView.dataSource = self
         fetchClubs()
-        self.myTableView.reloadData()
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -55,24 +45,16 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func fetchClubs() {
         clubs = [Club]()
-        clubNames = [String]()
-        REF.observe(.childAdded, with: { (snapshot) -> Void in
-            self.clubNames.append(snapshot.key)
-        })
-        
-        CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
-            if self.clubNames.contains(snapshot.key){
-                if let dictionary = snapshot.value  as? [String: AnyObject]{
-                    let club = Club()
-                    club.clubName = dictionary["club_name"] as? String
-                    club.clubDescription = dictionary["club_description"] as? String
-                    club.clubImageURL = dictionary["club_image_url"] as? String
-                    club.clubPreview = dictionary["club_preview"] as? String
-                    club.clubID = snapshot.key
-                    //                    if !self.clubs.contains(club) {
-                    self.clubs.append(club)
-                    self.myTableView.reloadData()
-                }
+    Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let club = Club()
+                club.clubName = dictionary["club_name"] as? String
+                club.clubDescription = dictionary["club_description"] as? String
+                club.clubImageURL = dictionary["club_image_url"] as? String
+                club.clubPreview = dictionary["club_preview"] as? String
+                club.clubID = snapshot.key
+                self.clubs.append(club)
+                self.myTableView.reloadData()
             }
         })
     }
@@ -114,17 +96,4 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(objvc.club.clubDescription)
                self.navigationController?.pushViewController(objvc, animated: true)
     }
-    
-    @IBAction func addButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "addClubSegue", sender: self)
-    }
-    
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

@@ -94,7 +94,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          break
         case 4:
          
-         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "SecurityViewController") as! CustomTabBarViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in

@@ -41,15 +41,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.resetButtonAtIndex(index: 0)
         self.eventBtnView.setShadow()
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         fetchClubs()
-        print("pass 1")
         fetchEvents()
-        print("pass 3")
+        myCollectionView.reloadData()
+        eventTableView.reloadData()
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         clubs = [Club]()
         events = [Event]()
+        myCollectionView.reloadData()
+        eventTableView.reloadData()
     }
     func resetButtonAtIndex(index:Int) {
         self.pastBtn.setTitleColor(.lightGray, for: .normal)
@@ -70,6 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     func fetchClubs() {
+        clubs = [Club]()
         clubNames = [String]()
         REF.observe(.childAdded, with: { (snapshot) -> Void in
             self.clubNames.append(snapshot.key)
@@ -81,17 +84,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     let club = Club()
                     club.clubName = dictionary["club_name"] as? String
                     club.clubDescription = dictionary["club_description"] as? String
+                    club.clubImageURL = dictionary["club_image_url"] as? String
+                    club.clubID = snapshot.key
                     //                    if !self.clubs.contains(club) {
                     self.clubs.append(club)
                     self.myCollectionView.reloadData()
-                    //                    }
                 }
             }
         })
     }
     
     func fetchEvents() {
-        print("pass 2")
+        events = [Event]()
         eventNames = [String]()
         EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
             self.eventNames.append(snapshot.key)
@@ -126,7 +130,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     @IBAction func seeAllClubBtnAction(_ sender: Any) {
         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
-        objVC.isFromSideMenu = true
+        objVC.isFromClubsTab = false
         self.navigationController?.pushViewController(objVC, animated: true)
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
@@ -141,6 +145,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let currClub = clubs[indexPath.row]
          cell.titleLabel.text = currClub.clubName
+        if let url = URL(string: currClub.clubImageURL!){
+            do {
+                let data = try Data(contentsOf: url)
+                cell.imageview.image = UIImage(data: data)
+            } catch let err{
+                print(err)
+            }
+        }
         
         // cell.menuImageView.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
          return cell

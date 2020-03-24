@@ -29,7 +29,6 @@
 		05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */; };
 		05FCBA2323D368600077F3F5 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */; };
 		05FCBA2523D374390077F3F5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2423D374390077F3F5 /* RouteViewController.swift */; };
-		05FCBA2823D49F8D0077F3F5 /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2723D49F8D0077F3F5 /* EventsListViewController.swift */; };
 		05FCBA2A23D4A9980077F3F5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2923D4A9980077F3F5 /* RegisterViewController.swift */; };
 		05FCBA2C23D5F6AC0077F3F5 /* CommonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2B23D5F6AC0077F3F5 /* CommonTableViewCell.swift */; };
 		1007349C2390586B007695DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349B2390586B007695DA /* AppDelegate.swift */; };
@@ -37,6 +36,7 @@
 		100734A12390586B007695DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007349F2390586B007695DA /* Main.storyboard */; };
 		100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100734A42390586D007695DA /* LaunchScreen.storyboard */; };
 		100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100734AD239058D1007695DA /* GoogleService-Info.plist */; };
+		10226B7F2427328400744797 /* AddClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10226B7E2427328400744797 /* AddClubsTableViewController.swift */; };
 		10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */; };
 		1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */; };
 		103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A984923B08B4400363972 /* ClubListTableViewController.swift */; };
@@ -45,6 +45,7 @@
 		105C25F423939160000D1D96 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F323939160000D1D96 /* Club.swift */; };
 		105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */; };
 		105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */; };
+		10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10779BAA242854A600B56392 /* EventListTableViewController.swift */; };
 		10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */; };
 		10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10BCB5842394C5270089EE56 /* Assets.xcassets */; };
 		480E0A301A61170DE50DE2F0 /* Pods_Mission_Connect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */; };
@@ -73,7 +74,6 @@
 		05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRHelperClass.swift; sourceTree = "<group>"; };
 		05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		05FCBA2423D374390077F3F5 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
-		05FCBA2723D49F8D0077F3F5 /* EventsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		05FCBA2923D4A9980077F3F5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		05FCBA2B23D5F6AC0077F3F5 /* CommonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableViewCell.swift; sourceTree = "<group>"; };
 		100734982390586B007695DA /* Mission Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +83,7 @@
 		100734A52390586D007695DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100734A72390586E007695DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100734AD239058D1007695DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		10226B7E2427328400744797 /* AddClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubsTableViewController.swift; sourceTree = "<group>"; };
 		10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsForClubTableViewController.swift; sourceTree = "<group>"; };
 		103A984923B08B4400363972 /* ClubListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListTableViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		105C25F323939160000D1D96 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsTableViewController.swift; sourceTree = "<group>"; };
 		105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailsViewController.swift; sourceTree = "<group>"; };
+		10779BAA242854A600B56392 /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 		108C33B6239A214100944F82 /* Mission Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mission Connect.entitlements"; sourceTree = "<group>"; };
 		10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		10BCB5842394C5270089EE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				054AD58523CF64FE007A9A1C /* ClubViewController.swift */,
 				0533BAF923D0AEEA009B3D3A /* ClubsDetailsViewController.swift */,
+				10226B7E2427328400744797 /* AddClubsTableViewController.swift */,
 			);
 			path = ClubsViewController;
 			sourceTree = "<group>";
@@ -177,8 +180,8 @@
 		05FCBA2623D49F7A0077F3F5 /* EventViewController */ = {
 			isa = PBXGroup;
 			children = (
-				05FCBA2723D49F8D0077F3F5 /* EventsListViewController.swift */,
 				05FCBA2B23D5F6AC0077F3F5 /* CommonTableViewCell.swift */,
+				10779BAA242854A600B56392 /* EventListTableViewController.swift */,
 			);
 			path = EventViewController;
 			sourceTree = "<group>";
@@ -432,7 +435,6 @@
 				05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */,
 				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
 				054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */,
-				05FCBA2823D49F8D0077F3F5 /* EventsListViewController.swift in Sources */,
 				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
 				054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */,
 				05FCBA2A23D4A9980077F3F5 /* RegisterViewController.swift in Sources */,
@@ -443,9 +445,11 @@
 				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */,
 				05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */,
+				10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
 				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,
+				10226B7F2427328400744797 /* AddClubsTableViewController.swift in Sources */,
 				103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */,
 				10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */,
 				054AD57823CE16EE007A9A1C /* Helper1ViewController.swift in Sources */,

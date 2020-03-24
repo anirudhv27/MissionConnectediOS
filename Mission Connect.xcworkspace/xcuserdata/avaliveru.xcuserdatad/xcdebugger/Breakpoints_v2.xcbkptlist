@@ -24,53 +24,5 @@
             continueAfterRunningActions = "No">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F9E6957-2F44-4918-BEEC-2A88A2DC345F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mission Connect/Controller/HomeViewController/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "fetchClubs()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6F9E6957-2F44-4918-BEEC-2A88A2DC345F - cdf8816daede5ed8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mission_Connect.HomeViewController.fetchClubs() -&gt; ()"
-                  moduleName = "Mission Connect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/avaliveru/Projects/Mission%20Connect/Mission%20Connect/Controller/HomeViewController/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "332">
-               </Location>
-               <Location
-                  uuid = "6F9E6957-2F44-4918-BEEC-2A88A2DC345F - f099b30a68ac2c2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__C.FIRDataSnapshot) -&gt; () in Mission_Connect.HomeViewController.fetchClubs() -&gt; ()"
-                  moduleName = "Mission Connect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/avaliveru/Projects/Mission%20Connect/Mission%20Connect/Controller/HomeViewController/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "147">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

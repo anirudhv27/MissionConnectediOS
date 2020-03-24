@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class DashboardTableViewController: UITableViewController {
-    
     var data: [Event] = []
     var events: [String] = []
     var clubs: [String] = []

@@ -12,4 +12,5 @@ class Event {
     var event_name: String?
     var event_club: String?
     var event_description: String?
+    var eventImageURL: String?
 }

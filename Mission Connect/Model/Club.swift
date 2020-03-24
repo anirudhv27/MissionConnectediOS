@@ -10,6 +10,7 @@ import Foundation
 
 class Club: Codable {
     var clubName: String?
+    var clubPreview: String?
     var clubDescription: String?
     var clubImageURL: String?
     var clubID: String?
