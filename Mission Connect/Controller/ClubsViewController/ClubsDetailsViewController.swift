@@ -19,6 +19,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
     @IBOutlet weak var descriptionTxtView: UITextView!
     @IBOutlet weak var clubTitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var memberLabel: UILabel!
     
     let user = Auth.auth().currentUser
     var ref: DatabaseReference!
@@ -30,15 +31,9 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         navigationController?.delegate = self
         clubTitleLabel.text = club.clubName
         descriptionTxtView.text = club.clubDescription
+        memberLabel.text = "Members: \(club.numberOfMembers ?? -1) joined"
         descriptionTxtView.isEditable = false
-        if let url = URL(string: club.clubImageURL!){
-            do {
-                let data = try Data(contentsOf: url)
-                imageView.image = UIImage(data: data)
-            } catch let err{
-                print(err)
-            }
-        }
+        imageView.imageFromURL(urlString: club.clubImageURL ?? "")
         ref.child("users").child(self.user!.uid).child("clubs").observeSingleEvent(of: .value, with: {(snapshot)-> Void in
             if snapshot.hasChild(self.club.clubID!){
                 self.isMyClub = true
@@ -90,11 +85,14 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
                 let event = snapshot.key
                 USER_REF.child("events").child(event).setValue(true)
             })
+            self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! + 1)
+            self.club.numberOfMembers = self.club.numberOfMembers! + 1
             self.subscribeBtn.titleLabel?.text = "Unsubscribe"
             self.subscribeBtn.backgroundColor = UIColor.red
             self.isMyClub = true
             self.navigationController?.popToRootViewController(animated: true)
         })
+        
         let unsubscribeActionBtn = UIAlertAction(title: "Leave", style: .default, handler: { _ in
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = String(self.club.clubID!)
@@ -102,8 +100,11 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
             let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
             EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
                 let event = snapshot.key
+                print(event)
                 USER_REF.child("events").child(event).removeValue()
             })
+            self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! - 1)
+            self.club.numberOfMembers = self.club.numberOfMembers! - 1
             self.subscribeBtn.titleLabel?.text = "Subscribe"
             self.subscribeBtn.backgroundColor = UIColor.green
             self.isMyClub = false

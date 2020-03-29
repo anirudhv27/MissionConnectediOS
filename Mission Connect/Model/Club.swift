@@ -14,6 +14,7 @@ class Club: Codable {
     var clubDescription: String?
     var clubImageURL: String?
     var clubID: String?
+    var numberOfMembers: Int?
     
     static func ==(lhs: Club, rhs: Club) -> Bool {
         return lhs.clubName == rhs.clubName && lhs.clubDescription == rhs.clubDescription

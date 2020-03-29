@@ -28,9 +28,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var eventBtnView: UIView!
-    @IBOutlet weak var pastLabel: UILabel!
-    @IBOutlet weak var goingLabel: UILabel!
-    @IBOutlet weak var allLabel: UILabel!
     @IBOutlet weak var pastBtn: UIButton!
     @IBOutlet weak var goingBtn: UIButton!
     @IBOutlet weak var allBtn: UIButton!
@@ -44,6 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         fetchClubs()
         fetchEvents()
+        eventTableView.contentSize.height = CGFloat(110 * events.count)
         myCollectionView.reloadData()
         eventTableView.reloadData()
     }
@@ -57,18 +55,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.pastBtn.setTitleColor(.lightGray, for: .normal)
         self.allBtn.setTitleColor(.lightGray, for: .normal)
         self.goingBtn.setTitleColor(.lightGray, for: .normal)
-        self.pastLabel.isHidden = true
-        self.allLabel.isHidden = true
-        self.goingLabel.isHidden = true
         if index == 0 {
              self.allBtn.setTitleColor(.black, for: .normal)
-            self.allLabel.isHidden = false
         }else if index == 1 {
             self.goingBtn.setTitleColor(.black, for: .normal)
-            self.goingLabel.isHidden = false
         }else {
             self.pastBtn.setTitleColor(.black, for: .normal)
-            self.pastLabel.isHidden = false
         }
     }
     func fetchClubs() {
@@ -85,13 +77,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     club.clubName = dictionary["club_name"] as? String
                     club.clubDescription = dictionary["club_description"] as? String
                     club.clubImageURL = dictionary["club_image_url"] as? String
+                    club.clubPreview = dictionary["club_preview"] as? String
+                    club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
-                    //                    if !self.clubs.contains(club) {
                     self.clubs.append(club)
-                    self.myCollectionView.reloadData()
+                    DispatchQueue.main.async {
+                        self.myCollectionView.reloadData()
+                    }
                 }
             }
         })
+        print("club fetched in HomeViewController")
     }
     
     func fetchEvents() {
@@ -108,12 +104,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     event.event_club = dictionary["event_club"] as? String
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
+                    event.eventImageURL = dictionary["event_image_url"] as? String
                     self.events.append(event)
-                    self.eventTableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.eventTableView.reloadData()
+                    }
                 }
             }
         })
-        
+        print("events fetched")
     }
     @IBAction func menuBtnAction(_ sender: Any) {
         self.toggleSlider()
@@ -128,11 +127,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func allBtnAction(_ sender: Any) {
         self.resetButtonAtIndex(index: 0)
     }
-    @IBAction func seeAllClubBtnAction(_ sender: Any) {
-        let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
-        objVC.isFromClubsTab = false
-        self.navigationController?.pushViewController(objVC, animated: true)
-    }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return clubs.count
@@ -144,22 +138,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.imageview.clipsToBounds = true
         
         let currClub = clubs[indexPath.row]
-         cell.titleLabel.text = currClub.clubName
-        if let url = URL(string: currClub.clubImageURL!){
-            do {
-                let data = try Data(contentsOf: url)
-                cell.imageview.image = UIImage(data: data)
-            } catch let err{
-                print(err)
-            }
-        }
+        cell.titleLabel.text = currClub.clubName
+        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
         
-        // cell.menuImageView.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
-         return cell
+        cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 120.0, height: 138)
+        return CGSize.init(width: 132.0, height: 90.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -175,20 +162,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
-        
-        cell.menuImageView.image = UIImage.init(named: "event")
         cell.titleLabel.text = events[indexPath.row].event_name
         cell.subTitleLabel.text = events[indexPath.row].event_description
-        cell.memberLabel.text = events[indexPath.row].event_club
+        CLUBS_REF.child(events[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
+            let clubName = snapshot.value as? String
+            cell.memberLabel.text = clubName
+        }
+        cell.menuImageView.imageFromURL(urlString: events[indexPath.row].eventImageURL ?? "")
+ 
+        cell.menuImageView.sizeThatFits(CGSize.init(width: 85, height: 65))
+        print(events[indexPath.row].event_name ?? "")
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 95
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventDetailsViewController1") as! EventDetailsViewController1
+        objVC.event = events[indexPath.row]
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
         APPDELEGATE.navigationController?.pushViewController(objVC, animated: true)
     }

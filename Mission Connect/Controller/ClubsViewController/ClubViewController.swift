@@ -31,16 +31,12 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     
-    var isFromClubsTab = true
     var selectedTab = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.topView.setShadow()
-        if isFromClubsTab {
-            self.backBtn.removeFromSuperview()
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -68,6 +64,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
                     club.clubDescription = dictionary["club_description"] as? String
                     club.clubImageURL = dictionary["club_image_url"] as? String
                     club.clubPreview = dictionary["club_preview"] as? String
+                    club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
                     //                    if !self.clubs.contains(club) {
                     self.clubs.append(club)
@@ -93,25 +90,18 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.titleLabel.text = currClub.clubName
         cell.subTitleLabel.text = currClub.clubPreview
         cell.memberLabel.text = "Member Status"
-        if let url = URL(string: currClub.clubImageURL!){
-            do {
-                let data = try Data(contentsOf: url)
-                cell.menuImageView.image = UIImage(data: data)
-            } catch let err{
-                print(err)
-            }
-        }
+        cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
         objvc.club = clubs[indexPath.row]
-        print(objvc.club.clubDescription)
+        print(objvc.club.clubDescription ?? "")
                self.navigationController?.pushViewController(objvc, animated: true)
     }
     

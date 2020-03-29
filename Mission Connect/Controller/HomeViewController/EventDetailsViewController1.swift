@@ -14,6 +14,12 @@ class EventDetailsViewController1: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var letBtn: UIButton!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var eventImageView: UIImageView!
+    
+    var event: Event?
+    
     var isOfficer = false
     
     var commentList = ["Good one", "Nice", "Beautiful"]
@@ -27,7 +33,8 @@ class EventDetailsViewController1: UIViewController, UITableViewDataSource, UITa
         if isOfficer {
             letBtn.isHidden = true
         }
-        
+        titleLabel.text = event?.event_name
+        eventImageView.imageFromURL(urlString: event?.eventImageURL ?? "")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -68,7 +75,7 @@ class EventDetailsViewController1: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommonTableViewCell") as! CommonTableViewCell
-            cell.descriptionLabel.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            cell.descriptionLabel.text = event?.event_description
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction(sender:)), for: .touchUpInside)
             return  cell
         }else {
