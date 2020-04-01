@@ -36,7 +36,7 @@ class ClubDetailsViewController: UIViewController, UINavigationControllerDelegat
         let subscribeActionBtn = UIAlertAction(title: "Subscribe", style: .default, handler: { _ in
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = self.club.clubName?.lowercased().replacingOccurrences(of: " ", with: "")
-            USER_REF.child("clubs").child(clubKey!).setValue(true)
+            USER_REF.child("clubs").child(clubKey!).setValue("member")
             
             self.navigationController?.viewControllers.forEach { ($0 as? ClubListTableViewController)?.tableView.reloadData() }
             

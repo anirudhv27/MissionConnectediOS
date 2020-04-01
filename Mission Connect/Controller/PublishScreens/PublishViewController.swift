@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import SkyFloatingLabelTextField
 
 
@@ -29,6 +30,17 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     //event outlet
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var eventTableView: UITableView!
+    @IBOutlet weak var topTableView: UITableView!
+    
+    let CLUBS_REF = Database.database().reference().child("clubs")
+    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
+    let EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
+    let EVENT_DETAILS_REF = Database.database().reference().child("events")
+    var clubs: [Club] = []
+    var events: [Event] = []
+    let user = Auth.auth().currentUser
+    var clubNames: [String] = []
+    var eventNames: [String] = []
     
     var isFromStartDate = true
     
@@ -52,7 +64,70 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         enddateBtn.setTitle("", for: .normal)
         eventView.isHidden = true
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        clubs = [Club]()
+        events = [Event]()
+        fetchClubs()
+        fetchEvents()
+        self.myCollectionView.reloadData()
+    }
     
+    func fetchClubs() {
+        clubs = [Club]()
+        clubNames = [String]()
+        eventNames = [String]()
+        REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if (snapshot.value as? String == "officer"){
+                self.clubNames.append(snapshot.key)
+            }
+        })
+        
+        CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if self.clubNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let club = Club()
+                    club.clubName = dictionary["club_name"] as? String
+                    club.clubDescription = dictionary["club_description"] as? String
+                    club.clubImageURL = dictionary["club_image_url"] as? String
+                    club.clubPreview = dictionary["club_preview"] as? String
+                    club.numberOfMembers = dictionary["member_numbers"] as? Int
+                    club.clubID = snapshot.key
+                    //                    if !self.clubs.contains(club) {
+                    self.clubs.append(club)
+                    self.myCollectionView.reloadData()
+                }
+            }
+        })
+    }
+    
+    func fetchEvents() {
+        events = [Event]()
+        eventNames = [String]()
+        EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if (snapshot.value as? String == "officer") {
+                self.eventNames.append(snapshot.key)
+            }
+        })
+        
+        EVENT_DETAILS_REF.observe(.childAdded, with: { (snapshot) -> Void in
+            if self.eventNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let event = Event()
+                    event.event_club = dictionary["event_club"] as? String
+                    event.event_description = dictionary["event_description"] as? String
+                    event.event_name = dictionary["event_name"] as? String
+                    event.eventImageURL = dictionary["event_image_url"] as? String
+                    self.events.append(event)
+                    DispatchQueue.main.async {
+                        self.eventTableView.reloadData()
+                    }
+                }
+            }
+        })
+        
+        print("events fetched")
+    }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
@@ -147,11 +222,13 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBAction func allEventBtnAction(_ sender: Any) {
         allEventBtn.setTitleColor(.black, for: .normal)
          addEventBtn.setTitleColor(.darkGray, for: .normal)
+        self.topTableView.isScrollEnabled = false
         self.eventView.isHidden = false
     }
     @IBAction func addEventBtnAction(_ sender: Any) {
         addEventBtn.setTitleColor(.black, for: .normal)
         allEventBtn.setTitleColor(.darkGray, for: .normal)
+        self.topTableView.isScrollEnabled = true
         self.eventView.isHidden = true
     }
     
@@ -182,7 +259,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             eventImageView.contentMode = .center
             eventImageView.image = UIImage.init(named: "add")
             allEventBtn.setTitleColor(.black, for: .normal)
-             addEventBtn.setTitleColor(.darkGray, for: .normal)
+            addEventBtn.setTitleColor(.darkGray, for: .normal)
             self.eventView.isHidden = false
             
         }
@@ -202,38 +279,44 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return clubs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelCollectionViewCell", for: indexPath) as! ImageLabelCollectionViewCell
+        let currClub = clubs[indexPath.row]
         cell.imageview.layer.cornerRadius = 10.0
         cell.imageview.clipsToBounds = true
-        cell.titleLabel.text = "Club title"
+        cell.titleLabel.text = currClub.clubName
+        cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 120.0, height: 138)
+        return CGSize.init(width: 132.0, height: 90.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.clubNametextField.text = "Club Dummy Title"
+        self.clubNametextField.text = clubs[indexPath.row].clubName
     }
     
     //MARK: - UItableView Delegate and DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
-        
-        cell.menuImageView.image = UIImage.init(named: "event")
+        let event = events[indexPath.row]
         cell.titleLabel.text = "14 January 2020 14:00"
-       // cell.endDateLabel.text = "16 January 2020 14:00"
-        cell.subTitleLabel.text = "Event Title"
-        cell.memberLabel.text = "Club name"
+        cell.subTitleLabel.text = event.event_name
+        CLUBS_REF.child(event.event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
+            let clubName = snapshot.value as? String
+            cell.memberLabel.text = clubName
+        }
+        
+        cell.menuImageView.imageFromURL(urlString: event.eventImageURL ?? "")
         
         cell.editBtn.layer.cornerRadius = 4.0
         cell.deleteBtn.layer.cornerRadius = 4.0
@@ -252,7 +335,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         eventImageView.contentMode = .center
         eventImageView.image = UIImage.init(named: "add")
         allEventBtn.setTitleColor(.darkGray, for: .normal)
-         addEventBtn.setTitleColor(.black, for: .normal)
+        addEventBtn.setTitleColor(.black, for: .normal)
         
     }
     
@@ -266,7 +349,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){

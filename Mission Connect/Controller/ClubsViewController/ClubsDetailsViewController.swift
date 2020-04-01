@@ -24,7 +24,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
     let user = Auth.auth().currentUser
     var ref: DatabaseReference!
     var isMyClub: Bool = true
-    
+    var isOfficer = false
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -37,10 +37,14 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         ref.child("users").child(self.user!.uid).child("clubs").observeSingleEvent(of: .value, with: {(snapshot)-> Void in
             if snapshot.hasChild(self.club.clubID!){
                 self.isMyClub = true
+                if snapshot.childSnapshot(forPath: self.club.clubID!).value as? String != "member"{
+                    self.isOfficer = true
+                }
             } else {
                 self.isMyClub = false
             }
         })
+        
         self.topView.setShadow()
         subscribeBtn.layer.cornerRadius = 4.0
     }
@@ -79,11 +83,11 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         let subscribeActionBtn = UIAlertAction(title: "Join", style: .default, handler: { _ in
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = String(self.club.clubID!)
-            USER_REF.child("clubs").child(clubKey).setValue(true)
+            USER_REF.child("clubs").child(clubKey).setValue("member")
             let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
             EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
                 let event = snapshot.key
-                USER_REF.child("events").child(event).setValue(true)
+                USER_REF.child("events").child(event).setValue("member")
             })
             self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! + 1)
             self.club.numberOfMembers = self.club.numberOfMembers! + 1
