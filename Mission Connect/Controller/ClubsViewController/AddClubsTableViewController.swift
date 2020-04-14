@@ -27,7 +27,7 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedClub: Club!
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
-    
+    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
     var selectedTab = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,14 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
         let currClub = clubs[indexPath.row]
         cell.titleLabel.text = currClub.clubName
         cell.subTitleLabel.text = currClub.clubPreview
-        cell.memberLabel.text = "Member Status"
+        REF.child(currClub.clubID!).observeSingleEvent(of: .value) { (snapshot) in
+            if let str = snapshot.value as? String {
+                cell.memberLabel.text = str
+            } else {
+                cell.memberLabel.text = "Not a Member Yet"
+            }
+        }
+        
         cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
         return cell
     }

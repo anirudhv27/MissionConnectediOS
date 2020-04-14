@@ -502,13 +502,13 @@
                                             </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Zbz-cs-VYV">
-                                            <rect key="frame" x="30" y="702" width="354" height="120"/>
+                                            <rect key="frame" x="30" y="694" width="354" height="120"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="120" id="POt-Zw-Ttc"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iwf-Mf-Bpi">
-                                            <rect key="frame" x="30" y="702" width="354" height="120"/>
+                                            <rect key="frame" x="30" y="694" width="354" height="120"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="120" id="gaa-FG-jLS"/>
                                             </constraints>
@@ -516,16 +516,16 @@
                                                 <action selector="imageBtnAction:" destination="7D5-ID-QaP" eventType="touchUpInside" id="alH-NJ-XWo"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXb-QX-tmf">
-                                            <rect key="frame" x="30" y="671" width="354" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENT IMAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXb-QX-tmf">
+                                            <rect key="frame" x="30" y="667" width="354" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-Mv-bQW">
-                                            <rect key="frame" x="30" y="479.5" width="135" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENT DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-Mv-bQW">
+                                            <rect key="frame" x="30" y="479.5" width="140" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Club Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PqO-U1-urb" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
@@ -584,7 +584,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LVD-6E-bET" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LVD-6E-bET" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                             <rect key="frame" x="30" y="329.5" width="354" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="e6p-dp-fOo"/>
@@ -612,7 +612,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRZ-Hy-fVx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Preview" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRZ-Hy-fVx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                             <rect key="frame" x="30" y="404.5" width="354" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="uv6-Rx-H98"/>
@@ -649,17 +649,8 @@
                                                 <action selector="dateBtn:" destination="7D5-ID-QaP" eventType="touchUpInside" id="V0g-Jq-sZQ"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8p-gO-N39">
-                                            <rect key="frame" x="30" y="404.5" width="354" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="yCq-Rg-hKg"/>
-                                            </constraints>
-                                            <connections>
-                                                <action selector="enddateBtnAction:" destination="7D5-ID-QaP" eventType="touchUpInside" id="XPd-7a-XIh"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNo-cw-2dc">
-                                            <rect key="frame" x="30" y="839.5" width="354" height="44"/>
+                                            <rect key="frame" x="30" y="831.5" width="354" height="44"/>
                                             <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="VLU-ho-Y7e"/>
@@ -679,7 +670,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SIj-xR-oIJ">
-                                            <rect key="frame" x="30" y="510.5" width="354" height="128"/>
+                                            <rect key="frame" x="30" y="506.5" width="354" height="128"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="128" id="699-9M-vRF"/>
@@ -689,10 +680,10 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBh-Tg-vRI">
-                                            <rect key="frame" x="0.0" y="179.5" width="414" height="725.5"/>
+                                            <rect key="frame" x="0.0" y="179.5" width="414" height="717.5"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lfM-Kj-Arj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="342"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideTableViewCell" rowHeight="100" id="Oer-O9-27S" customClass="SideTableViewCell" customModule="Mission_Connect" customModuleProvider="target">
@@ -832,6 +823,7 @@
                                         <constraint firstItem="zNo-cw-2dc" firstAttribute="top" secondItem="Zbz-cs-VYV" secondAttribute="bottom" constant="17.5" id="IzT-WB-WIy"/>
                                         <constraint firstItem="YXb-QX-tmf" firstAttribute="top" secondItem="SIj-xR-oIJ" secondAttribute="bottom" constant="32.5" id="KPV-ph-nlb"/>
                                         <constraint firstItem="ooP-Mv-bQW" firstAttribute="top" secondItem="rRZ-Hy-fVx" secondAttribute="bottom" constant="25" id="MAS-gM-Vmt"/>
+                                        <constraint firstItem="eBh-Tg-vRI" firstAttribute="centerX" secondItem="ElG-dG-lXo" secondAttribute="centerX" id="MWy-d5-sy9"/>
                                         <constraint firstItem="YXb-QX-tmf" firstAttribute="leading" secondItem="MlF-t9-HbY" secondAttribute="leading" constant="30" id="Msm-fn-huF"/>
                                         <constraint firstAttribute="trailing" secondItem="PqO-U1-urb" secondAttribute="trailing" constant="30" id="PiY-Jh-JkO"/>
                                         <constraint firstAttribute="trailing" secondItem="zNo-cw-2dc" secondAttribute="trailing" constant="30" id="SQ6-8n-eL0"/>
@@ -845,10 +837,7 @@
                                         <constraint firstItem="kKf-td-qNV" firstAttribute="leading" secondItem="MlF-t9-HbY" secondAttribute="leading" constant="30" id="bJP-5k-uQl"/>
                                         <constraint firstItem="oNf-10-H5c" firstAttribute="width" secondItem="bnV-zl-GJL" secondAttribute="width" id="bf7-DV-Uhq"/>
                                         <constraint firstItem="rRZ-Hy-fVx" firstAttribute="top" secondItem="LVD-6E-bET" secondAttribute="bottom" constant="25" id="bgi-9w-d98"/>
-                                        <constraint firstItem="k8p-gO-N39" firstAttribute="top" secondItem="LVD-6E-bET" secondAttribute="bottom" constant="25" id="bm8-sI-cfe"/>
-                                        <constraint firstItem="k8p-gO-N39" firstAttribute="leading" secondItem="MlF-t9-HbY" secondAttribute="leading" constant="30" id="cKX-8v-N2T"/>
                                         <constraint firstItem="u8R-hF-tuh" firstAttribute="top" secondItem="HBm-oa-cBT" secondAttribute="bottom" constant="5.5" id="gGU-O9-ybJ"/>
-                                        <constraint firstItem="eBh-Tg-vRI" firstAttribute="centerX" secondItem="k8p-gO-N39" secondAttribute="centerX" id="gZC-wP-i4G"/>
                                         <constraint firstAttribute="trailing" secondItem="oNf-10-H5c" secondAttribute="trailing" constant="1" id="h0R-F8-kTL"/>
                                         <constraint firstItem="ElG-dG-lXo" firstAttribute="leading" secondItem="MlF-t9-HbY" secondAttribute="leading" constant="30" id="hW9-1p-mUa"/>
                                         <constraint firstAttribute="trailing" secondItem="ElG-dG-lXo" secondAttribute="trailing" constant="30" id="hzf-fk-VTc"/>
@@ -866,7 +855,6 @@
                                         <constraint firstItem="u8R-hF-tuh" firstAttribute="centerX" secondItem="PqO-U1-urb" secondAttribute="centerX" id="xw3-0M-dC6"/>
                                         <constraint firstItem="oNf-10-H5c" firstAttribute="top" secondItem="MlF-t9-HbY" secondAttribute="top" constant="138.5" id="xyo-C7-Une"/>
                                         <constraint firstItem="Iwf-Mf-Bpi" firstAttribute="top" secondItem="YXb-QX-tmf" secondAttribute="bottom" constant="10" id="y64-AK-sxb"/>
-                                        <constraint firstAttribute="trailing" secondItem="k8p-gO-N39" secondAttribute="trailing" constant="30" id="z7P-v1-nso"/>
                                     </constraints>
                                 </view>
                             </tableView>
@@ -939,7 +927,6 @@
                         <outlet property="datePicker" destination="kL9-Hr-seZ" id="xiq-nl-c4a"/>
                         <outlet property="datePickerView" destination="rRb-OZ-USo" id="X9S-93-MsG"/>
                         <outlet property="descriptionTextView" destination="SIj-xR-oIJ" id="nKW-2J-Cd1"/>
-                        <outlet property="enddateBtn" destination="k8p-gO-N39" id="0m3-Vp-tcZ"/>
                         <outlet property="eventEnddatetextField" destination="rRZ-Hy-fVx" id="X2n-Kn-M3R"/>
                         <outlet property="eventImageView" destination="Zbz-cs-VYV" id="lUz-g3-3f4"/>
                         <outlet property="eventNameTextField" destination="kKf-td-qNV" id="WTt-uW-PK0"/>

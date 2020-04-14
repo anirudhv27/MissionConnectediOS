@@ -14,6 +14,8 @@ class EventListTableViewController: UITableViewController {
     var events: [Event] = []
     var eventNames: [String] = []
     var club: Club!
+    var currDate: Date = Date()
+    let df = DateFormatter()
     @IBOutlet weak var topLabel: UILabel!
     
     let EVENTS_REF = Database.database().reference().child("events")
@@ -31,10 +33,15 @@ class EventListTableViewController: UITableViewController {
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 if dictionary["event_club"] as? String == self.club.clubID {
                     let event = Event()
-                    event.event_name = dictionary["event_name"] as? String
+                    event.event_club = dictionary["event_club"] as? String
                     event.event_description = dictionary["event_description"] as? String
+                    event.event_name = dictionary["event_name"] as? String
                     event.eventImageURL = dictionary["event_image_url"] as? String
-                    event.event_club = self.club.clubName
+                    let dateString = dictionary["event_date"] as? String
+                    self.df.dateFormat = "MM-dd-yyyy"
+                    event.eventDate = self.df.date(from: dateString!)
+                    event.eventID = snapshot.key
+                    event.numberOfAttendees = dictionary["member_numbers"] as? Int
                     self.events.append(event)
                     self.tableView.reloadData()
                 }
@@ -60,6 +67,8 @@ class EventListTableViewController: UITableViewController {
         cell.menuImageView.imageFromURL(urlString: events[indexPath.row].eventImageURL ?? "")
         cell.subTitleLabel.text = events[indexPath.row].event_name
         cell.memberLabel.text = events[indexPath.row].event_description
+        df.dateFormat = "MMM dd, yyyy"
+        cell.titleLabel.text = df.string(from: events[indexPath.row].eventDate ?? Date())
         return cell
     }
     

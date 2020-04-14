@@ -54,6 +54,30 @@ class FIRHelperClass: NSObject {
        
             
         }
+    func updateEventImageURL(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
+        let timeStamp = "event\(Date().timeIntervalSince1970).jpeg"
+        let storageRef = Storage.storage().reference().child("eventimages").child(timeStamp)
+        let data = image.pngData()
+            //  showHud()
+            if data != nil {
+                let _ = storageRef.putData(data!, metadata: nil) { (metadata, error) in
+                //hideHud()
+                guard metadata != nil else {
+                    completion(false, nil)
+                    return
+                }
+                print("complete inside")
+                storageRef.downloadURL(completion: { (imageURL, error) in
+                    if error != nil {
+                        completion(false, nil)
+                        return
+                    }
+                    completion(false, imageURL)
+                })
+                
+            }
+        }
+    }
           
     func getAllClubList() {
         var databaseReference = DatabaseReference()
@@ -99,11 +123,79 @@ class FIRHelperClass: NSObject {
         }
     }
     //Event method
-    func createEvent(startDate: String, endDate:String, eventName: String, clubName:String, eventDescription:String, imageURL: String ) {
+    func createEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-
-        databaseReference.child("events").childByAutoId().setValue(["EventImage":imageURL, "EventStartDate":startDate, "EventEndData":endDate, "EventName":eventName, "EventDescription":eventDescription, "ClubName":clubName])
+        let df = DateFormatter()
+        df.dateFormat = "MM-dd-yyyy"
+        
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Somthing's wrong!")
+            return
+        }
+        let imageName = "event\(Date().timeIntervalSince1970)"
+        
+        let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
+        
+        imageReference.putData(data, metadata: nil) { (metadata, err) in
+            if err != nil {
+                print("somethings wrong!")
+                return
+            }
+            imageReference.downloadURL { (url, err) in
+                if err != nil {
+                    print("somethings wrong!")
+                    return
+                }
+                guard let url = url else {
+                    print("Somthing's wrong!")
+                    return
+                }
+                guard let key = databaseReference.child("events").childByAutoId().key else { return }
+                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview])
+                databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
+                databaseReference.child("users").observe(.childAdded) { (snapshot) in
+                    if snapshot.childSnapshot(forPath: "clubs").hasChild(clubName){
+                        databaseReference.child("users").child(snapshot.key).child("events").child(key).child("member_status").setValue("Officer")
+                        databaseReference.child("users").child(snapshot.key).child("events").child(key).child("isGoing").setValue(true)
+                    }
+                }
+            }
+        }
+        
     }
+    func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String) {
+        var databaseReference = DatabaseReference()
+        databaseReference = Database.database().reference()
+        let df = DateFormatter()
+        df.dateFormat = "MM-dd-yyyy"
+        
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Somthing's wrong!")
+            return
+        }
+        let imageName = "event\(Date().timeIntervalSince1970)"
+        
+        let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
+        
+        imageReference.putData(data, metadata: nil) { (metadata, err) in
+            if err != nil {
+                print("somethings wrong!")
+                return
+            }
+            imageReference.downloadURL { (url, err) in
+                if err != nil {
+                    print("somethings wrong!")
+                    return
+                }
+                guard let url = url else {
+                    print("Somthing's wrong!")
+                    return
+                }
+                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview])
+            }
+        }
+    }
+    
 }
 

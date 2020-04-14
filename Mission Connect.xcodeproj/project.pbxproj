@@ -134,6 +134,7 @@
 				05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */,
 				05FCBA2423D374390077F3F5 /* RouteViewController.swift */,
 				05FCBA2923D4A9980077F3F5 /* RegisterViewController.swift */,
+				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -253,7 +254,6 @@
 				054AD56923CE0D03007A9A1C /* HomeViewController */,
 				10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */,
 				105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */,
-				105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */,
 				1007349D2390586B007695DA /* LoginViewController.swift */,
 				10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */,
 				103A984923B08B4400363972 /* ClubListTableViewController.swift */,

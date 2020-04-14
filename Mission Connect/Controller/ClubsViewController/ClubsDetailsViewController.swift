@@ -37,7 +37,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         ref.child("users").child(self.user!.uid).child("clubs").observeSingleEvent(of: .value, with: {(snapshot)-> Void in
             if snapshot.hasChild(self.club.clubID!){
                 self.isMyClub = true
-                if snapshot.childSnapshot(forPath: self.club.clubID!).value as? String != "member"{
+                if snapshot.childSnapshot(forPath: self.club.clubID!).value as? String != "Member"{
                     self.isOfficer = true
                 }
             } else {
@@ -83,11 +83,12 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         let subscribeActionBtn = UIAlertAction(title: "Join", style: .default, handler: { _ in
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = String(self.club.clubID!)
-            USER_REF.child("clubs").child(clubKey).setValue("member")
+            USER_REF.child("clubs").child(clubKey).setValue("Member")
             let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
             EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
                 let event = snapshot.key
-                USER_REF.child("events").child(event).setValue("member")
+                USER_REF.child("events").child(event).child("member_status").setValue("Member")
+                USER_REF.child("events").child(event).child("isGoing").setValue(false)
             })
             self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! + 1)
             self.club.numberOfMembers = self.club.numberOfMembers! + 1

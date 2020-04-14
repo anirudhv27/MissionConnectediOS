@@ -192,7 +192,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     func sendUserDataOnFirebase() {
-        
        // let imageURL = uploadImageOnFirebase()
          let imageURL = "uploadImageOnFirebase"
         FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
@@ -205,7 +204,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     func uploadImageOnFirebase() -> String {

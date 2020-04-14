@@ -89,7 +89,9 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         let currClub = clubs[indexPath.row]
         cell.titleLabel.text = currClub.clubName
         cell.subTitleLabel.text = currClub.clubPreview
-        cell.memberLabel.text = "Member Status"
+        REF.child(currClub.clubID!).observeSingleEvent(of: .value) { (snapshot) in
+            cell.memberLabel.text = snapshot.value as? String
+        }
         cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
         return cell
     }
@@ -101,8 +103,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
         objvc.club = clubs[indexPath.row]
-        print(objvc.club.clubDescription ?? "")
-               self.navigationController?.pushViewController(objvc, animated: true)
+        self.navigationController?.pushViewController(objvc, animated: true)
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
