@@ -37,6 +37,7 @@ class EventListTableViewController: UITableViewController {
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
                     event.eventImageURL = dictionary["event_image_url"] as? String
+                    event.eventPreview = dictionary["event_preview"] as? String
                     let dateString = dictionary["event_date"] as? String
                     self.df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = self.df.date(from: dateString!)
@@ -66,7 +67,7 @@ class EventListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
         cell.menuImageView.imageFromURL(urlString: events[indexPath.row].eventImageURL ?? "")
         cell.subTitleLabel.text = events[indexPath.row].event_name
-        cell.memberLabel.text = events[indexPath.row].event_description
+        cell.memberLabel.text = events[indexPath.row].eventPreview
         df.dateFormat = "MMM dd, yyyy"
         cell.titleLabel.text = df.string(from: events[indexPath.row].eventDate ?? Date())
         return cell

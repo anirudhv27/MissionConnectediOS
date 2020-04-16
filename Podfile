@@ -16,5 +16,6 @@ target 'Mission Connect' do
   pod 'AppAuth'
   pod 'SDWebImage'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'RSSelectionMenu' or pod 'RSSelectionMenu', '~> 6.1.0'
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

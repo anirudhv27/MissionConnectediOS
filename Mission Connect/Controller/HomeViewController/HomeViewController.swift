@@ -106,6 +106,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
                     event.eventImageURL = dictionary["event_image_url"] as? String
+                    event.eventPreview = dictionary["event_preview"] as? String
                     let df = DateFormatter()
                     df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = df.date(from: (dictionary["event_date"] as? String)!)
@@ -138,19 +139,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return clubs.count
+        return clubs.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelCollectionViewCell", for: indexPath) as! ImageLabelCollectionViewCell
         cell.imageview.layer.cornerRadius = 10.0
         cell.imageview.clipsToBounds = true
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 10.0
         
-        let currClub = clubs[indexPath.row]
-        cell.titleLabel.text = currClub.clubName
-        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
-        
-        cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        if (indexPath.row < self.clubs.count){
+            let currClub = clubs[indexPath.row]
+            cell.titleLabel.text = currClub.clubName
+            cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+            cell.titleLabel.textColor = .white
+            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        } else {
+            cell.imageview.contentMode = .center
+            cell.imageview.image = UIImage(named: "add")
+            cell.titleLabel.text = "Propose a Club"
+            cell.titleLabel.textColor = .black
+            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        }
         return cell
     }
     
@@ -159,9 +171,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
-        objvc.club = clubs[indexPath.row]
-        self.navigationController?.pushViewController(objvc, animated: true)
+        if (indexPath.row < clubs.count) {
+            let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
+            objvc.club = clubs[indexPath.row]
+            self.navigationController?.pushViewController(objvc, animated: true)
+        } else {
+            let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ProposeClubViewController") as! ProposeClubViewController
+            self.navigationController?.pushViewController(objvc, animated: true)
+        }
     }
     
     //MARK: - UItableView Delegate and DataSource Methods
@@ -179,7 +196,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if (tab == 0){
             events.sort()
             cell.titleLabel.text = events[indexPath.row].event_name
-            cell.subTitleLabel.text = events[indexPath.row].event_description
+            cell.subTitleLabel.text = events[indexPath.row].eventPreview
             CLUBS_REF.child(events[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
@@ -190,13 +207,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else {
             goingEvents.sort()
             cell.titleLabel.text = goingEvents[indexPath.row].event_name
-            cell.subTitleLabel.text = goingEvents[indexPath.row].event_description
+            cell.subTitleLabel.text = goingEvents[indexPath.row].eventPreview
             CLUBS_REF.child(goingEvents[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
             }
             cell.menuImageView.imageFromURL(urlString: goingEvents[indexPath.row].eventImageURL ?? "")
-
             cell.menuImageView.sizeThatFits(CGSize.init(width: 85, height: 65))
         }
         return cell

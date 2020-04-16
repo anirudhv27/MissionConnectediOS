@@ -63,6 +63,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.eventImageView.layer.cornerRadius = 4.0
         self.eventImageView.layer.borderWidth = 1
         self.eventImageView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
+        self.eventImageView.image = UIImage.init(named: "add")
         
        
         datePickerView.isHidden = true
@@ -102,7 +103,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     club.clubPreview = dictionary["club_preview"] as? String
                     club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
-                    //                    if !self.clubs.contains(club) {
                     self.clubs.append(club)
                     self.myCollectionView.reloadData()
                 }
@@ -127,6 +127,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
                     event.eventImageURL = dictionary["event_image_url"] as? String
+                    event.eventPreview = dictionary["event_preview"] as? String
                     let dateString = dictionary["event_date"] as? String
                     self.df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = self.df.date(from: dateString!)
@@ -145,11 +146,16 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     event.event_club = dictionary["event_club"] as? String
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
-                    event.eventImageURL = dictionary["event_image_url"] as? String
+                    if let img = dictionary["event_image_url"] as? String {
+                        event.eventImageURL = img
+                    } else {
+                        event.eventImageURL = self.clubs.first { (club) -> Bool in
+                            return event.event_club == club.clubID
+                        }?.clubImageURL
+                    }
                     let dateString = dictionary["event_date"] as? String
                     self.df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = self.df.date(from: dateString!)
-                    
                     event.eventID = snapshot.key
                     let index = self.events.firstIndex(of: event)
                     self.events.remove(at: index!)
@@ -291,8 +297,8 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             message = "Please enter an EVENT PREVIEW."
         }else if descriptionTextView.text.trimmingCharacters(in: .whitespaces).count  == 0{
             message = "Please enter an EVENT DESCRIPTION."
-        }else if eventImageView.image == UIImage.init(named: "add") {
-            message = "Please select an EVENT IMAGE."
+        }else if eventImageView.image == UIImage.init(named: "add")  {
+            message = "Please enter an EVENT IMAGE."
         }else {
             if isFromEdit{
                 FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID)
@@ -357,6 +363,8 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell?.layer.borderColor = UIColor.systemGreen.cgColor
         cell?.layer.cornerRadius = 10.0
         self.currClubID = clubs[indexPath.row].clubID!
+        self.eventImageView.imageFromURL(urlString: clubs[indexPath.row].clubImageURL!)
+        self.eventImageView.contentMode = .scaleAspectFill
         isFromEdit = false
     }
     

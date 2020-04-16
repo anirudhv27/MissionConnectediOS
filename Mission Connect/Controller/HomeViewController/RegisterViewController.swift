@@ -19,12 +19,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var fullNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var nickNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var profileImageView: UIImageView!
+    
     var user : GIDGoogleUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
       //  graduationTextField.addto
         self.addToolBar(textField: graduationTextField)
         fullNameTextField.text = user.profile.name
@@ -197,10 +199,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
         let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
-            let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            UserDefaults.standard.synchronize()
-            APPDELEGATE.gotoRouteScreen()
+            GIDSignIn.sharedInstance().signIn()
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)

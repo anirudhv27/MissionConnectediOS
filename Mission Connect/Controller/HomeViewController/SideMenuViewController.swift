@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -142,7 +143,10 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
             //Logout
             let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
             let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in
-              
+                GIDSignIn.sharedInstance()?.signOut()
+                let storyboard = UIStoryboard(name: "Other", bundle: nil)
+                let initial = storyboard.instantiateInitialViewController()
+                UIApplication.shared.keyWindow?.rootViewController = initial
             }
             
             let noAction = UIAlertAction.init(title: "No", style: .cancel) { (action) in

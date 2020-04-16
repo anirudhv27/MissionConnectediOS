@@ -23,5 +23,6 @@ class Event: Comparable {
     var eventImageURL: String?
     var eventDate: Date?
     var eventID: String?
+    var eventPreview: String?
     var numberOfAttendees: Int?
 }

@@ -133,7 +133,7 @@ class FIRHelperClass: NSObject {
             print("Somthing's wrong!")
             return
         }
-        let imageName = "event\(Date().timeIntervalSince1970)"
+        let imageName = "event\(Date().timeIntervalSince1970 * 10000000)"
         
         let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
         
@@ -142,6 +142,7 @@ class FIRHelperClass: NSObject {
                 print("somethings wrong!")
                 return
             }
+            
             imageReference.downloadURL { (url, err) in
                 if err != nil {
                     print("somethings wrong!")
@@ -151,8 +152,10 @@ class FIRHelperClass: NSObject {
                     print("Somthing's wrong!")
                     return
                 }
+                
                 guard let key = databaseReference.child("events").childByAutoId().key else { return }
                 databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview])
+                
                 databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
                 databaseReference.child("users").observe(.childAdded) { (snapshot) in
                     if snapshot.childSnapshot(forPath: "clubs").hasChild(clubName){

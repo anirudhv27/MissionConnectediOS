@@ -9,14 +9,13 @@
 import UIKit
 import GoogleSignIn
 class RouteViewController: UIViewController, GIDSignInDelegate {
-    
-    
 
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var signInBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         centerView.setShadowWithZeroSize()
         signInBtn.layer.cornerRadius = 4.0
         
@@ -27,13 +26,6 @@ class RouteViewController: UIViewController, GIDSignInDelegate {
     //   let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
     //    self.navigationController?.pushViewController(objVC, animated: true)
      //   APPDELEGATE.gotoRouteScreen()
-       self.sigInWithGoogle()
-    }
-    
-    func sigInWithGoogle() {
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-       
-        GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.signIn()
     }
     

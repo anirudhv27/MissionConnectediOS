@@ -30,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             self.gotoDummyScreen()
         }
         
-       
-        
         return true
     }
     
@@ -66,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("Success for Firebase User!", user.userID as Any)
                 
                 if Auth.auth().currentUser != nil {
-                    self.window?.rootViewController!.performSegue(withIdentifier: "officerLoginSegue", sender: LoginViewController.self)
+                    self.gotoRouteScreen()
                 }
                 
             })
@@ -116,12 +114,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func gotoRouteScreen() {
         
-       
         navigationController = UINavigationController.init(rootViewController: sideMenuController)
         navigationController.navigationBar.isHidden = true
         window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         window!.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
     }
     func setNavigationController(navigation:UINavigationController) {
         navigation.navigationBar.isTranslucent = false
