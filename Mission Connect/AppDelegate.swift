@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
-            self.gotoRouteScreen()
-        }else {
-            self.gotoDummyScreen()
-        }
-        
+//        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
+//           self.gotoRouteScreen()
+//        }else {
+//            self.gotoDummyScreen()
+//        }
+        self.gotoDummyScreen()
         return true
     }
     
@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 if Auth.auth().currentUser != nil {
                     self.gotoRouteScreen()
+                    
                 }
                 
             })
@@ -74,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.window?.rootViewController!.present(alert, animated: true)
         }
+        
     }
 
     
