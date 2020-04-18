@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var clubNames: [String] = []
     @IBOutlet weak var startClubLabel: UILabel!
@@ -23,10 +23,14 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     let CLUBS_REF = Database.database().reference().child("clubs")
     let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
     
     var clubs: [Club] = []
+    var searchedClubs: [Club] = []
+    var searching = false
+    
     var selectedClub: Club!
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
@@ -34,7 +38,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedTab = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchBar.delegate = self
         // Do any additional setup after loading the view.
         self.topView.setShadow()
     }
@@ -80,13 +84,22 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clubs.count
+        if searching {
+            return searchedClubs.count
+        } else {
+            return clubs.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        clubs.sort()
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
-        
-        let currClub = clubs[indexPath.row]
+        var currClub: Club!
+        if searching {
+            currClub = searchedClubs[indexPath.row]
+        } else {
+            currClub = clubs[indexPath.row]
+        }
         cell.titleLabel.text = currClub.clubName
         cell.subTitleLabel.text = currClub.clubPreview
         REF.child(currClub.clubID!).observeSingleEvent(of: .value) { (snapshot) in
@@ -102,12 +115,28 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
-        objvc.club = clubs[indexPath.row]
+        if searching {
+            objvc.club = searchedClubs[indexPath.row]
+        } else {
+            objvc.club = clubs[indexPath.row]
+        }
         self.navigationController?.pushViewController(objvc, animated: true)
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "addClubSegue", sender: self)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searching = true
+        searchedClubs = clubs.filter({String(($0.clubName?.prefix(searchText.count))!).lowercased() == searchText.lowercased()})
+        myTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        myTableView.reloadData()
     }
     
     /*

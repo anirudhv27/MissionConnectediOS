@@ -8,7 +8,11 @@
 
 import Foundation
 
-class Club: Codable {
+class Club: Codable, Comparable {
+    static func < (lhs: Club, rhs: Club) -> Bool {
+        return lhs.clubName! < rhs.clubName!
+    }
+    
     var clubName: String?
     var clubPreview: String?
     var clubDescription: String?

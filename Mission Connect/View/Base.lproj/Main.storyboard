@@ -1031,7 +1031,7 @@ Translations: Can you help translate this site into</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="54J-7H-s6S">
-                                <rect key="frame" x="0.0" y="106" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="720"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideTableViewCell" rowHeight="95" id="v2A-MI-hZJ" customClass="SideTableViewCell" customModule="Mission_Connect" customModuleProvider="target">
@@ -1107,28 +1107,41 @@ Translations: Can you help translate this site into</string>
                                     <outlet property="delegate" destination="wJV-QG-ntq" id="1r9-iA-pJ0"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xr-hD-ehs">
+                                <rect key="frame" x="0.0" y="98" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Dba-zj-B0G" firstAttribute="trailing" secondItem="54J-7H-s6S" secondAttribute="trailing" id="2ts-HA-7kd"/>
                             <constraint firstItem="Dba-zj-B0G" firstAttribute="bottom" secondItem="54J-7H-s6S" secondAttribute="bottom" id="4t4-gC-gpP"/>
+                            <constraint firstItem="6xr-hD-ehs" firstAttribute="bottom" secondItem="54J-7H-s6S" secondAttribute="top" id="5WC-PV-J1U"/>
                             <constraint firstItem="Dba-zj-B0G" firstAttribute="trailing" secondItem="n9Q-Rh-5cN" secondAttribute="trailing" id="8qO-i9-4Yc"/>
-                            <constraint firstItem="54J-7H-s6S" firstAttribute="top" secondItem="n9Q-Rh-5cN" secondAttribute="bottom" constant="8" id="Gvi-K8-Lcd"/>
+                            <constraint firstItem="6xr-hD-ehs" firstAttribute="top" secondItem="n9Q-Rh-5cN" secondAttribute="bottom" id="AsK-fo-vFH"/>
+                            <constraint firstItem="54J-7H-s6S" firstAttribute="top" secondItem="n9Q-Rh-5cN" secondAttribute="bottom" constant="44" id="Gvi-K8-Lcd"/>
                             <constraint firstItem="n9Q-Rh-5cN" firstAttribute="top" secondItem="Dba-zj-B0G" secondAttribute="top" id="R5n-sa-CQ7"/>
                             <constraint firstItem="n9Q-Rh-5cN" firstAttribute="leading" secondItem="6af-Xh-OPx" secondAttribute="leading" id="XwW-8Z-fqF"/>
+                            <constraint firstItem="6xr-hD-ehs" firstAttribute="trailing" secondItem="n9Q-Rh-5cN" secondAttribute="trailing" id="vaF-9z-7kz"/>
                             <constraint firstItem="54J-7H-s6S" firstAttribute="leading" secondItem="Dba-zj-B0G" secondAttribute="leading" id="wlI-mk-swc"/>
+                            <constraint firstItem="6xr-hD-ehs" firstAttribute="leading" secondItem="n9Q-Rh-5cN" secondAttribute="leading" id="ywq-SQ-m6Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dba-zj-B0G"/>
                     </view>
                     <connections>
                         <outlet property="myTableView" destination="54J-7H-s6S" id="kiG-dS-uzP"/>
+                        <outlet property="searchBar" destination="6xr-hD-ehs" id="3DE-dk-C3l"/>
                         <outlet property="topView" destination="n9Q-Rh-5cN" id="g9Z-cv-vRa"/>
                         <segue destination="4rQ-he-ASL" kind="show" identifier="addClubSegue" id="eqO-zf-HDr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQf-s7-qfY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="693.60000000000002" y="-135.38230884557723"/>
+            <point key="canvasLocation" x="692.75362318840587" y="-135.9375"/>
         </scene>
         <!--Add Event View Controller-->
         <scene sceneID="shu-GE-9SR">
@@ -1646,7 +1659,7 @@ Translations: Can you help translate this site into</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dJl-e5-6XS">
-                                <rect key="frame" x="0.0" y="62" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideTableViewCell" rowHeight="95" id="Q8V-tt-L2a" customClass="SideTableViewCell" customModule="Mission_Connect" customModuleProvider="target">
@@ -1718,14 +1731,22 @@ Translations: Can you help translate this site into</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AK2-CW-6Ky">
+                                <rect key="frame" x="0.0" y="54" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="iEN-fA-mBp" firstAttribute="trailing" secondItem="e76-11-o1S" secondAttribute="trailing" id="4cK-c0-tFq"/>
                             <constraint firstItem="dJl-e5-6XS" firstAttribute="leading" secondItem="iEN-fA-mBp" secondAttribute="leading" id="9VB-Kd-Lc0"/>
-                            <constraint firstItem="dJl-e5-6XS" firstAttribute="top" secondItem="e76-11-o1S" secondAttribute="bottom" constant="8" id="JDL-pI-Lmp"/>
+                            <constraint firstItem="dJl-e5-6XS" firstAttribute="top" secondItem="e76-11-o1S" secondAttribute="bottom" constant="44" id="JDL-pI-Lmp"/>
+                            <constraint firstItem="AK2-CW-6Ky" firstAttribute="bottom" secondItem="dJl-e5-6XS" secondAttribute="top" id="Me5-Zn-Omt"/>
+                            <constraint firstItem="AK2-CW-6Ky" firstAttribute="leading" secondItem="e76-11-o1S" secondAttribute="leading" id="R54-yX-fH3"/>
                             <constraint firstItem="e76-11-o1S" firstAttribute="leading" secondItem="oaq-EQ-otH" secondAttribute="leading" id="UhZ-yi-3lS"/>
                             <constraint firstItem="iEN-fA-mBp" firstAttribute="trailing" secondItem="dJl-e5-6XS" secondAttribute="trailing" id="WNr-sV-5fK"/>
+                            <constraint firstItem="AK2-CW-6Ky" firstAttribute="trailing" secondItem="e76-11-o1S" secondAttribute="trailing" id="jS1-Ih-KI0"/>
+                            <constraint firstItem="AK2-CW-6Ky" firstAttribute="top" secondItem="e76-11-o1S" secondAttribute="bottom" id="nAo-ro-aJ5"/>
                             <constraint firstItem="e76-11-o1S" firstAttribute="top" secondItem="iEN-fA-mBp" secondAttribute="top" id="x3r-oT-c2M"/>
                             <constraint firstItem="iEN-fA-mBp" firstAttribute="bottom" secondItem="dJl-e5-6XS" secondAttribute="bottom" id="yyQ-Qo-KBc"/>
                         </constraints>
@@ -1735,12 +1756,13 @@ Translations: Can you help translate this site into</string>
                     <connections>
                         <outlet property="backBtn" destination="MZl-Nk-cdf" id="6vU-hA-qjx"/>
                         <outlet property="myTableView" destination="dJl-e5-6XS" id="T2T-QX-q8u"/>
+                        <outlet property="searchBar" destination="AK2-CW-6Ky" id="bWJ-5d-eQx"/>
                         <outlet property="topView" destination="e76-11-o1S" id="CiX-cR-6uj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UZ-xv-ytE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485.5999999999999" y="-135.38230884557723"/>
+            <point key="canvasLocation" x="1485.5072463768117" y="-135.9375"/>
         </scene>
     </scenes>
     <resources>
