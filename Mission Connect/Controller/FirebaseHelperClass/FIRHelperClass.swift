@@ -226,7 +226,7 @@ class FIRHelperClass: NSObject {
                 }
                 
                 guard let key = databaseReference.child("clubs").childByAutoId().key else { return }
-                databaseReference.child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count])
+                databaseReference.child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": false])
                 for id in officers {
                     databaseReference.child("users").child(id).child("clubs").child(key).setValue("Officer")
                 }

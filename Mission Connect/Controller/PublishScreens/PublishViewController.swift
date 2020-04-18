@@ -103,7 +103,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     club.clubPreview = dictionary["club_preview"] as? String
                     club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
-                    self.clubs.append(club)
+                    if (dictionary["isApproved"] as! Bool) {
+                        self.clubs.append(club)
+                    }
                     self.myCollectionView.reloadData()
                 }
             }
@@ -428,6 +430,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.CLUBS_REF.child(event.event_club!).child("events").child(event.eventID!).removeValue()
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
             snapshot.childSnapshot(forPath: "events").childSnapshot(forPath: event.eventID!).ref.removeValue()
+            self.eventTableView.reloadData()
         }
         Database.database().reference().child("events").child(event.eventID!).removeValue()
         let okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in

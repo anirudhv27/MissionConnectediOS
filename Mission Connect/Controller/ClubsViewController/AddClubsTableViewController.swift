@@ -67,7 +67,9 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
                 club.clubPreview = dictionary["club_preview"] as? String
                 club.numberOfMembers = dictionary["member_numbers"] as? Int
                 club.clubID = snapshot.key
-                self.clubs.append(club)
+                if dictionary["isApproved"] as! Bool {
+                    self.clubs.append(club)
+                }
                 self.myTableView.reloadData()
             }
         })
@@ -79,6 +81,7 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return searchedClubs.count

@@ -71,7 +71,9 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
                     club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
                     //                    if !self.clubs.contains(club) {
-                    self.clubs.append(club)
+                    if dictionary["isApproved"] as! Bool{
+                        self.clubs.append(club)
+                    }
                     self.myTableView.reloadData()
                 }
             }

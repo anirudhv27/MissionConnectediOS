@@ -82,8 +82,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     club.clubPreview = dictionary["club_preview"] as? String
                     club.numberOfMembers = dictionary["member_numbers"] as? Int
                     club.clubID = snapshot.key
-                    self.clubs.append(club)
-                    
+                    if (dictionary["isApproved"] as! Bool){
+                        self.clubs.append(club)
+                    }
                 }
             }
             self.myCollectionView.reloadData()
