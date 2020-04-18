@@ -1098,7 +1098,7 @@
                                                 <constraint firstAttribute="height" constant="200" id="hsk-gA-xRs"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pBo-Xc-BO9" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pBo-Xc-BO9" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                             <rect key="frame" x="30" y="242" width="315" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Gp2-RL-v64"/>
@@ -1136,7 +1136,7 @@
                                                 <action selector="profileImageBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="0vV-UG-lgK"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fullname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-hR-sKu" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-hR-sKu" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                             <rect key="frame" x="30" y="312" width="315" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Se9-0L-YlS"/>
@@ -1423,6 +1423,9 @@
                                         <rect key="frame" x="18" y="8" width="84" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="backBlack"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="StQ-Qx-Us6" eventType="touchUpInside" id="Jah-jE-xvI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1460,9 +1463,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df1-fb-cqk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df1-fb-cqk">
                                 <rect key="frame" x="10" y="556" width="355" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="pickOfficersButtonPressed:" destination="StQ-Qx-Us6" eventType="touchUpInside" id="XIb-Cx-odS"/>
                                 </connections>
@@ -1476,14 +1478,17 @@
                             <constraint firstItem="VXe-vX-jxU" firstAttribute="trailing" secondItem="ooL-Ca-iUy" secondAttribute="trailing" id="8zl-Ms-pkY"/>
                             <constraint firstItem="OxJ-IW-AzM" firstAttribute="top" secondItem="rpO-Nv-5QE" secondAttribute="bottom" constant="1.5" id="93t-gS-FMx"/>
                             <constraint firstItem="OxJ-IW-AzM" firstAttribute="leading" secondItem="Ug6-OA-Fue" secondAttribute="leading" id="9Zl-i4-GHM"/>
+                            <constraint firstItem="MIp-Us-DHq" firstAttribute="width" secondItem="dgw-kY-eTq" secondAttribute="width" id="AaM-p6-ZHS"/>
                             <constraint firstItem="ooL-Ca-iUy" firstAttribute="top" secondItem="rpO-Nv-5QE" secondAttribute="bottom" constant="10" id="Aib-Ta-X9O"/>
                             <constraint firstItem="ooL-Ca-iUy" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="BuP-uP-84k"/>
                             <constraint firstItem="VXe-vX-jxU" firstAttribute="top" secondItem="4Yf-Mn-bEY" secondAttribute="bottom" constant="10" id="Drh-2h-Ehg"/>
+                            <constraint firstItem="Df1-fb-cqk" firstAttribute="leading" secondItem="MIp-Us-DHq" secondAttribute="leading" id="E46-YJ-8aC"/>
                             <constraint firstItem="Ngi-nH-Zs0" firstAttribute="centerX" secondItem="ckF-y5-uFT" secondAttribute="centerX" id="EWi-T3-9Nq"/>
                             <constraint firstItem="rpO-Nv-5QE" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="Fkh-ld-fg6"/>
                             <constraint firstItem="ckF-y5-uFT" firstAttribute="centerX" secondItem="BZM-JO-tJ1" secondAttribute="centerX" id="HeW-uU-MJv"/>
                             <constraint firstItem="Ngi-nH-Zs0" firstAttribute="top" secondItem="Rrx-z8-RaN" secondAttribute="top" id="Hvg-3U-Vpl"/>
                             <constraint firstItem="Rrx-z8-RaN" firstAttribute="bottom" secondItem="Ug6-OA-Fue" secondAttribute="bottom" constant="12.5" id="IRr-LZ-rgq"/>
+                            <constraint firstItem="Rrx-z8-RaN" firstAttribute="trailing" secondItem="Df1-fb-cqk" secondAttribute="trailing" constant="10" id="Lhm-Ll-lqy"/>
                             <constraint firstItem="VXe-vX-jxU" firstAttribute="leading" secondItem="ooL-Ca-iUy" secondAttribute="leading" id="MTC-hf-9ly"/>
                             <constraint firstItem="VXe-vX-jxU" firstAttribute="centerX" secondItem="BZM-JO-tJ1" secondAttribute="centerX" id="P4h-N0-7N5"/>
                             <constraint firstItem="Ug6-OA-Fue" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="VPn-v7-Ah0"/>
@@ -1500,8 +1505,11 @@
                             <constraint firstItem="4Yf-Mn-bEY" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="kl9-Ig-d8D"/>
                             <constraint firstItem="dgw-kY-eTq" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="mo7-8P-YeH"/>
                             <constraint firstItem="dgw-kY-eTq" firstAttribute="width" secondItem="ckF-y5-uFT" secondAttribute="width" id="oYa-5P-FPn"/>
+                            <constraint firstItem="Df1-fb-cqk" firstAttribute="bottom" secondItem="MIp-Us-DHq" secondAttribute="bottom" id="rLI-WG-nRs"/>
+                            <constraint firstItem="Df1-fb-cqk" firstAttribute="top" secondItem="MIp-Us-DHq" secondAttribute="top" id="tG1-56-k8B"/>
                             <constraint firstItem="rpO-Nv-5QE" firstAttribute="leading" secondItem="OxJ-IW-AzM" secondAttribute="leading" id="xvA-mx-EUJ"/>
                             <constraint firstItem="ckF-y5-uFT" firstAttribute="leading" secondItem="rpO-Nv-5QE" secondAttribute="leading" id="yc6-yO-JZR"/>
+                            <constraint firstItem="Df1-fb-cqk" firstAttribute="width" secondItem="dgw-kY-eTq" secondAttribute="width" id="yro-AS-XYt"/>
                             <constraint firstItem="ckF-y5-uFT" firstAttribute="leading" secondItem="Rrx-z8-RaN" secondAttribute="leading" constant="10" id="yvX-HN-hot"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rrx-z8-RaN"/>

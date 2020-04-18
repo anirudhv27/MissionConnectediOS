@@ -29,8 +29,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
       //  graduationTextField.addto
         self.addToolBar(textField: graduationTextField)
-        fullNameTextField.text = user.profile.name
-        
+        fullNameTextField.text = user.profile.name!
     }
     
     //MARK:- ImagePickerMethods
@@ -190,7 +189,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     func sendUserDataOnFirebase() {

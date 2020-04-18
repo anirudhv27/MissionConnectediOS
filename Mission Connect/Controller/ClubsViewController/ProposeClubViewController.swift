@@ -9,6 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import RSSelectionMenu
+import Firebase
 
 class ProposeClubViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -18,7 +19,10 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var clubImageView: UIImageView!
     @IBOutlet weak var pickOfficersTextField: SkyFloatingLabelTextField!
     
+    var allUsersDict = [String : String]()
     var selectedDataArray = [String]()
+    var selectedIDs = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +36,15 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         self.clubImageView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
         self.clubImageView.image = UIImage.init(named: "add")
         
+        fetchUsers()
+        
+    }
+    
+    func fetchUsers() {
+        Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
+            self.allUsersDict.updateValue(snapshot.key, forKey: (snapshot.childSnapshot(forPath: "fullname").value as? String)!)
+            
+        }
     }
     
     //MARK:- ImagePickerMethods
@@ -101,7 +114,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         self.openImagePickerOption()
     }
     @IBAction func pickOfficersButtonPressed(_ sender: Any) {
-        let simpleDataArray = ["Anirudh Valiveru", "Girija Mulukutla", "Anish", "Himanshu", "Avyay"]
+        let simpleDataArray = Array(allUsersDict.keys)
         
         let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: simpleDataArray) { (cell, name, indexPath) in
 
@@ -127,6 +140,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             self?.selectedDataArray = selectedItems
             self?.pickOfficersTextField.text = (self!.selectedDataArray.map{String($0)}).joined(separator: ", ")
             // perform any operation once you get selected items
+            
         }
     }
     
@@ -135,6 +149,38 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func publishButtonIsPressed(_ sender: Any) {
+        var message = ""
+        if clubNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
+            message = "Please enter a club name."
+        }else if clubPreviewTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
+            message = "Please enter a short club preview."
+        }else if pickOfficersTextField.text?.count == 0{
+            message = "Please select your club's officers."
+        }else if clubDescriptionTextView.text.trimmingCharacters(in: .whitespaces).count  == 0{
+            message = "Please enter a description for your club."
+        }else if clubImageView.image == UIImage.init(named: "add")  {
+            message = "Please select an image for your club."
+        }else {
+            message = "Club proposed successfully!"
+            for name in selectedDataArray {
+                selectedIDs.append(allUsersDict[name]!)
+            }
+            
+            FIRHelperClass.sharedInstance.createClub(clubName: clubNameTextField.text!, clubPreview: clubPreviewTextField.text!, clubDescription: clubDescriptionTextView.text!, image: clubImageView.image!, officers: selectedIDs)
+            
+            clubNameTextField.text = ""
+            clubPreviewTextField.text = ""
+            pickOfficersTextField.text = ""
+            clubDescriptionTextView.text = ""
+            clubImageView.contentMode = .center
+            clubImageView.image = UIImage.init(named: "add")
+        }
         
+        let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

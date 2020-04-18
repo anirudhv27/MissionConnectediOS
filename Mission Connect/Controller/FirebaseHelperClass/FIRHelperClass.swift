@@ -103,8 +103,6 @@ class FIRHelperClass: NSObject {
             // Get user value
         
             let value = snapshot.value as? Dictionary<String,AnyObject>
-                
-    
             let keyList = value!.keys
             
             for str in keyList {
@@ -133,7 +131,7 @@ class FIRHelperClass: NSObject {
             print("Somthing's wrong!")
             return
         }
-        let imageName = "event\(Date().timeIntervalSince1970 * 10000000)"
+        let imageName = "event\(Date().timeIntervalSince1970)"
         
         let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
         
@@ -199,6 +197,41 @@ class FIRHelperClass: NSObject {
             }
         }
     }
-    
+    func createClub(clubName: String, clubPreview: String, clubDescription: String, image: UIImage, officers: [String]) {
+        var databaseReference = DatabaseReference()
+        databaseReference = Database.database().reference()
+        
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Somthing's wrong!")
+            return
+        }
+        let imageName = "club\(Date().timeIntervalSince1970)"
+        
+        let imageReference = Storage.storage().reference().child("clubimages").child(imageName)
+        
+        imageReference.putData(data, metadata: nil) { (metadata, err) in
+            if err != nil {
+                print("somethings wrong!")
+                return
+            }
+            
+            imageReference.downloadURL { (url, err) in
+                if err != nil {
+                    print("somethings wrong!")
+                    return
+                }
+                guard let url = url else {
+                    print("Somthing's wrong!")
+                    return
+                }
+                
+                guard let key = databaseReference.child("clubs").childByAutoId().key else { return }
+                databaseReference.child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count])
+                for id in officers {
+                    databaseReference.child("users").child(id).child("clubs").child(key).setValue("Officer")
+                }
+            }
+        }
+    }
 }
 
