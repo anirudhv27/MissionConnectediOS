@@ -114,7 +114,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         self.openImagePickerOption()
     }
     @IBAction func pickOfficersButtonPressed(_ sender: Any) {
-        let simpleDataArray = Array(allUsersDict.keys)
+        let simpleDataArray = Array(allUsersDict.keys).sorted()
         
         let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: simpleDataArray) { (cell, name, indexPath) in
 
@@ -129,6 +129,11 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         selectionMenu.show(style: .present, from: self)
         
         selectionMenu.setNavigationBar(title: "Select Officers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
+        selectionMenu.showSearchBar { [weak self] (searchText) -> ([String]) in
+          // return filtered array based on any condition
+          // here let's return array where name starts with specified search text
+          return simpleDataArray.filter({ $0.lowercased().hasPrefix(searchText.lowercased()) }) ?? []
+        }
 
         // right barbutton title - Default is 'Done'
         selectionMenu.rightBarButtonTitle = "Submit"
