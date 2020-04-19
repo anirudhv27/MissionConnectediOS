@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class FIRHelperClass: NSObject {
 
@@ -118,6 +119,19 @@ class FIRHelperClass: NSObject {
         // ...
         }) { (error) in
         print(error.localizedDescription)
+        }
+    }
+    
+    func getIsAdmin(user: User,completion: @escaping (_ status: Bool) -> Void){
+        var databaseReference = DatabaseReference()
+        databaseReference = Database.database().reference()
+        databaseReference.child("users").child(user.uid).child("isAdmin").observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? Bool
+            if value == true {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
     //Event method

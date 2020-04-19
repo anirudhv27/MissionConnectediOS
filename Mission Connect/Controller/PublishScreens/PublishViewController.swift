@@ -41,7 +41,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     var clubs: [Club] = []
     var events: [Event] = []
     let user = Auth.auth().currentUser
-    var isAdmin = true
+    var isAdmin = false
 //    var isAdmin = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).value(forKey: "isAdmin") as! Bool
     var clubNames: [String] = []
     var eventNames: [String] = []
@@ -77,7 +77,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
         dateBtn.setTitle("", for: .normal)
         eventView.isHidden = true
-
+        
+        isAdmin(user: user!)
+        
         eventTableView.delegate = self
         eventTableView.dataSource = self
     }
@@ -87,6 +89,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         events = [Event]()
         fetchClubs()
         fetchEvents()
+        self.myCollectionView.reloadData()
     }
     
     func fetchClubs() {
@@ -330,6 +333,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             topTableView.contentOffset = CGPoint(x: 0, y: -topTableView.contentInset.top)
             self.topTableView.isScrollEnabled = false
             self.eventView.isHidden = false
+            self.eventTableView.reloadData()
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
@@ -464,9 +468,11 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     @objc func editEventBtnAction(sender: UIButton) {
         let event: Event = events[sender.tag]
         self.eventView.isHidden = true
+        
         CLUBS_REF.child(event.event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
             let clubName = snapshot.value as? String
             self.clubNametextField.text = clubName
+            self.eventTableView.reloadData()
         }
         
         eventNameTextField.text = event.event_name
@@ -515,5 +521,11 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             topTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
         self.eventTableView.reloadData()
+    }
+    private func isAdmin(user: User){
+        FIRHelperClass.sharedInstance.getIsAdmin(user: user) { (bool) in
+            self.isAdmin = bool
+            self.myCollectionView.reloadData()
+        }
     }
 }
