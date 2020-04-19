@@ -152,7 +152,7 @@ class FIRHelperClass: NSObject {
                 }
                 
                 guard let key = databaseReference.child("events").childByAutoId().key else { return }
-                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview])
+                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0])
                 
                 databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
                 databaseReference.child("users").observe(.childAdded) { (snapshot) in

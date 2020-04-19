@@ -43,7 +43,6 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     func fetchUsers() {
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
             self.allUsersDict.updateValue(snapshot.key, forKey: (snapshot.childSnapshot(forPath: "fullname").value as? String)!)
-            
         }
     }
     

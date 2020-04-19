@@ -41,6 +41,7 @@
 		10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */; };
 		1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */; };
 		103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A984923B08B4400363972 /* ClubListTableViewController.swift */; };
+		10448F45244C01C50044D290 /* ApproveClubsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */; };
 		104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A136023BEE1F100AF7AB7 /* DataService.swift */; };
 		105AB2C82447C02000F1B4C0 /* ProposeClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */; };
 		105C25F22393894F000D1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F12393894F000D1D96 /* Event.swift */; };
@@ -90,6 +91,7 @@
 		10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsForClubTableViewController.swift; sourceTree = "<group>"; };
 		103A984923B08B4400363972 /* ClubListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListTableViewController.swift; sourceTree = "<group>"; };
+		10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveClubsListViewController.swift; sourceTree = "<group>"; };
 		104A136023BEE1F100AF7AB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposeClubViewController.swift; sourceTree = "<group>"; };
 		105C25F12393894F000D1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				0533BAF923D0AEEA009B3D3A /* ClubsDetailsViewController.swift */,
 				10226B7E2427328400744797 /* AddClubsTableViewController.swift */,
 				105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */,
+				10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */,
 			);
 			path = ClubsViewController;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			files = (
 				054AD58123CE20C8007A9A1C /* PrivacyViewController.swift in Sources */,
 				054AD56F23CE0D44007A9A1C /* SideTableViewCell.swift in Sources */,
+				10448F45244C01C50044D290 /* ApproveClubsListViewController.swift in Sources */,
 				0533BAFD23D0BFA2009B3D3A /* PublishViewController.swift in Sources */,
 				054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */,
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,

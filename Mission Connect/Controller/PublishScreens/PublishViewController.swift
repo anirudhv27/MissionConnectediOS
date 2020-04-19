@@ -41,6 +41,8 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     var clubs: [Club] = []
     var events: [Event] = []
     let user = Auth.auth().currentUser
+    var isAdmin = true
+//    var isAdmin = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).value(forKey: "isAdmin") as! Bool
     var clubNames: [String] = []
     var eventNames: [String] = []
     
@@ -55,23 +57,27 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        let ref = Database.database().reference().child("users").child(user!.uid)
+//        ref.child("isAdmin").observeSingleEvent(of: .value) { (snapshot) in
+//            self.isAdmin = snapshot.value as? Bool
+//        }
         
         self.descriptionTextView.layer.cornerRadius = 4.0
         self.descriptionTextView.layer.borderWidth = 1
         self.descriptionTextView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
-        
+
         self.eventImageView.layer.cornerRadius = 4.0
         self.eventImageView.layer.borderWidth = 1
         self.eventImageView.layer.borderColor = UIColor.init(red: (229/255.0), green: (229/255.0), blue: (229/255.0), alpha: (229/255.0)).cgColor
         self.eventImageView.image = UIImage.init(named: "add")
-        
-       
+
+
         datePickerView.isHidden = true
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
         dateBtn.setTitle("", for: .normal)
         eventView.isHidden = true
-        
+
         eventTableView.delegate = self
         eventTableView.dataSource = self
     }
@@ -338,19 +344,50 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.datePickerView.isHidden = true
         self.view.endEditing(true)
     }
+    
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return clubs.count
+        if isAdmin{
+            return clubs.count + 1
+        } else {
+            return clubs.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelCollectionViewCell", for: indexPath) as! ImageLabelCollectionViewCell
-        let currClub = clubs[indexPath.row]
-        cell.imageview.layer.cornerRadius = 10.0
-        cell.imageview.clipsToBounds = true
-        cell.titleLabel.text = currClub.clubName
-        cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        cell.titleLabel.adjustsFontSizeToFitWidth = true
+        var currClub: Club!
+        
+        if isAdmin{
+            if indexPath.row == 0{
+                currClub = nil
+                cell.imageview.layer.cornerRadius = 10.0
+                cell.imageview.clipsToBounds = true
+                cell.titleLabel.text = "Approve Clubs"
+                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+                cell.imageview.contentMode = .center
+                cell.titleLabel.textColor = .black
+                cell.layer.borderWidth = 2.0
+                cell.layer.borderColor = UIColor.black.cgColor
+                cell.layer.cornerRadius = 10.0
+                cell.imageview.image = UIImage(named: "add")
+            } else {
+                currClub = clubs[indexPath.row - 1]
+                cell.imageview.layer.cornerRadius = 10.0
+                cell.imageview.clipsToBounds = true
+                cell.titleLabel.text = currClub.clubName
+                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+                cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+            }
+        } else {
+            currClub = clubs[indexPath.row]
+            cell.imageview.layer.cornerRadius = 10.0
+            cell.imageview.clipsToBounds = true
+            cell.titleLabel.text = currClub.clubName
+            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+            cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        }
         return cell
     }
     
@@ -359,15 +396,37 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.clubNametextField.text = clubs[indexPath.row].clubName
-        let cell = myCollectionView.cellForItem(at: indexPath)
-        cell?.layer.borderWidth = 2.0
-        cell?.layer.borderColor = UIColor.systemGreen.cgColor
-        cell?.layer.cornerRadius = 10.0
-        self.currClubID = clubs[indexPath.row].clubID!
-        self.eventImageView.imageFromURL(urlString: clubs[indexPath.row].clubImageURL!)
-        self.eventImageView.contentMode = .scaleAspectFill
-        isFromEdit = false
+        var currClub: Club!
+        if isAdmin{
+            if indexPath.row == 0{
+                currClub = nil
+                let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ApproveClubsListViewController") as! ApproveClubsListViewController
+                self.navigationController?.pushViewController(objvc, animated: true)
+            } else {
+                currClub = clubs[indexPath.row - 1]
+                self.clubNametextField.text = currClub.clubName
+                let cell = myCollectionView.cellForItem(at: indexPath)
+                cell?.layer.borderWidth = 2.0
+                cell?.layer.borderColor = UIColor.systemGreen.cgColor
+                cell?.layer.cornerRadius = 10.0
+                self.currClubID = currClub.clubID!
+                self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
+                self.eventImageView.contentMode = .scaleAspectFill
+                isFromEdit = false
+            }
+        } else {
+            currClub = clubs[indexPath.row]
+            self.clubNametextField.text = currClub.clubName
+            let cell = myCollectionView.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = 2.0
+            cell?.layer.borderColor = UIColor.systemGreen.cgColor
+            cell?.layer.cornerRadius = 10.0
+            self.currClubID = currClub.clubID!
+            self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
+            self.eventImageView.contentMode = .scaleAspectFill
+            isFromEdit = false
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
