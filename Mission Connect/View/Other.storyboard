@@ -668,7 +668,7 @@
                                             <rect key="frame" x="0.0" y="179.5" width="375" height="837.5"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lfM-Kj-Arj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="837.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="365"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideTableViewCell" rowHeight="100" id="Oer-O9-27S" customClass="SideTableViewCell" customModule="Mission_Connect" customModuleProvider="target">
@@ -783,7 +783,7 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="lfM-Kj-Arj" secondAttribute="bottom" id="AjJ-GM-fAE"/>
+                                                <constraint firstAttribute="bottom" secondItem="lfM-Kj-Arj" secondAttribute="bottom" constant="472.5" id="AjJ-GM-fAE"/>
                                                 <constraint firstItem="lfM-Kj-Arj" firstAttribute="top" secondItem="eBh-Tg-vRI" secondAttribute="top" id="M89-Uy-fJq"/>
                                                 <constraint firstItem="lfM-Kj-Arj" firstAttribute="leading" secondItem="eBh-Tg-vRI" secondAttribute="leading" id="gyG-pK-bhH"/>
                                                 <constraint firstAttribute="trailing" secondItem="lfM-Kj-Arj" secondAttribute="trailing" id="kUr-bf-3yV"/>
@@ -1716,7 +1716,7 @@
     </scenes>
     <resources>
         <image name="add" width="36" height="36"/>
-        <image name="app-icon" width="99" height="99"/>
+        <image name="app-icon" width="60" height="60"/>
         <image name="backBlack" width="30" height="30"/>
         <image name="clubs" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
