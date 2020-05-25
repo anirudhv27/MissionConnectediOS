@@ -261,6 +261,11 @@ extension UIViewController {
         APPDELEGATE.sideMenuController.toggleSlider(.left, animated: true, complete: { (_) in
             
         })
-       
+    }
+    func closeSlider() {
+        let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+        APPDELEGATE.sideMenuController.closeSlider(.left, animated: false) { (_) in
+            
+        }
     }
 }

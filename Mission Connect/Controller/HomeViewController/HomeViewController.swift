@@ -21,13 +21,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var goingEvents: [Event] = []
     var selectedClub: Club!
     var tab = 0
-    let CLUBS_REF = Database.database().reference().child("clubs")
-    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
-    let EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
-    let EVENT_DETAILS_REF = Database.database().reference().child("events")
+    
+    var refreshControl: UIRefreshControl!
+    
+    var CLUBS_REF = Database.database().reference()
+    var REF = Database.database().reference()
+    var EVENT_REF = Database.database().reference()
+    var EVENT_DETAILS_REF = Database.database().reference()
     
     //event outlet
-    
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var eventBtnView: UIView!
     @IBOutlet weak var goingBtn: UIButton!
@@ -38,8 +40,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.topView.setShadow()
         self.resetButtonAtIndex(index: 0)
         self.eventBtnView.setShadow()
+        closeSlider()
+        myCollectionView.contentMode = .scaleAspectFill
+        addRefreshControl()
     }
     override func viewWillAppear(_ animated: Bool) {
+        CLUBS_REF = Database.database().reference().child("clubs")
+        REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
+        EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
+        EVENT_DETAILS_REF = Database.database().reference().child("events")
         fetchClubs()
         fetchEvents()
         eventTableView.contentSize.height = CGFloat(110 * events.count)
@@ -50,6 +59,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         clubs = [Club]()
         events = [Event]()
         goingEvents = [Event]()
+        
         myCollectionView.reloadData()
         eventTableView.reloadData()
     }
@@ -95,6 +105,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func fetchEvents() {
         events = [Event]()
         eventNames = [String]()
+        goingEvents = [Event]()
         EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
             self.eventNames.append(snapshot.key)
         })
@@ -133,14 +144,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     @IBAction func goingBtnAction(_ sender: Any) {
         self.resetButtonAtIndex(index: 1)
-        
     }
     @IBAction func allBtnAction(_ sender: Any) {
         self.resetButtonAtIndex(index: 0)
     }
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return clubs.count + 1
+        return clubs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -150,20 +160,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.layer.borderWidth = 2.0
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 10.0
+        cell.titleLabel.adjustsFontSizeToFitWidth = true
+
+        let currClub = clubs[indexPath.row]
+        cell.titleLabel.text = currClub.clubName
+        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        cell.titleLabel.textColor = .white
+        cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+        cell.imageview.contentMode = .scaleAspectFill
         
-        if (indexPath.row < self.clubs.count){
-            let currClub = clubs[indexPath.row]
-            cell.titleLabel.text = currClub.clubName
-            cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
-            cell.titleLabel.textColor = .white
-            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-        } else {
-            cell.imageview.contentMode = .center
-            cell.imageview.image = UIImage(named: "add")
-            cell.titleLabel.text = "Propose a Club"
-            cell.titleLabel.textColor = .black
-            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-        }
         return cell
     }
     
@@ -172,14 +177,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (indexPath.row < clubs.count) {
             let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
             objvc.club = clubs[indexPath.row]
             self.navigationController?.pushViewController(objvc, animated: true)
-        } else {
-            let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ProposeClubViewController") as! ProposeClubViewController
-            self.navigationController?.pushViewController(objvc, animated: true)
-        }
     }
     
     //MARK: - UItableView Delegate and DataSource Methods
@@ -230,7 +230,60 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
         APPDELEGATE.navigationController?.pushViewController(objVC, animated: true)
     }
-
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var action: UITableViewRowAction
+        if (tab == 0){
+            if goingEvents.contains(events[indexPath.row]) {
+                action = UITableViewRowAction(style: .normal, title: "Can't Go", handler: { (action, index) in
+                    let event = self.events[index.row]
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+                    self.fetchClubs()
+                    self.fetchEvents()
+                    self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
+                    self.myCollectionView.reloadData()
+                    self.eventTableView.reloadData()
+                    
+                })
+                action.backgroundColor = .red
+            } else {
+                action = UITableViewRowAction(style: .normal, title: "I'm Going!", handler: { (action, index) in
+                    let event = self.events[index.row]
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(true)
+                    self.fetchClubs()
+                    self.fetchEvents()
+                    self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
+                    self.myCollectionView.reloadData()
+                    self.eventTableView.reloadData()
+                })
+                action.backgroundColor = .green
+            }
+        } else {
+            action = UITableViewRowAction(style: .normal, title: "Can't Go", handler: { (action, index) in
+            let event = self.goingEvents[index.row]
+            Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+                self.fetchClubs()
+                self.fetchEvents()
+                self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
+                self.myCollectionView.reloadData()
+                self.eventTableView.reloadData()
+            })
+            action.backgroundColor = .red
+            
+        }
+        
+        return [action]
+    }
+    func addRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshList), for: .allEvents)
+        eventTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshList() {
+        eventTableView.reloadData()
+        myCollectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
 }
 
 extension UIView {

@@ -72,9 +72,9 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
     @IBAction func subscribeBtnAction(_ sender: Any) {
         var alert: UIAlertController
         if !self.isMyClub {
-            alert = UIAlertController(title: "Join?", message: "Subscribe to \(club.clubName)?", preferredStyle: .alert)
+            alert = UIAlertController(title: "Join?", message: "Subscribe to \(club.clubName ?? "")?", preferredStyle: .alert)
         } else {
-            alert = UIAlertController(title: "Leave this Club?", message: "Leave \(club.clubName)?", preferredStyle: .alert)
+            alert = UIAlertController(title: "Leave this Club?", message: "Leave \(club.clubName ?? "")?", preferredStyle: .alert)
         }
         let cancelActionBtn = UIAlertAction(title: "No", style: .cancel, handler: { _ in
               self.navigationController?.popToRootViewController(animated: true)

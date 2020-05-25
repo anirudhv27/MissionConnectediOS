@@ -15,7 +15,6 @@ class SupportViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textView.text = ""
     }
     
     @IBAction func menuBtnAction(_ sender: Any) {

@@ -29,14 +29,26 @@ class CustomTabBarViewController: UIViewController {
     var controller : UINavigationController!
     var controllerArray : Array<UINavigationController>!
     
+    var currIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setsNavigationController()
-        self.resetSelectedBtn(index: 0)
-        homeBtn.isSelected = true
-        homeBtn.tintColor = .systemGreen
-        self.setInitialController(index: 0)
+        
+        self.resetSelectedBtn(index: currIndex)
+        if currIndex == 0{
+            homeBtn.isSelected = true
+            homeBtn.tintColor = .systemGreen
+        } else if currIndex == 1 {
+            clubBtn.isSelected = true
+            clubBtn.tintColor = .systemGreen
+        } else if currIndex == 2 {
+            publishBtn.isSelected = true
+            publishBtn.tintColor = .systemGreen
+        }
+        
+        self.setInitialController(index: currIndex)
     }
     
     

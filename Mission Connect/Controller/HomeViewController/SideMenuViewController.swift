@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleSignIn
+import Firebase
+import Kingfisher
 
 class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,14 +23,17 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        menuList = ["Support","User Aggreement","Privacy Policy","Security","Version","Settings","Dashboard","Clubs","Events","LogOut"]
-        imageList = ["support","document","privacypolicy","security","version","settings","home","clubs","events","logout"]
+        menuList = ["Dashboard","Clubs","Publish","Support","User Aggreement","Privacy Policy", "Version", "LogOut"]
+        imageList = ["home","clubs","share", "support","document","privacypolicy", "version","logout"]
+    }
+    override func viewDidAppear(_ animated: Bool) {
         self.profileImageView.layer.cornerRadius = 50.0
         self.profileImageView.clipsToBounds = true
+        self.profileImageView.kf.setImage(with: Auth.auth().currentUser?.photoURL)
+        profileNameLabel.text = Auth.auth().currentUser?.displayName
+        profileNameLabel.adjustsFontForContentSizeCategory = true
     }
-    
 
     //MARK:- UITableViewDataSource and Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,13 +56,14 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
         
         let sideMenuController = APPDELEGATE.sideMenuController
+        
         guard let centeralNavController = sideMenuController.centerViewController as? UINavigationController else {
             return
         }
         centeralNavController.popToRootViewController(animated: false)
         
         switch indexPath.row {
-        case 0:
+        case 3:
          
          let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SupportViewController") as! SupportViewController
         
@@ -66,7 +72,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
              
          }
          break
-        case 1:
+        case 4:
             
             let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserAggrementViewController") as! UserAggrementViewController
            
@@ -75,7 +81,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
                 
             }
             break
-        case 2:
+        case 5:
              
              let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrivacyViewController") as! PrivacyViewController
             
@@ -84,84 +90,78 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
                  
              }
              break
-        case 3:
-         
-         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
-        
-         centeralNavController.setViewControllers([objVC], animated: false)
-         sideMenuController.closeSlider(.left, animated: true) { (_) in
-             
-         }
-         break
-        case 4:
-         
-         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "SecurityViewController") as! CustomTabBarViewController
-        
-         centeralNavController.setViewControllers([objVC], animated: false)
-         sideMenuController.closeSlider(.left, animated: true) { (_) in
-             
-         }
-         break
-        case 5:
-         
-         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
-        
-         centeralNavController.setViewControllers([objVC], animated: false)
-         sideMenuController.closeSlider(.left, animated: true) { (_) in
-             
-         }
-         break
         case 6:
          
-         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
+         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VersionViewController") as! VersionViewController
         
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
              
          }
          break
-        case 7:
+        case 0:
          
          let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
-        
+         objVC.currIndex = 0
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
              
          }
          break
-        case 8:
+        case 1:
          
          let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
-        
+         
+         objVC.currIndex = 1
+         centeralNavController.setViewControllers([objVC], animated: false)
+         sideMenuController.closeSlider(.left, animated: true) { (_) in
+             
+         }
+         break
+         case 2:
+         
+         let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
+         objVC.currIndex = 2
          centeralNavController.setViewControllers([objVC], animated: false)
          sideMenuController.closeSlider(.left, animated: true) { (_) in
              
          }
          break
             
-        case 9:
+        case 7:
             //Logout
             let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
             let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in
-                GIDSignIn.sharedInstance()?.signOut()
                 
-                let storyboard = UIStoryboard(name: "Other", bundle: nil)
-                let initial = storyboard.instantiateInitialViewController()
-                UIApplication.shared.keyWindow?.rootViewController = initial
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    let defaults = UserDefaults.standard
+                    defaults.set(false, forKey: "isUserSignedIn")
+                    GIDSignIn.sharedInstance()?.signOut()
+                    GIDSignIn.sharedInstance()?.disconnect()
+                  
+                    let storyboard = UIStoryboard(name: "Other", bundle: nil)
+                    let initial = storyboard.instantiateInitialViewController()
+                    self.navigationController?.popToRootViewController(animated: true)
+                    UIApplication.shared.keyWindow?.rootViewController = initial
+                    
+                } catch let signOutError as NSError {
+                  print ("Error signing out: %@", signOutError)
+                }
             }
             
             let noAction = UIAlertAction.init(title: "No", style: .cancel) { (action) in
-                
+                sideMenuController.closeSlider(.left, animated: true) { (_) in
+                    
+                }
             }
-            
             alert.addAction(okAction)
             alert.addAction(noAction)
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-            
             break
-            
             
         default:
             break

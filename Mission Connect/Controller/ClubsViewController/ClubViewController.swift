@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SDWebImage
 
 class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -23,9 +22,10 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var myTableView: UITableView!
     
+    @IBOutlet weak var joinClubsButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
-    let CLUBS_REF = Database.database().reference().child("clubs")
-    let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
+    var CLUBS_REF = Database.database().reference()
+    var REF = Database.database().reference()
     
     var clubs: [Club] = []
     var searchedClubs: [Club] = []
@@ -40,10 +40,13 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         searchBar.delegate = self
         // Do any additional setup after loading the view.
+        joinClubsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.topView.setShadow()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        CLUBS_REF = Database.database().reference().child("clubs")
+        REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
         clubs = [Club]()
         fetchClubs()
         self.myTableView.reloadData()
@@ -51,6 +54,9 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func menuBtnAction(_ sender: Any) {
+        self.toggleSlider()
     }
     
     func fetchClubs() {
@@ -131,13 +137,14 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = true
-        searchedClubs = clubs.filter({String(($0.clubName?.prefix(searchText.count))!).lowercased() == searchText.lowercased()})
+        searchedClubs = clubs.filter({ $0.clubName!.lowercased().contains(searchText.lowercased()) })
         myTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
+        self.view.endEditing(true)
         myTableView.reloadData()
     }
     

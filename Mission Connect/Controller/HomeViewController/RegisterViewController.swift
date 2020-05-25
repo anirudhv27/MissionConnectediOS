@@ -9,8 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import GoogleSignIn
-import FirebaseStorage
-import FirebaseDatabase
+import Firebase
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
@@ -136,7 +135,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("textfield - \(textField.text)  string-\(string)")
+        print("textfield - \(textField.text ?? "")  string-\(string)")
     
         if textField == graduationTextField {
             let yearString = "\(textField.text ?? "")\(string)"

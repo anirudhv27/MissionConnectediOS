@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseStorage
-import FirebaseAuth
+import Firebase
 
 class FIRHelperClass: NSObject {
 
@@ -134,8 +132,9 @@ class FIRHelperClass: NSObject {
             }
         }
     }
+    
     //Event method
-    func createEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String) {
+    func createEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, completion: @escaping ()->()) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
         let df = DateFormatter()
@@ -166,7 +165,11 @@ class FIRHelperClass: NSObject {
                 }
                 
                 guard let key = databaseReference.child("events").childByAutoId().key else { return }
+                
                 databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0])
+                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0]) { (err, ref) in
+                    completion()
+                }
                 
                 databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
                 databaseReference.child("users").observe(.childAdded) { (snapshot) in
@@ -179,7 +182,7 @@ class FIRHelperClass: NSObject {
         }
         
     }
-    func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String) {
+    func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String, completion: @escaping () -> ()) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
         let df = DateFormatter()
@@ -207,7 +210,11 @@ class FIRHelperClass: NSObject {
                     print("Somthing's wrong!")
                     return
                 }
-                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview])
+                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview]) { (err, ref) in
+                    if err == nil {
+                        completion()
+                    }
+                }
             }
         }
     }
@@ -243,6 +250,65 @@ class FIRHelperClass: NSObject {
                 databaseReference.child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": false])
                 for id in officers {
                     databaseReference.child("users").child(id).child("clubs").child(key).setValue("Officer")
+                }
+            }
+        }
+    }
+    func editClub(clubID: String, clubName: String, clubPreview: String, clubDescription: String, image: UIImage, officers: [String]) {
+        var databaseReference = DatabaseReference()
+        databaseReference = Database.database().reference()
+
+        databaseReference.child("clubs").child(clubID).child("events").observeSingleEvent(of: .value) { (snapshot) in
+            let eventsDict = snapshot.value as! [String: Bool]
+            let eventNames = [String] (eventsDict.keys)
+            guard let data = image.jpegData(compressionQuality: 1.0) else {
+                print("Somthing's wrong!")
+                return
+            }
+            
+            let imageName = "club\(Date().timeIntervalSince1970)"
+            
+            let imageReference = Storage.storage().reference().child("clubimages").child(imageName)
+            
+            imageReference.putData(data, metadata: nil) { (metadata, err) in
+                if err != nil {
+                    print("somethings wrong!")
+                    return
+                }
+                
+                imageReference.downloadURL { (url, err) in
+                    if err != nil {
+                        print("somethings wrong!")
+                        return
+                    }
+                    guard let url = url else {
+                        print("Somthing's wrong!")
+                        return
+                    }
+                    
+                    databaseReference.child("clubs").child(clubID).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": true, "events": eventsDict]) //need to include previous events over here
+                    
+                    databaseReference.child("users").observeSingleEvent(of: .value) { (snapshot) in
+                        for child in snapshot.children {
+                            let snap = child as! DataSnapshot
+                            if snap.childSnapshot(forPath: "clubs").hasChild(clubID) {
+                                if officers.contains(snap.key) {
+                                    databaseReference.child("users").child(snap.key).child("clubs").child(clubID).setValue("Officer")
+                                } else {
+                                    databaseReference.child("users").child(snap.key).child("clubs").child(clubID).setValue("Member")
+                                }
+                            }
+                            for eventID in eventNames {
+                                if snap.childSnapshot(forPath: "events").hasChild(eventID) {
+                                    if officers.contains(snap.key) {
+                                        databaseReference.child("users").child(snap.key).child("events").child(eventID).child("member_status").setValue("Officer")
+                                    } else {
+                                        databaseReference.child("users").child(snap.key).child("events").child(eventID).child("member_status").setValue("Member")
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

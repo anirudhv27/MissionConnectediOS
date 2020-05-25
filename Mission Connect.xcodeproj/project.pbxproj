@@ -43,15 +43,19 @@
 		103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A984923B08B4400363972 /* ClubListTableViewController.swift */; };
 		10448F45244C01C50044D290 /* ApproveClubsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */; };
 		104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A136023BEE1F100AF7AB7 /* DataService.swift */; };
+		104EB6E524625F2500DCAB8E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */; };
+		104EB6E724638A9900DCAB8E /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104EB6E624638A9900DCAB8E /* VersionViewController.swift */; };
 		105AB2C82447C02000F1B4C0 /* ProposeClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */; };
 		105C25F22393894F000D1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F12393894F000D1D96 /* Event.swift */; };
 		105C25F423939160000D1D96 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F323939160000D1D96 /* Club.swift */; };
 		105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */; };
 		105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */; };
 		10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10779BAA242854A600B56392 /* EventListTableViewController.swift */; };
+		1089A05924650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */; };
+		1089A05B2465112A0041EDD0 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */; };
 		10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */; };
 		10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10BCB5842394C5270089EE56 /* Assets.xcassets */; };
-		480E0A301A61170DE50DE2F0 /* Pods_Mission_Connect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */; };
+		BDDFEA3CDD5690B4C92655E2 /* Pods_Mission_Connect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEFFF29E20647B71014D8BE /* Pods_Mission_Connect.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,17 +97,21 @@
 		103A984923B08B4400363972 /* ClubListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListTableViewController.swift; sourceTree = "<group>"; };
 		10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveClubsListViewController.swift; sourceTree = "<group>"; };
 		104A136023BEE1F100AF7AB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		104EB6E624638A9900DCAB8E /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposeClubViewController.swift; sourceTree = "<group>"; };
 		105C25F12393894F000D1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		105C25F323939160000D1D96 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsTableViewController.swift; sourceTree = "<group>"; };
 		105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailsViewController.swift; sourceTree = "<group>"; };
 		10779BAA242854A600B56392 /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
+		1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
+		1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		108C33B6239A214100944F82 /* Mission Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mission Connect.entitlements"; sourceTree = "<group>"; };
 		10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		10BCB5842394C5270089EE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EEFFF29E20647B71014D8BE /* Pods_Mission_Connect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mission_Connect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9A47206584422745FBA0EC /* Pods-Mission Connect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mission Connect.release.xcconfig"; path = "Target Support Files/Pods-Mission Connect/Pods-Mission Connect.release.xcconfig"; sourceTree = "<group>"; };
-		5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mission_Connect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95906A2C2FE0B1CB429B296 /* Pods-Mission Connect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mission Connect.debug.xcconfig"; path = "Target Support Files/Pods-Mission Connect/Pods-Mission Connect.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				480E0A301A61170DE50DE2F0 /* Pods_Mission_Connect.framework in Frameworks */,
+				BDDFEA3CDD5690B4C92655E2 /* Pods_Mission_Connect.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +170,7 @@
 				054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */,
 				054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */,
 				0533BAF523D01E8E009B3D3A /* SecurityViewController.swift */,
+				104EB6E624638A9900DCAB8E /* VersionViewController.swift */,
 			);
 			path = StaticViewController;
 			sourceTree = "<group>";
@@ -266,6 +275,9 @@
 				1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */,
 				05ECA0B023CB906A00635360 /* AddEventViewController.swift */,
 				10128546243111E0007EC56E /* UIImageView+imageFromURL.swift */,
+				1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */,
+				1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */,
+				104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -290,7 +302,7 @@
 		6A0C1B7F665E9694AD4DE1A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E08709E93EEB7475A22F9ED /* Pods_Mission_Connect.framework */,
+				1EEFFF29E20647B71014D8BE /* Pods_Mission_Connect.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -306,8 +318,8 @@
 				100734942390586B007695DA /* Sources */,
 				100734952390586B007695DA /* Frameworks */,
 				100734962390586B007695DA /* Resources */,
-				18DEA372816D1B16F9D609E2 /* [CP] Embed Pods Frameworks */,
 				168A944049669059C8AEB0F0 /* [CP] Copy Pods Resources */,
+				DAC938B9835685253BC5088D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,23 +401,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		18DEA372816D1B16F9D609E2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A4FDC3FB2D55D3F92E53F38F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +423,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DAC938B9835685253BC5088D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mission Connect/Pods-Mission Connect-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -443,11 +455,14 @@
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */,
 				05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */,
+				104EB6E524625F2500DCAB8E /* UIViewController+Extension.swift in Sources */,
 				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
 				054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */,
+				1089A05924650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift in Sources */,
 				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
 				054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */,
 				05FCBA2A23D4A9980077F3F5 /* RegisterViewController.swift in Sources */,
+				104EB6E724638A9900DCAB8E /* VersionViewController.swift in Sources */,
 				054AD57623CE16EE007A9A1C /* MASliderSpringAnimator.swift in Sources */,
 				05FCBA2C23D5F6AC0077F3F5 /* CommonTableViewCell.swift in Sources */,
 				1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */,
@@ -456,6 +471,7 @@
 				0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */,
 				05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */,
 				10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */,
+				1089A05B2465112A0041EDD0 /* UITextView+Extension.swift in Sources */,
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
 				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,

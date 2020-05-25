@@ -1,9 +1,10 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'Mission Connect' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  use_modular_headers!
 
   # Pods for Mission Connect
   # add the Firebase pod for Google Analytics
@@ -14,8 +15,14 @@ target 'Mission Connect' do
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'AppAuth'
-  pod 'SDWebImage'
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'RSSelectionMenu' or pod 'RSSelectionMenu', '~> 6.1.0'
+  pod 'SkyFloatingLabelTextField'
+  pod 'RSSelectionMenu'
+  pod 'Kingfisher', '~> 5.0'
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings.delete('CODE_SIGNING_ALLOWED')
+      config.build_settings.delete('CODE_SIGNING_REQUIRED')
+  end
+end
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

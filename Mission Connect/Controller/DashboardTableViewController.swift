@@ -26,6 +26,7 @@ class DashboardTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
         fetchEvents()
         
     }
@@ -51,6 +52,8 @@ class DashboardTableViewController: UITableViewController {
                     event.event_club = dictionary["event_club"] as? String
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
+                    
+                    
                     self.data.append(event)
                     self.tableView.reloadData()
                 }

@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -24,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        
 //        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
 //           self.gotoRouteScreen()
 //        }else {
@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return true
     }
     
+    @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
@@ -47,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         
         print("Success!", user.userID as Any)
+        
+        
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
@@ -64,44 +67,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("Success for Firebase User!", user.userID as Any)
                 
                 if Auth.auth().currentUser != nil {
+                    
                     self.gotoRouteScreen()
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("fullname").setValue(user.profile.name)
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("imgurl").setValue(user.profile.imageURL(withDimension: 200)?.absoluteString)
+                } else {
+                    
                 }
-                
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "isUserSignedIn")
             })
         } else {
             
             let alert: UIAlertController = UIAlertController(title: "Invalid Sign In", message: "Please try again with your FUSD GAFE account.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.window?.rootViewController!.present(alert, animated: true)
+            
         }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        self.gotoDummyScreen()
         
     }
-
-    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        GIDSignIn.sharedInstance()?.signIn()
+        
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
     }
 
     //MARK: - Helper methods for SideMenu
@@ -110,20 +125,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
        
         navigationController = UINavigationController.init(rootViewController: objvc)
         navigationController.navigationBar.isHidden = true
+        
         window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         window!.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
     
     func gotoRouteScreen() {
-        
+        sideMenuController.centerViewController?.closeSlider()
+        let menu = sideMenuController.centerViewController as! UINavigationController
+        let tab = menu.viewControllers.first as! CustomTabBarViewController
+        tab.currIndex = 0
         navigationController = UINavigationController.init(rootViewController: sideMenuController)
         navigationController.navigationBar.isHidden = true
         window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         window!.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
     }
+    
+    //MARK: - Tab Bar setup:  DO NOT TOUCH
     func setNavigationController(navigation:UINavigationController) {
         navigation.navigationBar.isTranslucent = false
         navigation.interactivePopGestureRecognizer?.isEnabled = false
@@ -141,6 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let mainViewController = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
         
         let drawerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        
         let centerNavController = UINavigationController.init(rootViewController: mainViewController)
         privateSideMenuController?.navigationController?.navigationBar.isHidden = true;
         let sliderViewController = MASliderViewController()
@@ -151,6 +172,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         privateSideMenuController = sliderViewController
         return privateSideMenuController!
     }
-
 }
 

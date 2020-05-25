@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SDWebImage
 
 class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -128,13 +127,14 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = true
-        searchedClubs = clubs.filter({String(($0.clubName?.prefix(searchText.count))!).lowercased() == searchText.lowercased()})
+        searchedClubs = clubs.filter({ $0.clubName!.lowercased().contains(searchText.lowercased()) })
         myTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
+        self.view.endEditing(true)
         myTableView.reloadData()
     }
 }

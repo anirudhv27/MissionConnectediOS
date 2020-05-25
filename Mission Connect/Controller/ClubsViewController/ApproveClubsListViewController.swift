@@ -19,6 +19,8 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
     var selectedClub: Club!
     var searching = false
     
+    var refreshControl: UIRefreshControl!
+    
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
@@ -30,6 +32,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
         searchBar.delegate = self
         myTableView.delegate = self
         myTableView.dataSource = self
+        addRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +99,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let approve = UITableViewRowAction(style: .normal, title: "Approve?") { (action, index) in
+        let approve = UITableViewRowAction(style: .default, title: "Approve?") { (action, index) in
             if self.searching {
                 let club = self.clubs.remove(at: index.row)
                 Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
@@ -110,7 +113,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
         }
         approve.backgroundColor = .systemGreen
         
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, index) in
             if self.searching {
                 let club = self.searchedClubs.remove(at: index.row)
                 self.clubs.remove(at: self.clubs.firstIndex(of: club)!)
@@ -132,20 +135,79 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
                 }
             }
         }
+        
         delete.backgroundColor = .red
         return [approve, delete]
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let approve = UIContextualAction(style: .normal, title: "Approve") { (action, view, completion) in
+            if self.searching {
+                let club = self.clubs.remove(at: indexPath.row)
+                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                let club = self.clubs.remove(at: indexPath.row)
+                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            completion(true)
+        }
+        approve.backgroundColor = .systemGreen
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            if self.searching {
+                let club = self.searchedClubs.remove(at: indexPath.row)
+                self.clubs.remove(at: self.clubs.firstIndex(of: club)!)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
+                Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
+                    if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
+                        Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()
+                    }
+                }
+            } else {
+                let club = self.clubs.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
+                Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
+                    if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
+                        Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()
+                    }
+                }
+            }
+            
+        }
+        delete.backgroundColor = .red
+        let swipeAction = UISwipeActionsConfiguration(actions: [approve, delete])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
+    }
+    func addRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshList), for: .allEvents)
+        myTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshList() {
+        fetchClubs()
+        refreshControl.endRefreshing()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = true
-        searchedClubs = clubs.filter({String(($0.clubName?.prefix(searchText.count))!).lowercased() == searchText.lowercased()})
+        searchedClubs = clubs.filter({ $0.clubName!.lowercased().contains(searchText.lowercased()) })
         myTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
+        self.view.endEditing(true)
         myTableView.reloadData()
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
