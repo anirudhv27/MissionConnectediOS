@@ -89,56 +89,9 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ClubsDetailsViewController") as! ClubsDetailsViewController
-        if searching {
-            objvc.club = searchedClubs[indexPath.row]
-        } else {
-            objvc.club = clubs[indexPath.row]
-        }
-               self.navigationController?.pushViewController(objvc, animated: true)
+        
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let approve = UITableViewRowAction(style: .default, title: "Approve?") { (action, index) in
-            if self.searching {
-                let club = self.clubs.remove(at: index.row)
-                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
-                
-                tableView.deleteRows(at: [index], with: .fade)
-            } else {
-                let club = self.clubs.remove(at: index.row)
-                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
-                tableView.deleteRows(at: [index], with: .fade)
-            }
-        }
-        approve.backgroundColor = .systemGreen
-        
-        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, index) in
-            if self.searching {
-                let club = self.searchedClubs.remove(at: index.row)
-                self.clubs.remove(at: self.clubs.firstIndex(of: club)!)
-                tableView.deleteRows(at: [index], with: .fade)
-                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
-                Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
-                    if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
-                        Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()
-                    }
-                }
-            } else {
-                let club = self.clubs.remove(at: index.row)
-                tableView.deleteRows(at: [index], with: .fade)
-                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
-                Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
-                    if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
-                        Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()
-                    }
-                }
-            }
-        }
-        
-        delete.backgroundColor = .red
-        return [approve, delete]
-    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let approve = UIContextualAction(style: .normal, title: "Approve") { (action, view, completion) in
             if self.searching {
@@ -155,7 +108,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
         }
         approve.backgroundColor = .systemGreen
         
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+        let delete = UIContextualAction(style: .destructive, title: "Reject") { (action, view, completion) in
             if self.searching {
                 let club = self.searchedClubs.remove(at: indexPath.row)
                 self.clubs.remove(at: self.clubs.firstIndex(of: club)!)

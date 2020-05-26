@@ -74,8 +74,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         dateBtn.setTitle("", for: .normal)
         eventView.isHidden = true
         
-        isAdmin(user: user!)
-        
         clubNametextField.addDoneButtonOnKeyboard()
         eventNameTextField.addDoneButtonOnKeyboard()
         eventEnddatetextField.addDoneButtonOnKeyboard()
@@ -91,6 +89,8 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
+         
+        addEventBtn.titleLabel?.text = "Add Event"
         
         addRefreshControl()
     }
@@ -101,7 +101,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         EVENT_DETAILS_REF = Database.database().reference().child("events")
         fetchClubs()
         fetchEvents()
+        refresh()
         eventTableView.contentSize.height = CGFloat(110 * events.count)
+        isAdmin(user: user!)
     }
     override func viewWillDisappear(_ animated: Bool) {
         clubs = [Club]()
@@ -121,6 +123,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             if (snapshot.value as? String == "Officer"){
                 self.clubNames.append(snapshot.key)
             }
+            self.myCollectionView.reloadData()
         })
         
         CLUBS_REF.observe(.childAdded, with: { (snapshot) -> Void in
@@ -365,6 +368,9 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             topTableView.contentOffset = CGPoint(x: 0, y: -topTableView.contentInset.top)
             self.topTableView.isScrollEnabled = false
             self.eventView.isHidden = false
+            
+            addEventBtn.titleLabel?.text = "Add Event"
+            
             self.eventTableView.reloadData()
         }
         
@@ -397,6 +403,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelCollectionViewCell", for: indexPath) as! ImageLabelCollectionViewCell
         cell.titleLabel.adjustsFontSizeToFitWidth = true
         var currClub: Club!
+        cell.imageview.image = UIImage(named: "add")
         
         if isAdmin{
             if indexPath.row == 0{
@@ -410,7 +417,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell.layer.borderWidth = 2.0
                 cell.layer.borderColor = UIColor.black.cgColor
                 cell.layer.cornerRadius = 10.0
-                cell.imageview.image = UIImage(named: "add")
             } else if indexPath.row == 1 {
                 currClub = nil
                 cell.imageview.layer.cornerRadius = 10.0
@@ -422,7 +428,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell.layer.borderWidth = 2.0
                 cell.layer.borderColor = UIColor.black.cgColor
                 cell.layer.cornerRadius = 10.0
-                cell.imageview.image = UIImage(named: "add")
             } else {
                 currClub = clubs[indexPath.row - 2]
                 cell.imageview.layer.cornerRadius = 10.0
@@ -448,7 +453,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell.layer.borderWidth = 2.0
                 cell.layer.borderColor = UIColor.black.cgColor
                 cell.layer.cornerRadius = 10.0
-                cell.imageview.image = UIImage(named: "add")
             } else {
                 currClub = clubs[indexPath.row - 1]
                 cell.imageview.layer.cornerRadius = 10.0
@@ -492,6 +496,12 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 self.currClubID = currClub.clubID!
                 self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
                 self.eventImageView.contentMode = .scaleAspectFill
+                
+                addEventBtn.setTitleColor(.black, for: .normal)
+                allEventBtn.setTitleColor(.darkGray, for: .normal)
+                self.topTableView.isScrollEnabled = true
+                self.eventView.isHidden = true
+                
                 isFromEdit = false
             }
         } else {
@@ -508,6 +518,12 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 self.currClubID = currClub.clubID!
                 self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
                 self.eventImageView.contentMode = .scaleAspectFill
+                
+                addEventBtn.setTitleColor(.black, for: .normal)
+                allEventBtn.setTitleColor(.darkGray, for: .normal)
+                self.topTableView.isScrollEnabled = true
+                self.eventView.isHidden = true
+                
                 isFromEdit = false
             }
         }
@@ -561,14 +577,20 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         eventNameTextField.text = event.event_name
         dateBtn.setTitle("", for: .normal)
         //enddateBtn.setTitle("", for: .normal)
-        descriptionTextView.text = ""
-        eventImageView.contentMode = .center
-        eventImageView.image = UIImage.init(named: "add")
+        descriptionTextView.text = event.event_description
+        eventImageView.contentMode = .scaleAspectFill
+        eventImageView.imageFromURL(urlString: event.eventImageURL!)
         allEventBtn.setTitleColor(.darkGray, for: .normal)
         addEventBtn.setTitleColor(.black, for: .normal)
+        eventEnddatetextField.text = event.eventPreview
+        df.dateFormat = "MMM dd, yyyy"
+        eventStartDateTextField.text = df.string(from: event.eventDate ?? Date())
         currEventID = event.eventID!
         currClubID = event.event_club!
         self.topTableView.isScrollEnabled = true
+        
+        addEventBtn.titleLabel?.text = "Edit Event"
+        
         isFromEdit = true
     }
     

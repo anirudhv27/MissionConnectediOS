@@ -174,8 +174,8 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         selectionMenu.cellSelectionStyle = .checkbox
         selectionMenu.show(style: .present, from: self)
         
-        selectionMenu.setNavigationBar(title: "Select Club to Edit", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
-        selectionMenu.rightBarButtonTitle = "Submit"
+        selectionMenu.setNavigationBar(title: "Select Club to Update", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
+        selectionMenu.rightBarButtonTitle = "Done"
         selectionMenu.leftBarButtonTitle = "Cancel"
         selectionMenu.onDismiss = { [weak self] selectedItems in
             if let id = selectedItems.first {
@@ -229,7 +229,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         }
 
         // right barbutton title - Default is 'Done'
-        selectionMenu.rightBarButtonTitle = "Submit"
+        selectionMenu.rightBarButtonTitle = "Done"
 
         // left barbutton title - Default is 'Cancel'
         selectionMenu.leftBarButtonTitle = "Cancel"
@@ -251,7 +251,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             if (editPublishSegmentedControl.selectedSegmentIndex == 0) {
                 message = "Please enter a club name."
             } else {
-                message = "Please select a club to edit."
+                message = "Please select a club to update."
             }
         }else if clubPreviewTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
             message = "Please enter a short club preview."
