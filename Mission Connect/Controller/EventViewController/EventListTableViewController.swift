@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class EventListTableViewController: UITableViewController {
     
@@ -65,7 +66,7 @@ class EventListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
-        cell.menuImageView.imageFromURL(urlString: events[indexPath.row].eventImageURL ?? "")
+        cell.menuImageView.kf.setImage(with: URL(string: events[indexPath.row].eventImageURL!))
         cell.subTitleLabel.text = events[indexPath.row].event_name
         cell.memberLabel.text = events[indexPath.row].eventPreview
         df.dateFormat = "MMM dd, yyyy"

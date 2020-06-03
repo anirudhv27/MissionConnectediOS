@@ -662,7 +662,7 @@ Translations: Can you help translate this site into</string>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gui-84-Iz8">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="cCk-Y6-doJ"/>
                                                         <constraint firstAttribute="height" constant="90" id="hOZ-kd-bfX"/>
@@ -710,6 +710,7 @@ Translations: Can you help translate this site into</string>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R5H-Uh-BVo">
                                                     <rect key="frame" x="10" y="10" width="85" height="74"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="3s9-cd-iQb"/>
                                                     </constraints>
@@ -892,6 +893,7 @@ Translations: Can you help translate this site into</string>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HI4-DS-8Cz">
                                             <rect key="frame" x="41" y="32" width="100" height="100"/>
+                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="HxE-pf-Mvd"/>
                                                 <constraint firstAttribute="height" constant="100" id="arQ-ZB-RO0"/>
@@ -1064,6 +1066,7 @@ Translations: Can you help translate this site into</string>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1zT-mB-D01">
                                                     <rect key="frame" x="10" y="10" width="85" height="74"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="CJo-Jr-6zn"/>
                                                     </constraints>
@@ -1547,6 +1550,7 @@ Translations: Can you help translate this site into</string>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AGl-oB-EBy">
                                 <rect key="frame" x="10" y="106" width="394" height="206"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="206" id="tG5-NG-XZy"/>
                                 </constraints>
@@ -1685,6 +1689,7 @@ Translations: Can you help translate this site into</string>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vln-Va-wJR">
                                                     <rect key="frame" x="10" y="10" width="85" height="74"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="PHF-dl-elE"/>
                                                     </constraints>

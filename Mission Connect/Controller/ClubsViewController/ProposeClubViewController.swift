@@ -183,7 +183,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                 self?.clubNameTextField.text = club.clubName
                 self?.clubPreviewTextField.text = club.clubPreview
                 self?.clubDescriptionTextView.text = club.clubDescription
-                self?.clubImageView.imageFromURL(urlString: club.clubImageURL!)
+                self?.clubImageView.kf.setImage(with: URL(string: club.clubImageURL!))
                 self?.editClubID = id
                 
                 Database.database().reference().child("users").observe(.value) { (snapshot) in

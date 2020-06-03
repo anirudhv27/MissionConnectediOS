@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -107,7 +108,7 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
         
-        cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        cell.menuImageView.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
         return cell
     }
     

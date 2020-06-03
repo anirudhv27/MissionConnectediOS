@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -80,7 +81,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
         }
         cell.subTitleLabel.text = currClub.clubName
         cell.memberLabel.text = currClub.clubPreview
-        cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        cell.menuImageView.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
         return cell
     }
     

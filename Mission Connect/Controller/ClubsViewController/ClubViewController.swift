@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class ClubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -113,7 +114,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         REF.child(currClub.clubID!).observeSingleEvent(of: .value) { (snapshot) in
             cell.memberLabel.text = snapshot.value as? String
         }
-        cell.menuImageView.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        cell.menuImageView.kf.setImage(with: URL(string: currClub.clubImageURL!))
         return cell
     }
     

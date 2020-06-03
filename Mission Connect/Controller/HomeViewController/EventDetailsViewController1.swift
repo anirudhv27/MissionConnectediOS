@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class EventDetailsViewController1: UIViewController {
     
@@ -52,7 +53,7 @@ class EventDetailsViewController1: UIViewController {
         }
         
         titleLabel.text = event?.event_name
-        eventImageView.imageFromURL(urlString: event?.eventImageURL ?? "")
+        eventImageView.kf.setImage(with: URL(string: event?.eventImageURL ?? ""))
         eventDescriptionTextView.text = event?.event_description
         let df = DateFormatter()
         df.dateFormat = "MMM dd, yyyy"

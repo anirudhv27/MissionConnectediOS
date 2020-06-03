@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
 
@@ -161,10 +162,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.cornerRadius = 10.0
         cell.titleLabel.adjustsFontSizeToFitWidth = true
+        cell.backgroundColor = .green
 
         let currClub = clubs[indexPath.row]
         cell.titleLabel.text = currClub.clubName
-        cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+        
+        cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
         cell.titleLabel.textColor = .white
         cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
         cell.imageview.contentMode = .scaleAspectFill
@@ -202,7 +205,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
             }
-            cell.menuImageView.imageFromURL(urlString: events[indexPath.row].eventImageURL ?? "")
+            cell.menuImageView.kf.setImage(with: URL(string: events[indexPath.row].eventImageURL ?? ""))
     
             cell.menuImageView.sizeThatFits(CGSize.init(width: 85, height: 65))
         } else {
@@ -213,7 +216,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
             }
-            cell.menuImageView.imageFromURL(urlString: goingEvents[indexPath.row].eventImageURL ?? "")
+            cell.menuImageView.kf.setImage(with: URL(string: goingEvents[indexPath.row].eventImageURL ?? ""))
             cell.menuImageView.sizeThatFits(CGSize.init(width: 85, height: 65))
         }
         return cell

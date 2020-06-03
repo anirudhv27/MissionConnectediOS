@@ -192,7 +192,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func sendUserDataOnFirebase() {
        // let imageURL = uploadImageOnFirebase()
-         let imageURL = "uploadImageOnFirebase"
+        let imageURL = "uploadImageOnFirebase"
         FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
         let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in

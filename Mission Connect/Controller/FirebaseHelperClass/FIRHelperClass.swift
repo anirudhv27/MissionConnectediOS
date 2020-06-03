@@ -13,7 +13,7 @@ class FIRHelperClass: NSObject {
 
     static let sharedInstance = FIRHelperClass()
     
-    func saveUserData(emailString: String, nickName:String, fullName: String, graduationYear:String, schoolName:String, imageURL: String ) {
+    func saveUserData(emailString: String, nickName:String, fullName: String, graduationYear:String, schoolName:String, imageURL: String) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
         let userData : [String:Any] = ["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "GraduationYear":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970]

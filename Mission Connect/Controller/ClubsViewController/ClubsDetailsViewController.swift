@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class ClubsDetailsViewController: UIViewController, UINavigationControllerDelegate {
 
@@ -33,7 +34,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
         descriptionTxtView.text = club.clubDescription
         memberLabel.text = "Members: \(club.numberOfMembers ?? -1) joined"
         descriptionTxtView.isEditable = false
-        imageView.imageFromURL(urlString: club.clubImageURL ?? "")
+        imageView.kf.setImage(with: URL(string: club.clubImageURL ?? ""))
         ref.child("users").child(self.user!.uid).child("clubs").observeSingleEvent(of: .value, with: {(snapshot)-> Void in
             if snapshot.hasChild(self.club.clubID!){
                 self.isMyClub = true

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SkyFloatingLabelTextField
+import Kingfisher
 
 
 class PublishViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -439,7 +440,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell.titleLabel.text = currClub.clubName
                 cell.titleLabel.textColor = .white
                 cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+                cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
             }
         } else {
             if indexPath.row == 0 {
@@ -464,7 +465,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell.titleLabel.text = currClub.clubName
                 cell.titleLabel.textColor = .white
                 cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.imageFromURL(urlString: currClub.clubImageURL ?? "")
+                cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
             }
         }
         return cell
@@ -494,7 +495,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell?.layer.borderColor = UIColor.systemGreen.cgColor
                 cell?.layer.cornerRadius = 10.0
                 self.currClubID = currClub.clubID!
-                self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
+                self.eventImageView.kf.setImage(with: URL (string: currClub.clubImageURL!))
                 self.eventImageView.contentMode = .scaleAspectFill
                 
                 addEventBtn.setTitleColor(.black, for: .normal)
@@ -516,7 +517,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 cell?.layer.borderColor = UIColor.systemGreen.cgColor
                 cell?.layer.cornerRadius = 10.0
                 self.currClubID = currClub.clubID!
-                self.eventImageView.imageFromURL(urlString: currClub.clubImageURL!)
+                self.eventImageView.kf.setImage(with: URL (string: currClub.clubImageURL!))
                 self.eventImageView.contentMode = .scaleAspectFill
                 
                 addEventBtn.setTitleColor(.black, for: .normal)
@@ -554,7 +555,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             cell.memberLabel.text = clubName
         }
         
-        cell.menuImageView.imageFromURL(urlString: event.eventImageURL ?? "")
+        cell.menuImageView.kf.setImage(with: URL(string: event.eventImageURL!))
         cell.editBtn.layer.cornerRadius = 4.0
         cell.deleteBtn.layer.cornerRadius = 4.0
         cell.editBtn.addTarget(self, action: #selector(self.editEventBtnAction(sender:)), for: .touchUpInside)
@@ -579,7 +580,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         //enddateBtn.setTitle("", for: .normal)
         descriptionTextView.text = event.event_description
         eventImageView.contentMode = .scaleAspectFill
-        eventImageView.imageFromURL(urlString: event.eventImageURL!)
+        eventImageView.kf.setImage(with: URL(string: event.eventImageURL!))
         allEventBtn.setTitleColor(.darkGray, for: .normal)
         addEventBtn.setTitleColor(.black, for: .normal)
         eventEnddatetextField.text = event.eventPreview
@@ -648,6 +649,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             topTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
         self.eventTableView.reloadData()
+        
     }
     private func isAdmin(user: User){
         FIRHelperClass.sharedInstance.getIsAdmin(user: user) { (bool) in
