@@ -39,8 +39,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.topView.setShadow()
-        self.resetButtonAtIndex(index: 0)
+        self.resetButtonAtIndex(index: 1)
         self.eventBtnView.setShadow()
+        clubs = [Club]()
+        events = [Event]()
+        goingEvents = [Event]()
+        eventNames = [String]()
         closeSlider()
         myCollectionView.contentMode = .scaleAspectFill
         addRefreshControl()
@@ -50,6 +54,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
         EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
         EVENT_DETAILS_REF = Database.database().reference().child("events")
+        
         fetchClubs()
         fetchEvents()
         eventTableView.contentSize.height = CGFloat(110 * events.count)
@@ -60,9 +65,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         clubs = [Club]()
         events = [Event]()
         goingEvents = [Event]()
-        
-        myCollectionView.reloadData()
-        eventTableView.reloadData()
+        eventNames = [String]()
     }
     func resetButtonAtIndex(index:Int) {
         self.allBtn.setTitleColor(.lightGray, for: .normal)
@@ -128,11 +131,63 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self.events.append(event)
                     
                     self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
-                        let val = snapshot.value as! Bool
-                        
-                        if val {
+                        let val = snapshot.value as? Bool
+                        if val ?? false {
                             self.goingEvents.append(event)
                         }
+                        self.eventTableView.reloadData()
+                    })
+                }
+            }
+            self.eventTableView.reloadData()
+        })
+        
+        EVENT_DETAILS_REF.observe(.childRemoved) { (snapshot) in
+            if self.eventNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let event = Event()
+                    event.event_club = dictionary["event_club"] as? String
+                    event.event_description = dictionary["event_description"] as? String
+                    event.event_name = dictionary["event_name"] as? String
+                    event.eventImageURL = dictionary["event_image_url"] as? String
+                    event.eventPreview = dictionary["event_preview"] as? String
+                    let df = DateFormatter()
+                    df.dateFormat = "MM-dd-yyyy"
+                    event.eventDate = df.date(from: (dictionary["event_date"] as? String)!)
+                    event.eventID = snapshot.key
+                    event.numberOfAttendees = dictionary["member_numbers"] as? Int
+                }
+            }
+            self.eventTableView.reloadData()
+        }
+        
+        EVENT_DETAILS_REF.observe(.childChanged, with: { (snapshot) in
+            if self.eventNames.contains(snapshot.key){
+                if let dictionary = snapshot.value  as? [String: AnyObject]{
+                    let event = Event()
+                    event.event_club = dictionary["event_club"] as? String
+                    event.event_description = dictionary["event_description"] as? String
+                    event.event_name = dictionary["event_name"] as? String
+                    event.eventImageURL = dictionary["event_image_url"] as? String
+                    let dateString = dictionary["event_date"] as? String
+                    let df = DateFormatter()
+                    df.dateFormat = "MM-dd-yyyy"
+                    event.eventDate = df.date(from: dateString!)
+                    event.eventID = snapshot.key
+                    let index = self.events.firstIndex { (curr_event) -> Bool in
+                        return curr_event.eventID == event.eventID
+                    }
+                    self.events[index!] = event
+                    
+                    self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
+                        let val = snapshot.value as? Bool
+                        if val ?? false {
+                            let index = self.goingEvents.firstIndex { (curr_event) -> Bool in
+                                return curr_event.eventID == event.eventID
+                            }
+                            self.goingEvents[index!] = event
+                        }
+                        self.eventTableView.reloadData()
                     })
                 }
             }
@@ -200,7 +255,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if (tab == 0){
             events.sort()
             cell.titleLabel.text = events[indexPath.row].event_name
-            cell.subTitleLabel.text = events[indexPath.row].eventPreview
+            let df = DateFormatter()
+            df.dateFormat = "MMM dd, yyyy"
+            cell.subTitleLabel.text = df.string(from: events[indexPath.row].eventDate!)
             CLUBS_REF.child(events[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
@@ -211,7 +268,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else {
             goingEvents.sort()
             cell.titleLabel.text = goingEvents[indexPath.row].event_name
-            cell.subTitleLabel.text = goingEvents[indexPath.row].eventPreview
+            let df = DateFormatter()
+            df.dateFormat = "MMM dd, yyyy"
+            cell.subTitleLabel.text = df.string(from: events[indexPath.row].eventDate!)
             CLUBS_REF.child(goingEvents[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName

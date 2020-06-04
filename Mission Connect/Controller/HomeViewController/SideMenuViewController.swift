@@ -24,8 +24,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        menuList = ["Dashboard","Clubs","Publish","Support","User Aggreement","Privacy Policy", "Version", "LogOut"]
-        imageList = ["home","clubs","share", "support","document","privacypolicy", "version","logout"]
+        menuList = ["Dashboard","Clubs","Publish","Support","Privacy Policy", "Version 1.0", "LogOut"]
+        imageList = ["home","clubs","share", "support","privacypolicy", "version","logout"]
     }
     override func viewDidAppear(_ animated: Bool) {
         self.profileImageView.layer.cornerRadius = 50.0
@@ -73,15 +73,6 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          }
          break
         case 4:
-            
-            let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserAggrementViewController") as! UserAggrementViewController
-           
-            centeralNavController.setViewControllers([objVC], animated: false)
-            sideMenuController.closeSlider(.left, animated: true) { (_) in
-                
-            }
-            break
-        case 5:
              
              let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrivacyViewController") as! PrivacyViewController
             
@@ -90,15 +81,15 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
                  
              }
              break
-        case 6:
-         
-         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VersionViewController") as! VersionViewController
-        
-         centeralNavController.setViewControllers([objVC], animated: false)
-         sideMenuController.closeSlider(.left, animated: true) { (_) in
-             
-         }
-         break
+//        case 5:
+//
+//         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VersionViewController") as! VersionViewController
+//
+//         centeralNavController.setViewControllers([objVC], animated: false)
+//         sideMenuController.closeSlider(.left, animated: true) { (_) in
+//
+//         }
+//         break
         case 0:
          
          let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
@@ -128,7 +119,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
          }
          break
             
-        case 7:
+        case 6:
             //Logout
             let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
             let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in

@@ -788,20 +788,10 @@ Translations: Can you help translate this site into</string>
                                 <rect key="frame" x="0.0" y="219" width="414" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="156" translatesAutoresizingMaskIntoConstraints="NO" id="P1H-e5-oJ0">
-                                        <rect key="frame" x="80" y="3" width="254" height="34"/>
+                                        <rect key="frame" x="89.666666666666686" y="3" width="235" height="34"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjN-cS-hJQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="49" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                <state key="normal" title="All">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="allBtnAction:" destination="o4x-o1-bQn" eventType="touchUpInside" id="ghr-iM-1eq"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghg-D3-xp8">
-                                                <rect key="frame" x="205" y="0.0" width="49" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                 <state key="normal" title="Going">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -810,10 +800,17 @@ Translations: Can you help translate this site into</string>
                                                     <action selector="goingBtnAction:" destination="o4x-o1-bQn" eventType="touchUpInside" id="09v-p0-6zo"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjN-cS-hJQ">
+                                                <rect key="frame" x="205" y="0.0" width="30" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <state key="normal" title="All">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="allBtnAction:" destination="o4x-o1-bQn" eventType="touchUpInside" id="ghr-iM-1eq"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="ghg-D3-xp8" firstAttribute="width" secondItem="DjN-cS-hJQ" secondAttribute="width" id="83y-yo-4V1"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -909,12 +906,12 @@ Translations: Can you help translate this site into</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MSJHS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS5-hH-cFK">
-                                            <rect key="frame" x="41" y="175" width="97" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission San Jose High" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS5-hH-cFK">
+                                            <rect key="frame" x="8" y="175" width="165" height="23"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="97" id="ede-cc-Bbp"/>
+                                                <constraint firstAttribute="width" constant="165" id="ede-cc-Bbp"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -927,7 +924,7 @@ Translations: Can you help translate this site into</string>
                                         <constraint firstItem="HI4-DS-8Cz" firstAttribute="top" secondItem="lL7-pr-2yS" secondAttribute="top" constant="32" id="FI5-gK-slt"/>
                                         <constraint firstItem="btJ-xR-Tj9" firstAttribute="top" secondItem="HI4-DS-8Cz" secondAttribute="bottom" constant="5" id="VFv-5j-XPk"/>
                                         <constraint firstAttribute="bottom" secondItem="nS5-hH-cFK" secondAttribute="bottom" constant="25" id="jUm-0J-zdu"/>
-                                        <constraint firstItem="nS5-hH-cFK" firstAttribute="leading" secondItem="btJ-xR-Tj9" secondAttribute="leading" constant="33" id="vSE-AN-KJ2"/>
+                                        <constraint firstItem="nS5-hH-cFK" firstAttribute="leading" secondItem="btJ-xR-Tj9" secondAttribute="leading" id="vSE-AN-KJ2"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -1871,9 +1868,9 @@ Translations: Can you help translate this site into</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="C8B-6E-LHK"/>
-        <segue reference="fO9-I2-xl6"/>
-        <segue reference="sEG-x6-z9J"/>
+        <segue reference="Gs4-eM-mT9"/>
+        <segue reference="U0x-7E-ysc"/>
+        <segue reference="nIb-NG-mgv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add" width="36" height="36"/>
