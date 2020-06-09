@@ -126,40 +126,56 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     let df = DateFormatter()
                     df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = df.date(from: (dictionary["event_date"] as? String)!)
+                    
                     event.eventID = snapshot.key
                     event.numberOfAttendees = dictionary["member_numbers"] as? Int
-                    self.events.append(event)
                     
-                    self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
-                        let val = snapshot.value as? Bool
-                        if val ?? false {
-                            self.goingEvents.append(event)
-                        }
-                        self.eventTableView.reloadData()
-                    })
+                    if (event.eventDate!.addingTimeInterval(86400).timeIntervalSinceNow.sign == .plus) {
+                        self.events.append(event)
+                        self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
+                            let val = snapshot.value as? Bool
+                            if val ?? false {
+                                self.goingEvents.append(event)
+                            }
+                            self.eventTableView.reloadData()
+                        })
+                    }
                 }
             }
             self.eventTableView.reloadData()
         })
         
-        EVENT_DETAILS_REF.observe(.childRemoved) { (snapshot) in
+        //MUST SEE THIS IN MULTI APP TESTING
+        EVENT_DETAILS_REF.observe(.childRemoved, with: { (snapshot) -> Void in
+            
             if self.eventNames.contains(snapshot.key){
+                
                 if let dictionary = snapshot.value  as? [String: AnyObject]{
                     let event = Event()
                     event.event_club = dictionary["event_club"] as? String
                     event.event_description = dictionary["event_description"] as? String
                     event.event_name = dictionary["event_name"] as? String
-                    event.eventImageURL = dictionary["event_image_url"] as? String
-                    event.eventPreview = dictionary["event_preview"] as? String
+                    if let img = dictionary["event_image_url"] as? String {
+                        event.eventImageURL = img
+                    } else {
+                        event.eventImageURL = self.clubs.first { (club) -> Bool in
+                            return event.event_club == club.clubID
+                        }?.clubImageURL
+                    }
+                    let dateString = dictionary["event_date"] as? String
                     let df = DateFormatter()
                     df.dateFormat = "MM-dd-yyyy"
-                    event.eventDate = df.date(from: (dictionary["event_date"] as? String)!)
+                    event.eventDate = df.date(from: dateString!)
                     event.eventID = snapshot.key
                     event.numberOfAttendees = dictionary["member_numbers"] as? Int
+                    self.eventNames.remove(at: self.eventNames.firstIndex(of: snapshot.key)!)
+                    if let index = self.events.firstIndex(of: event) {
+                        self.events.remove(at: index)
+                    }
                 }
             }
             self.eventTableView.reloadData()
-        }
+        })
         
         EVENT_DETAILS_REF.observe(.childChanged, with: { (snapshot) in
             if self.eventNames.contains(snapshot.key){
@@ -174,21 +190,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = df.date(from: dateString!)
                     event.eventID = snapshot.key
-                    let index = self.events.firstIndex { (curr_event) -> Bool in
-                        return curr_event.eventID == event.eventID
-                    }
-                    self.events[index!] = event
                     
-                    self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
-                        let val = snapshot.value as? Bool
-                        if val ?? false {
-                            let index = self.goingEvents.firstIndex { (curr_event) -> Bool in
-                                return curr_event.eventID == event.eventID
-                            }
-                            self.goingEvents[index!] = event
+                    if (event.eventDate!.addingTimeInterval(86400).timeIntervalSinceNow.sign == .plus) {
+                        let index = self.events.firstIndex { (curr_event) -> Bool in
+                            return curr_event.eventID == event.eventID
                         }
-                        self.eventTableView.reloadData()
-                    })
+                        self.events[index!] = event
+                        
+                        self.EVENT_REF.child("\(event.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
+                            let val = snapshot.value as? Bool
+                            if val ?? false {
+                                let index = self.goingEvents.firstIndex { (curr_event) -> Bool in
+                                    return curr_event.eventID == event.eventID
+                                }
+                                self.goingEvents[index!] = event
+                            }
+                            self.eventTableView.reloadData()
+                        })
+                    }
                 }
             }
             self.eventTableView.reloadData()
@@ -251,6 +270,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell") as! SideTableViewCell
         if (tab == 0){
             events.sort()
@@ -270,7 +290,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.titleLabel.text = goingEvents[indexPath.row].event_name
             let df = DateFormatter()
             df.dateFormat = "MMM dd, yyyy"
-            cell.subTitleLabel.text = df.string(from: events[indexPath.row].eventDate!)
+            cell.subTitleLabel.text = df.string(from: goingEvents[indexPath.row].eventDate!)
             CLUBS_REF.child(goingEvents[indexPath.row].event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
                 let clubName = snapshot.value as? String
                 cell.memberLabel.text = clubName
@@ -292,49 +312,55 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
         APPDELEGATE.navigationController?.pushViewController(objVC, animated: true)
     }
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        var action: UITableViewRowAction
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var action: UIContextualAction
+        
         if (tab == 0){
+            let event = events[indexPath.row]
             if goingEvents.contains(events[indexPath.row]) {
-                action = UITableViewRowAction(style: .normal, title: "Can't Go", handler: { (action, index) in
-                    let event = self.events[index.row]
+                action = UIContextualAction(style: .destructive, title: "Can't Go", handler: { (action, view, completionHandler) in
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+                    //self.goingEvents.remove(at: self.goingEvents.firstIndex(of: event)!)
                     self.fetchClubs()
                     self.fetchEvents()
                     self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
                     self.myCollectionView.reloadData()
                     self.eventTableView.reloadData()
-                    
+                    completionHandler(true)
                 })
                 action.backgroundColor = .red
+                
             } else {
-                action = UITableViewRowAction(style: .normal, title: "I'm Going!", handler: { (action, index) in
-                    let event = self.events[index.row]
+                action = UIContextualAction(style: .normal, title: "I'm Going!", handler: { (action, view, completionHandler) in
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(true)
+                    //self.goingEvents.append(event)
                     self.fetchClubs()
                     self.fetchEvents()
                     self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
                     self.myCollectionView.reloadData()
                     self.eventTableView.reloadData()
+                    completionHandler(true)
                 })
-                action.backgroundColor = .green
+                action.backgroundColor = .systemGreen
             }
         } else {
-            action = UITableViewRowAction(style: .normal, title: "Can't Go", handler: { (action, index) in
-            let event = self.goingEvents[index.row]
-            Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
-                self.fetchClubs()
-                self.fetchEvents()
+            let event = self.goingEvents[indexPath.row]
+            action = UIContextualAction(style: .destructive, title: "Can't Go", handler: { (action, view, completionHandler) in
+                Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+    //                self.fetchClubs()
+    //                self.fetchEvents()
+                self.goingEvents.remove(at: indexPath.row)
                 self.eventTableView.contentSize.height = CGFloat(110 * self.events.count)
                 self.myCollectionView.reloadData()
                 self.eventTableView.reloadData()
+                completionHandler(true)
             })
             action.backgroundColor = .red
-            
         }
-        
-        return [action]
+        return UISwipeActionsConfiguration(actions: [action])
     }
+    
     func addRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshList), for: .allEvents)

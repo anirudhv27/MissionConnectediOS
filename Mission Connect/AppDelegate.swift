@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     self.gotoRouteScreen()
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("fullname").setValue(user.profile.name)
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("imgurl").setValue(user.profile.imageURL(withDimension: 200)?.absoluteString)
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("email").setValue(user.profile.email)
                 } else {
                     
                 }

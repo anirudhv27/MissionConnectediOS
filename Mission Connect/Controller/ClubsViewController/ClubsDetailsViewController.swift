@@ -55,7 +55,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
             self.subscribeBtn.backgroundColor = UIColor.red
         } else {
             self.subscribeBtn.setTitle("Subscribe", for: .normal)
-            self.subscribeBtn.backgroundColor = UIColor.green
+            self.subscribeBtn.backgroundColor = .systemGreen
         }
     }
     
@@ -112,7 +112,7 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
             self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! - 1)
             self.club.numberOfMembers = self.club.numberOfMembers! - 1
             self.subscribeBtn.titleLabel?.text = "Subscribe"
-            self.subscribeBtn.backgroundColor = UIColor.green
+            self.subscribeBtn.backgroundColor = UIColor.systemGreen
             self.isMyClub = false
             self.navigationController?.popToRootViewController(animated: true)
         })

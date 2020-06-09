@@ -94,7 +94,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     
     func fetchUsers() {
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
-            self.allUsersDict.updateValue(snapshot.key, forKey: (snapshot.childSnapshot(forPath: "fullname").value as? String)!)
+            self.allUsersDict.updateValue(snapshot.key, forKey: "\((snapshot.childSnapshot(forPath: "fullname").value as? String)!) (\( (snapshot.childSnapshot(forPath: "email").value as? String)!))")
         }
     }
     
@@ -172,7 +172,8 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             cell.tintColor = .systemGreen
         }
         selectionMenu.cellSelectionStyle = .checkbox
-        selectionMenu.show(style: .present, from: self)
+        selectionMenu.show(style: .popover(sourceView: clubNameTextField, size: nil), from: self)
+        //selectionMenu.show(style: .present, from: self)
         
         selectionMenu.setNavigationBar(title: "Select Club to Update", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
         selectionMenu.rightBarButtonTitle = "Done"
@@ -186,15 +187,18 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                 self?.clubImageView.kf.setImage(with: URL(string: club.clubImageURL!))
                 self?.editClubID = id
                 
+                var nameList: [String] = []
+                
                 Database.database().reference().child("users").observe(.value) { (snapshot) in
                     for child in snapshot.children {
                         let snap = child as! DataSnapshot
                         if snap.childSnapshot(forPath: "clubs").childSnapshot(forPath: id).value as? String == "Officer" {
-                            self!.selectedDataArray.append(snap.childSnapshot(forPath: "fullname").value as! String)
+                            self!.selectedDataArray.append("\((snap.childSnapshot(forPath: "fullname").value as? String)!) (\( (snap.childSnapshot(forPath: "email").value as? String)!))")
+                            nameList.append(snap.childSnapshot(forPath: "fullname").value as! String)
                         }
                     }
-                    self?.pickOfficersTextField.text = self!.selectedDataArray.joined(separator: ", ")
-                }
+                    self?.pickOfficersTextField.text = nameList.joined(separator: ", ")
+                }                
             } else {
                 self?.clubNameTextField.text = ""
                 self?.clubPreviewTextField.text = ""
@@ -204,6 +208,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                 self?.clubImageView.image = UIImage.init(named: "add")
             }
         }
+        
     }
     
     @IBAction func pickOfficersButtonPressed(_ sender: Any) {
@@ -218,26 +223,31 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             cell.tintColor = .systemGreen
         }
         
+        selectionMenu.setSelectedItems(items: selectedDataArray) { [weak self] (text, index, selected, selectedList) in
+            
+            // update list
+            self?.selectedDataArray = selectedList //keys
+            var nameList: [String] = []
+            
+            for item in selectedList {
+                Database.database().reference().child("users").child(self!.allUsersDict[item]!).observe(.value) { (snapshot) in
+                    nameList.append(snapshot.childSnapshot(forPath: "fullname").value as! String)
+                    self?.pickOfficersTextField.text = nameList.joined(separator: ", ")
+                }
+            }
+            // update value label
+            selectionMenu.reloadInputViews()
+        }
+        
         selectionMenu.cellSelectionStyle = .checkbox
-        selectionMenu.show(style: .present, from: self)
+        selectionMenu.show(style: .popover(sourceView: pickOfficersTextField, size: nil), from: self)
+
         
         selectionMenu.setNavigationBar(title: "Select Officers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
         selectionMenu.showSearchBar { [weak self] (searchText) -> ([String]) in
           // return filtered array based on any condition
           // here let's return array where name starts with specified search text
             return simpleDataArray.filter({ $0.lowercased().contains(searchText.lowercased()) })
-        }
-
-        // right barbutton title - Default is 'Done'
-        selectionMenu.rightBarButtonTitle = "Done"
-
-        // left barbutton title - Default is 'Cancel'
-        selectionMenu.leftBarButtonTitle = "Cancel"
-        
-        selectionMenu.onDismiss = { [weak self] selectedItems in
-            self?.selectedDataArray = selectedItems
-            self?.pickOfficersTextField.text = (self!.selectedDataArray.map{String($0)}).joined(separator: ", ")
-            // perform any operation once you get selected items
         }
     }
     
@@ -263,6 +273,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             message = "Please select an image for your club."
         }else {
             selectedIDs = []
+            
             for name in selectedDataArray {
                 selectedIDs.append(allUsersDict[name]!)
             }

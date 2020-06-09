@@ -14,6 +14,7 @@ import Kingfisher
 
 class PublishViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var clubNametextField: UITextField!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventStartDateTextField: SkyFloatingLabelTextField!
@@ -81,7 +82,10 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.descriptionTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
 
         allEventBtn.setTitleColor(.black, for: .normal)
-        addEventBtn.setTitleColor(.darkGray, for: .normal)
+        addEventBtn.setTitleColor(.gray, for: .normal)
+        allEventBtn.setShadow()
+        addEventBtn.setShadow()
+        topView.setShadow()
         self.topTableView.isScrollEnabled = false
         self.eventView.isHidden = false
         
@@ -149,6 +153,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     func fetchEvents() {
         events = [Event]()
         eventNames = [String]()
+        
         EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
             if (snapshot.childSnapshot(forPath: "member_status").value as? String == "Officer") {
                 self.eventNames.append(snapshot.key)
@@ -169,14 +174,18 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     event.eventDate = self.df.date(from: dateString!)
                     event.eventID = snapshot.key
                     event.numberOfAttendees = dictionary["member_numbers"] as? Int
-                    self.events.append(event)
+                    if event.eventDate!.addingTimeInterval(86400).timeIntervalSinceNow.sign == .plus {
+                        self.events.append(event)
+                    }
                 }
             }
             self.eventTableView.reloadData()
         })
         
         EVENT_DETAILS_REF.observe(.childRemoved, with: { (snapshot) -> Void in
+            
             if self.eventNames.contains(snapshot.key){
+                
                 if let dictionary = snapshot.value  as? [String: AnyObject]{
                     let event = Event()
                     event.event_club = dictionary["event_club"] as? String
@@ -193,6 +202,11 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     self.df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = self.df.date(from: dateString!)
                     event.eventID = snapshot.key
+                    event.numberOfAttendees = dictionary["member_numbers"] as? Int
+                    self.eventNames.remove(at: self.eventNames.firstIndex(of: snapshot.key)!)
+                    if let index = self.events.firstIndex(of: event) {
+                        self.events.remove(at: index)
+                    }
                 }
             }
             self.eventTableView.reloadData()
@@ -210,10 +224,13 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     self.df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = self.df.date(from: dateString!)
                     event.eventID = snapshot.key
+                    event.numberOfAttendees = dictionary["member_numbers"] as? Int
                     let index = self.events.firstIndex { (curr_event) -> Bool in
                         return curr_event.eventID == event.eventID
                     }
-                    self.events[index!] = event
+                    if event.eventDate!.addingTimeInterval(86400).timeIntervalSinceNow.sign == .plus {
+                        self.events[index!] = event
+                    }
                 }
             }
             self.eventTableView.reloadData()
@@ -315,16 +332,30 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     @IBAction func allEventBtnAction(_ sender: Any) {
         allEventBtn.setTitleColor(.black, for: .normal)
-        addEventBtn.setTitleColor(.darkGray, for: .normal)
+        addEventBtn.setTitleColor(.gray, for: .normal)
         self.topTableView.isScrollEnabled = false
         self.eventView.isHidden = false
         scrollToTop()
     }
     @IBAction func addEventBtnAction(_ sender: Any) {
         addEventBtn.setTitleColor(.black, for: .normal)
-        allEventBtn.setTitleColor(.darkGray, for: .normal)
+        allEventBtn.setTitleColor(.gray, for: .normal)
         self.topTableView.isScrollEnabled = true
         self.eventView.isHidden = true
+        clubNametextField.text = ""
+        eventNameTextField.text = ""
+        dateBtn.setTitle("", for: .normal)
+        descriptionTextView.text = ""
+        eventImageView.contentMode = .center
+        eventImageView.image = UIImage.init(named: "add")
+        allEventBtn.setTitleColor(.gray, for: .normal)
+        addEventBtn.setTitleColor(.black, for: .normal)
+        eventStartDateTextField.text = ""
+        eventEnddatetextField.text = ""
+        currDate = Date()
+        self.currClubID = ""
+        
+        isFromEdit = false
     }
     
     @IBAction func publishBtnAction(_ sender: Any) {
@@ -345,11 +376,15 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         }else {
             if isFromEdit{
                 FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID, completion: {
+                    self.fetchClubs()
+                    self.fetchEvents()
                     self.refresh()
                 })
                 message = "Event updated successfully."
             } else {
                 FIRHelperClass.sharedInstance.createEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, completion: {
+                    self.fetchClubs()
+                    self.fetchEvents()
                     self.refresh()
                 })
                 message = "Event published successfully."
@@ -361,7 +396,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             eventImageView.contentMode = .center
             eventImageView.image = UIImage.init(named: "add")
             allEventBtn.setTitleColor(.black, for: .normal)
-            addEventBtn.setTitleColor(.darkGray, for: .normal)
+            addEventBtn.setTitleColor(.gray, for: .normal)
             eventStartDateTextField.text = ""
             eventEnddatetextField.text = ""
             currDate = Date()
@@ -371,8 +406,6 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.eventView.isHidden = false
             
             addEventBtn.titleLabel?.text = "Add Event"
-            
-            self.eventTableView.reloadData()
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
@@ -499,7 +532,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 self.eventImageView.contentMode = .scaleAspectFill
                 
                 addEventBtn.setTitleColor(.black, for: .normal)
-                allEventBtn.setTitleColor(.darkGray, for: .normal)
+                allEventBtn.setTitleColor(.gray, for: .normal)
                 self.topTableView.isScrollEnabled = true
                 self.eventView.isHidden = true
                 
@@ -521,7 +554,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                 self.eventImageView.contentMode = .scaleAspectFill
                 
                 addEventBtn.setTitleColor(.black, for: .normal)
-                allEventBtn.setTitleColor(.darkGray, for: .normal)
+                allEventBtn.setTitleColor(.gray, for: .normal)
                 self.topTableView.isScrollEnabled = true
                 self.eventView.isHidden = true
                 
@@ -556,17 +589,28 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         cell.menuImageView.kf.setImage(with: URL(string: event.eventImageURL!))
-        cell.editBtn.layer.cornerRadius = 4.0
-        cell.deleteBtn.layer.cornerRadius = 4.0
-        cell.editBtn.addTarget(self, action: #selector(self.editEventBtnAction(sender:)), for: .touchUpInside)
-        cell.editBtn.tag = indexPath.row
-        cell.deleteBtn.addTarget(self, action: #selector(self.deleteEventBtnAction(sender:)), for: .touchUpInside)
-        cell.deleteBtn.tag = indexPath.row
+        //cell.editBtn.layer.cornerRadius = 4.0
+        //cell.deleteBtn.layer.cornerRadius = 4.0
+        //cell.editBtn.addTarget(self, action: #selector(self.editEventBtnAction(sender:)), for: .touchUpInside)
+        //cell.editBtn.tag = indexPath.row
+        //cell.deleteBtn.addTarget(self, action: #selector(self.deleteEventBtnAction(sender:)), for: .touchUpInside)
+        //cell.deleteBtn.tag = indexPath.row
         return cell
     }
     
-    @objc func editEventBtnAction(sender: UIButton) {
-        let event: Event = events[sender.tag]
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
+            self.editEventBtnAction(index: indexPath.row)
+            completion(true)
+        }
+        edit.backgroundColor = .systemGreen
+        let swipeAction = UISwipeActionsConfiguration(actions: [edit])
+        swipeAction.performsFirstActionWithFullSwipe = false
+        return swipeAction
+    }
+    
+    func editEventBtnAction(index: Int) {
+        let event: Event = events[index]
         self.eventView.isHidden = true
         
         CLUBS_REF.child(event.event_club!).child("club_name").observeSingleEvent(of: .value) { (snapshot) in
@@ -581,7 +625,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         descriptionTextView.text = event.event_description
         eventImageView.contentMode = .scaleAspectFill
         eventImageView.kf.setImage(with: URL(string: event.eventImageURL!))
-        allEventBtn.setTitleColor(.darkGray, for: .normal)
+        allEventBtn.setTitleColor(.gray, for: .normal)
         addEventBtn.setTitleColor(.black, for: .normal)
         eventEnddatetextField.text = event.eventPreview
         df.dateFormat = "MMM dd, yyyy"
@@ -596,26 +640,34 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     @objc func deleteEventBtnAction(sender: UIButton) {
-        let alertController = UIAlertController.init(title: "Delete!", message: "Event deleted successfully.", preferredStyle: .alert)
-        let event: Event = self.events[sender.tag]
-        self.CLUBS_REF.child(event.event_club!).child("events").child(event.eventID!).removeValue()
-        Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
-            snapshot.childSnapshot(forPath: "events").childSnapshot(forPath: event.eventID!).ref.removeValue { (error, ref) in
+        let alertController = UIAlertController.init(title: "Delete!", message: "Are you sure you want to delete this event?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction.init(title: "Delete", style: .destructive) { (action) in
+            let event: Event = self.events[sender.tag]
+            self.CLUBS_REF.child(event.event_club!).child("events").child(event.eventID!).removeValue()
+            Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
+                snapshot.childSnapshot(forPath: "events").childSnapshot(forPath: event.eventID!).ref.removeValue { (error, ref) in
+                    if error == nil {
+                        //self.fetchEvents()
+                    }
+                }
+            }
+            Database.database().reference().child("events").child(event.eventID!).removeValue { (error, ref) in
                 if error == nil {
-                    self.fetchEvents()
+//                    self.eventTableView.reloadData()
+//                    self.fetchClubs()
+//                    self.fetchEvents()
+                    //self.refresh()
                 }
             }
         }
-        Database.database().reference().child("events").child(event.eventID!).removeValue { (error, ref) in
-            if error == nil {
-                self.eventTableView.reloadData()
-            }
-        }
         
-        let okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
         }
+        
         alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
         self.eventTableView.reloadData()
     }

@@ -37,14 +37,21 @@ class EventDetailsViewController1: UIViewController {
         self.letBtn.layer.cornerRadius = 4.0
         
         ref.child("users/\(user!.uid)/events/\(event?.eventID ?? "")/isGoing").observeSingleEvent(of: .value, with: { (snapshot) in
-            let val = snapshot.value as! Bool
-            self.isGoing = val
-            if val {
-                self.letBtn.backgroundColor = UIColor.red
-                self.letBtn.setTitle("I can't go :(", for: .normal)
+            if !snapshot.exists() {
+                self.letBtn.backgroundColor = .gray
+                self.letBtn.setTitle("Join Club to RSVP for Events!", for: .normal)
+                self.letBtn.isEnabled = false
             } else {
-                self.letBtn.backgroundColor = UIColor.green
-                self.letBtn.setTitle("I'm Going!", for: .normal)
+                let val = snapshot.value as! Bool
+                self.isGoing = val
+                if val {
+                    self.letBtn.backgroundColor = .red
+                    self.letBtn.setTitle("I can't go", for: .normal)
+                } else {
+                    self.letBtn.backgroundColor = .systemGreen
+                    self.letBtn.setTitle("I'm Going!", for: .normal)
+                }
+                self.letBtn.isEnabled = true
             }
         })
         

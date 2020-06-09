@@ -10,10 +10,13 @@ import Foundation
 
 class Event: Comparable {
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.eventDate! == rhs.eventDate!
+        return lhs.eventID == rhs.eventID
     }
     
     static func < (lhs: Event, rhs: Event) -> Bool {
+        if (lhs.eventDate! == rhs.eventDate!) {
+            return lhs.event_name! < rhs.event_name!
+        }
         return lhs.eventDate! < rhs.eventDate!
     }
     
