@@ -64,6 +64,9 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if clubs.count == 0 {
+            tableView.setEmptyView(title: "There are currently no requests for new clubs", message: "Any proposed club will show up here once proposed. Please come here to either accept or reject the club after the formation process is completed.")
+        }
         if searching {
             return searchedClubs.count
         } else {

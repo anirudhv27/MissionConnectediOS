@@ -1631,7 +1631,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lc-Mb-8pn">
-                                        <rect key="frame" x="27.666666666666671" y="8" width="30" height="37.666666666666664"/>
+                                        <rect key="frame" x="27.666666666666671" y="8" width="30" height="39.333333333333336"/>
                                         <state key="normal" image="backBlack"/>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="StQ-Qx-Us6" eventType="touchUpInside" id="fok-Fp-NnR"/>
@@ -1643,9 +1643,7 @@
                                 <constraints>
                                     <constraint firstItem="b0u-F4-xe0" firstAttribute="baseline" secondItem="6lc-Mb-8pn" secondAttribute="firstBaseline" constant="21" id="5io-b3-fey"/>
                                     <constraint firstItem="b0u-F4-xe0" firstAttribute="top" secondItem="IAX-yy-asy" secondAttribute="top" constant="17" id="8x5-un-Ely"/>
-                                    <constraint firstItem="6lc-Mb-8pn" firstAttribute="centerY" secondItem="IAX-yy-asy" secondAttribute="centerY" constant="-0.5" id="C2c-ut-kYm"/>
                                     <constraint firstItem="b0u-F4-xe0" firstAttribute="centerX" secondItem="IAX-yy-asy" secondAttribute="centerX" id="OIg-is-DPD"/>
-                                    <constraint firstItem="6lc-Mb-8pn" firstAttribute="centerY" secondItem="b0u-F4-xe0" secondAttribute="centerY" constant="-0.5" id="VIJ-bS-zMx"/>
                                     <constraint firstItem="b0u-F4-xe0" firstAttribute="leading" secondItem="6lc-Mb-8pn" secondAttribute="trailing" constant="93" id="fGC-5p-yCl"/>
                                     <constraint firstItem="6lc-Mb-8pn" firstAttribute="top" secondItem="IAX-yy-asy" secondAttribute="top" constant="8" id="sH5-S1-Q4N"/>
                                 </constraints>

@@ -93,6 +93,13 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if clubs.count == 0 {
+            tableView.setEmptyView(title: "You are not a part of any clubs!", message: "Click Join Clubs for a list of all clubs available at your school.")
+        }
+        else {
+            tableView.restore()
+        }
+        
         if searching {
             return searchedClubs.count
         } else {

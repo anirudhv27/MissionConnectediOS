@@ -20,39 +20,31 @@
 		054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57423CE16EE007A9A1C /* MASliderAnimating.swift */; };
 		054AD57A23CE16EE007A9A1C /* MASliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57523CE16EE007A9A1C /* MASliderView.swift */; };
 		054AD57D23CE1AAB007A9A1C /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */; };
-		054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */; };
 		054AD58123CE20C8007A9A1C /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */; };
 		054AD58323CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58223CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift */; };
 		054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58523CF64FE007A9A1C /* ClubViewController.swift */; };
 		054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */; };
-		05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECA0B023CB906A00635360 /* AddEventViewController.swift */; };
 		05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */; };
 		05FCBA2323D368600077F3F5 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */; };
 		05FCBA2523D374390077F3F5 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2423D374390077F3F5 /* RouteViewController.swift */; };
 		05FCBA2A23D4A9980077F3F5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2923D4A9980077F3F5 /* RegisterViewController.swift */; };
 		05FCBA2C23D5F6AC0077F3F5 /* CommonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCBA2B23D5F6AC0077F3F5 /* CommonTableViewCell.swift */; };
 		1007349C2390586B007695DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349B2390586B007695DA /* AppDelegate.swift */; };
-		1007349E2390586B007695DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007349D2390586B007695DA /* LoginViewController.swift */; };
 		100734A12390586B007695DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1007349F2390586B007695DA /* Main.storyboard */; };
 		100734A62390586D007695DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100734A42390586D007695DA /* LaunchScreen.storyboard */; };
 		100734AE239058D1007695DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 100734AD239058D1007695DA /* GoogleService-Info.plist */; };
 		10226B7F2427328400744797 /* AddClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10226B7E2427328400744797 /* AddClubsTableViewController.swift */; };
-		10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */; };
-		1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */; };
-		103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A984923B08B4400363972 /* ClubListTableViewController.swift */; };
 		10448F45244C01C50044D290 /* ApproveClubsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */; };
 		104A136123BEE1F100AF7AB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A136023BEE1F100AF7AB7 /* DataService.swift */; };
 		104EB6E524625F2500DCAB8E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */; };
-		104EB6E724638A9900DCAB8E /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104EB6E624638A9900DCAB8E /* VersionViewController.swift */; };
 		105AB2C82447C02000F1B4C0 /* ProposeClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */; };
 		105C25F22393894F000D1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F12393894F000D1D96 /* Event.swift */; };
 		105C25F423939160000D1D96 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F323939160000D1D96 /* Club.swift */; };
-		105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */; };
 		105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */; };
 		10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10779BAA242854A600B56392 /* EventListTableViewController.swift */; };
 		1089A05924650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */; };
 		1089A05B2465112A0041EDD0 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */; };
-		10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */; };
+		108CB1152491871400318F43 /* UITableView+setEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108CB1142491871400318F43 /* UITableView+setEmptyView.swift */; };
 		10BCB5852394C5270089EE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10BCB5842394C5270089EE56 /* Assets.xcassets */; };
 		BDDFEA3CDD5690B4C92655E2 /* Pods_Mission_Connect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEFFF29E20647B71014D8BE /* Pods_Mission_Connect.framework */; };
 /* End PBXBuildFile section */
@@ -71,12 +63,10 @@
 		054AD57423CE16EE007A9A1C /* MASliderAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderAnimating.swift; sourceTree = "<group>"; };
 		054AD57523CE16EE007A9A1C /* MASliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MASliderView.swift; sourceTree = "<group>"; };
 		054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
-		054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAggrementViewController.swift; sourceTree = "<group>"; };
 		054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		054AD58223CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		054AD58523CF64FE007A9A1C /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		054AD58723CF73C0007A9A1C /* EventDetailsViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController1.swift; sourceTree = "<group>"; };
-		05ECA0B023CB906A00635360 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		05F6BF9423DB3E8100F89259 /* FIRHelperClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRHelperClass.swift; sourceTree = "<group>"; };
 		05FCBA2223D368600077F3F5 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		05FCBA2423D374390077F3F5 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
@@ -84,29 +74,23 @@
 		05FCBA2B23D5F6AC0077F3F5 /* CommonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableViewCell.swift; sourceTree = "<group>"; };
 		100734982390586B007695DA /* Mission Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1007349B2390586B007695DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1007349D2390586B007695DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		100734A02390586B007695DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		100734A52390586D007695DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100734A72390586E007695DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100734AD239058D1007695DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10226B7E2427328400744797 /* AddClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubsTableViewController.swift; sourceTree = "<group>"; };
-		10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
-		1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsForClubTableViewController.swift; sourceTree = "<group>"; };
-		103A984923B08B4400363972 /* ClubListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListTableViewController.swift; sourceTree = "<group>"; };
 		10448F44244C01C50044D290 /* ApproveClubsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveClubsListViewController.swift; sourceTree = "<group>"; };
 		104A136023BEE1F100AF7AB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		104EB6E624638A9900DCAB8E /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		105AB2C72447C02000F1B4C0 /* ProposeClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposeClubViewController.swift; sourceTree = "<group>"; };
 		105C25F12393894F000D1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		105C25F323939160000D1D96 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
-		105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsTableViewController.swift; sourceTree = "<group>"; };
 		105C25F7239398F4000D1D96 /* ClubDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailsViewController.swift; sourceTree = "<group>"; };
 		10779BAA242854A600B56392 /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 		1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
 		1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		108C33B6239A214100944F82 /* Mission Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mission Connect.entitlements"; sourceTree = "<group>"; };
-		10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
+		108CB1142491871400318F43 /* UITableView+setEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+setEmptyView.swift"; sourceTree = "<group>"; };
 		10BCB5842394C5270089EE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EEFFF29E20647B71014D8BE /* Pods_Mission_Connect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mission_Connect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9A47206584422745FBA0EC /* Pods-Mission Connect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mission Connect.release.xcconfig"; path = "Target Support Files/Pods-Mission Connect/Pods-Mission Connect.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,10 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				054AD57C23CE1AAB007A9A1C /* SupportViewController.swift */,
-				054AD57E23CE2003007A9A1C /* UserAggrementViewController.swift */,
 				054AD58023CE20C8007A9A1C /* PrivacyViewController.swift */,
 				0533BAF523D01E8E009B3D3A /* SecurityViewController.swift */,
-				104EB6E624638A9900DCAB8E /* VersionViewController.swift */,
 			);
 			path = StaticViewController;
 			sourceTree = "<group>";
@@ -224,6 +206,7 @@
 		1007349A2390586B007695DA /* Mission Connect */ = {
 			isa = PBXGroup;
 			children = (
+				108CB113249186DA00318F43 /* Extensions */,
 				108C33B6239A214100944F82 /* Mission Connect.entitlements */,
 				10303B782394861E00F7C2F5 /* Controller */,
 				10303B772394860700F7C2F5 /* View */,
@@ -265,16 +248,6 @@
 				054AD57B23CE1A92007A9A1C /* StaticViewController */,
 				054AD57023CE16EE007A9A1C /* SideMenuClass */,
 				054AD56923CE0D03007A9A1C /* HomeViewController */,
-				10B68C60239357F80067F4A8 /* DashboardTableViewController.swift */,
-				105C25F5239392DD000D1D96 /* ClubsTableViewController.swift */,
-				1007349D2390586B007695DA /* LoginViewController.swift */,
-				10303B792394895B00F7C2F5 /* EventDetailsViewController.swift */,
-				103A984923B08B4400363972 /* ClubListTableViewController.swift */,
-				1037C8BB23BFC89D00292B57 /* EventsForClubTableViewController.swift */,
-				05ECA0B023CB906A00635360 /* AddEventViewController.swift */,
-				1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */,
-				1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */,
-				104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,6 +258,17 @@
 				104A136023BEE1F100AF7AB7 /* DataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		108CB113249186DA00318F43 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1089A05824650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift */,
+				1089A05A2465112A0041EDD0 /* UITextView+Extension.swift */,
+				104EB6E424625F2500DCAB8E /* UIViewController+Extension.swift */,
+				108CB1142491871400318F43 /* UITableView+setEmptyView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		613C4FBFF76B065A16D1D432 /* Pods */ = {
@@ -451,20 +435,13 @@
 				054AD58823CF73C0007A9A1C /* EventDetailsViewController1.swift in Sources */,
 				105C25F22393894F000D1D96 /* Event.swift in Sources */,
 				054AD58623CF64FE007A9A1C /* ClubViewController.swift in Sources */,
-				05ECA0B123CB906A00635360 /* AddEventViewController.swift in Sources */,
 				104EB6E524625F2500DCAB8E /* UIViewController+Extension.swift in Sources */,
-				105C25F6239392DD000D1D96 /* ClubsTableViewController.swift in Sources */,
-				054AD57F23CE2003007A9A1C /* UserAggrementViewController.swift in Sources */,
 				1089A05924650F2E0041EDD0 /* UITextField+addDoneButtonOnKeyboard.swift in Sources */,
-				1007349E2390586B007695DA /* LoginViewController.swift in Sources */,
 				054AD56D23CE0D2A007A9A1C /* SideMenuViewController.swift in Sources */,
 				05FCBA2A23D4A9980077F3F5 /* RegisterViewController.swift in Sources */,
-				104EB6E724638A9900DCAB8E /* VersionViewController.swift in Sources */,
 				054AD57623CE16EE007A9A1C /* MASliderSpringAnimator.swift in Sources */,
 				05FCBA2C23D5F6AC0077F3F5 /* CommonTableViewCell.swift in Sources */,
-				1037C8BC23BFC89D00292B57 /* EventsForClubTableViewController.swift in Sources */,
 				105C25F423939160000D1D96 /* Club.swift in Sources */,
-				10303B7A2394895B00F7C2F5 /* EventDetailsViewController.swift in Sources */,
 				0533BAF623D01E8E009B3D3A /* SecurityViewController.swift in Sources */,
 				05F6BF9523DB3E8100F89259 /* FIRHelperClass.swift in Sources */,
 				10779BAB242854A600B56392 /* EventListTableViewController.swift in Sources */,
@@ -472,10 +449,9 @@
 				105C25F8239398F4000D1D96 /* ClubDetailsViewController.swift in Sources */,
 				054AD57923CE16EE007A9A1C /* MASliderAnimating.swift in Sources */,
 				054AD57723CE16EE007A9A1C /* MASliderViewController.swift in Sources */,
+				108CB1152491871400318F43 /* UITableView+setEmptyView.swift in Sources */,
 				105AB2C82447C02000F1B4C0 /* ProposeClubViewController.swift in Sources */,
 				10226B7F2427328400744797 /* AddClubsTableViewController.swift in Sources */,
-				103A984A23B08B4400363972 /* ClubListTableViewController.swift in Sources */,
-				10B68C61239357F80067F4A8 /* DashboardTableViewController.swift in Sources */,
 				054AD57823CE16EE007A9A1C /* Helper1ViewController.swift in Sources */,
 				1007349C2390586B007695DA /* AppDelegate.swift in Sources */,
 				054AD58323CF5E33007A9A1C /* ImageLabelCollectionViewCell.swift in Sources */,

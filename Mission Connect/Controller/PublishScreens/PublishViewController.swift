@@ -2,7 +2,7 @@
 //  PublishViewController.swift
 //  Mission Connect
 //
-//  Created by Venkata Valiveru on 1/16/20.
+//  Created by Anirudh Valiveru on 1/16/20.
 //  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
@@ -572,6 +572,16 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     //MARK: - UItableView Delegate and DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if events.count == 0 {
+            if clubs.count == 0 {
+                tableView.setEmptyView(title: "You are not an officer of any clubs!", message: "If you would like to propose a new club at our school, please propose one above and follow the school guidelines for club formation!")
+            } else {
+                tableView.setEmptyView(title: "Your clubs have no events!", message: "Please add events in the \"Add Event\" tab as needed so that your members stay updated!")
+            }
+        }
+        else {
+            tableView.restore()
+        }
         return events.count
     }
     

@@ -262,8 +262,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK: - UItableView Delegate and DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tab == 0 {
+            if events.count == 0 {
+                tableView.setEmptyView(title: "Your clubs don't have any events in the future!", message: "This area will show all of the events from clubs that you have signed up for!")
+            }
+            else {
+                tableView.restore()
+            }
             return events.count
         } else {
+            if goingEvents.count == 0 {
+                tableView.setEmptyView(title: "You are not going to any events!", message: "RSVP to any of your club events to have it show up here!")
+            }
+            else {
+                tableView.restore()
+            }
             return goingEvents.count
         }
         
@@ -306,11 +318,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
         let objVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventDetailsViewController1") as! EventDetailsViewController1
-        objVC.event = events[indexPath.row]
+        if (tab == 0) {
+            objVC.event = events[indexPath.row]
+        }
+        else {
+            objVC.event = goingEvents[indexPath.row]
+        }
         
         let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
         APPDELEGATE.navigationController?.pushViewController(objVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

@@ -2,7 +2,7 @@
 //  FIRHelperClass.swift
 //  Mission Connect
 //
-//  Created by Venkata Valiveru on 1/24/20.
+//  Created by Anirudh Valiveru on 1/24/20.
 //  Copyright © 2020 Anirudh Valiveru. All rights reserved.
 //
 
@@ -259,8 +259,12 @@ class FIRHelperClass: NSObject {
         databaseReference = Database.database().reference()
 
         databaseReference.child("clubs").child(clubID).child("events").observeSingleEvent(of: .value) { (snapshot) in
-            let eventsDict = snapshot.value as! [String: Bool]
-            let eventNames = [String] (eventsDict.keys)
+            let eventsDict = snapshot.value as? [String: Bool]
+            var eventNames: [String] = []
+            if (eventsDict != nil) {
+                eventNames = [String] (eventsDict!.keys)
+            }
+            
             guard let data = image.jpegData(compressionQuality: 1.0) else {
                 print("Somthing's wrong!")
                 return
@@ -286,7 +290,7 @@ class FIRHelperClass: NSObject {
                         return
                     }
                     
-                    databaseReference.child("clubs").child(clubID).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": true, "events": eventsDict]) //need to include previous events over here
+                    databaseReference.child("clubs").child(clubID).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": true, "events": eventsDict as Any]) //need to include previous events over here
                     
                     databaseReference.child("users").observeSingleEvent(of: .value) { (snapshot) in
                         for child in snapshot.children {
