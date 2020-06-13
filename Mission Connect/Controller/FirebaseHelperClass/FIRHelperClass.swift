@@ -295,10 +295,10 @@ class FIRHelperClass: NSObject {
                     databaseReference.child("users").observeSingleEvent(of: .value) { (snapshot) in
                         for child in snapshot.children {
                             let snap = child as! DataSnapshot
-                            if snap.childSnapshot(forPath: "clubs").hasChild(clubID) {
-                                if officers.contains(snap.key) {
-                                    databaseReference.child("users").child(snap.key).child("clubs").child(clubID).setValue("Officer")
-                                } else {
+                            if officers.contains(snap.key) {
+                                databaseReference.child("users").child(snap.key).child("clubs").child(clubID).setValue("Officer")
+                            } else {
+                                 if snap.childSnapshot(forPath: "clubs").hasChild(clubID) {
                                     databaseReference.child("users").child(snap.key).child("clubs").child(clubID).setValue("Member")
                                 }
                             }

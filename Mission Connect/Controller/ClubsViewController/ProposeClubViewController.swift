@@ -242,7 +242,6 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         selectionMenu.cellSelectionStyle = .checkbox
         selectionMenu.show(style: .popover(sourceView: pickOfficersTextField, size: nil), from: self)
 
-        
         selectionMenu.setNavigationBar(title: "Select Officers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white], barTintColor: .systemGreen, tintColor: UIColor.white)
         selectionMenu.showSearchBar { [weak self] (searchText) -> ([String]) in
           // return filtered array based on any condition
@@ -292,6 +291,10 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             clubDescriptionTextView.text = ""
             clubImageView.contentMode = .center
             clubImageView.image = UIImage.init(named: "add")
+
+            selectedDataArray = [String]()
+            selectedIDs = [String]()
+            editClubID = ""
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)

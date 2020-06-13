@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let email: String = user.profile.email;
         let domain: String = email.components(separatedBy: "@")[1]
         
-        if (true){ //domain == "fusdk12.net"
+        if (domain == "fusdk12.net" || email == "avaliveru@gmail.com" || email == "missionconnected2020@gmail.com"){
             Auth.auth().signIn(with: credential, completion: { (u, error) in
                 if let error = error {
                     print("Failed to create a Firebase User with google Account", error)
