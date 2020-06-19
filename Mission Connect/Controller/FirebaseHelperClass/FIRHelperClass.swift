@@ -174,8 +174,13 @@ class FIRHelperClass: NSObject {
                 databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
                 databaseReference.child("users").observe(.childAdded) { (snapshot) in
                     if snapshot.childSnapshot(forPath: "clubs").hasChild(clubName){
-                        databaseReference.child("users").child(snapshot.key).child("events").child(key).child("member_status").setValue("Officer")
-                        databaseReference.child("users").child(snapshot.key).child("events").child(key).child("isGoing").setValue(true)
+                        if (snapshot.childSnapshot(forPath: "clubs").childSnapshot(forPath: clubName).value as! String == "Officer") {
+                            databaseReference.child("users").child(snapshot.key).child("events").child(key).child("member_status").setValue("Officer")
+                            databaseReference.child("users").child(snapshot.key).child("events").child(key).child("isGoing").setValue(true)
+                        } else {
+                            databaseReference.child("users").child(snapshot.key).child("events").child(key).child("member_status").setValue("Member")
+                            databaseReference.child("users").child(snapshot.key).child("events").child(key).child("isGoing").setValue(false)
+                        }
                     }
                 }
             }
