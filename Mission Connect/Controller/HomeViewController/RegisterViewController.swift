@@ -20,15 +20,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var profileImageView: UIImageView!
     
     var user : GIDGoogleUser!
+    var id: String!
+    var email: String!
+    var fullname: String!
+    var imgurl: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        //GIDSignIn.sharedInstance()?.presentingViewController = self
+        //GIDSignIn.sharedInstance()?.restorePreviousSignIn()
       //  graduationTextField.addto
-        self.addToolBar(textField: graduationTextField)
-        fullNameTextField.text = user.profile.name!
+       // fullNameTextField.text = user.profile.name!
+        
+    }
+    
+    func fetchSchools() {
+        
     }
     
     //MARK:- ImagePickerMethods
@@ -165,15 +173,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBAction func registerBtnAction(_ sender: Any) {
         
         var message = ""
-        if nickNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
-            message = "Please enter Nickname"
-        }else if fullNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
-            message = "Please enter Fullname"
-        }else if schoolNameTextField.titleLabel?.text?.count == 0 {
+        if schoolNameTextField.titleLabel?.text?.count == 0 {
             message = "Please enter School Name"
-        }else if graduationTextField.titleLabel?.text?.count == 0{
-            message = "Please enter Graduation Year"
-        }else {
+        } else {
             
             
            // self.uploadImageOnFirebase()
@@ -192,11 +194,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func sendUserDataOnFirebase() {
        // let imageURL = uploadImageOnFirebase()
-        let imageURL = "uploadImageOnFirebase"
-        FIRHelperClass.sharedInstance.saveUserData(emailString: self.user.profile.email, nickName: self.nickNameTextField.text!, fullName: self.fullNameTextField.text!, graduationYear: self.graduationTextField.text!, schoolName: self.schoolNameTextField.text!, imageURL: imageURL)
+        FIRHelperClass.sharedInstance.saveUserData(emailString: email, fullName: fullname, schoolName: self.schoolNameTextField.text!, imgURL: imgurl, id: id)
+        
         let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
-            GIDSignIn.sharedInstance().signIn()
+            
+            let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+            APPDELEGATE.gotoRouteScreen()
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)

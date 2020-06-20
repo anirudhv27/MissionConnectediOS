@@ -1034,7 +1034,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vF-DG-3Ev">
-                                        <rect key="frame" x="175" y="14.5" width="64" height="21"/>
+                                        <rect key="frame" x="175.5" y="15" width="63.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1049,213 +1049,109 @@
                                     <constraint firstAttribute="height" constant="50" id="qfl-sy-n9v"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iGE-gY-3Yx">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lU-8j-ewz" customClass="GID">
+                                <rect key="frame" x="20" y="807" width="374" height="44"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2Py-NM-OHf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="Fg0-lq-qmc"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Pick Your School" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puh-7S-8cV">
+                                <rect key="frame" x="0.0" y="102" width="414" height="58"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="uFV-fp-IDq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KV0-6x-WUi">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="hsk-gA-xRs"/>
-                                            </constraints>
-                                        </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pBo-Xc-BO9" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="30" y="242" width="354" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="Gp2-RL-v64"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                                    <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                    <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fiv-Yx-K7e">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="9ia-BS-sRL"/>
-                                            </constraints>
-                                            <state key="normal" image="add"/>
-                                            <connections>
-                                                <action selector="profileImageBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="0vV-UG-lgK"/>
-                                            </connections>
-                                        </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-hR-sKu" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="30" y="312" width="354" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="Se9-0L-YlS"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="School Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4rr-3b-6qh" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="30" y="382" width="354" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="9Qt-sJ-lgB"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <outlet property="delegate" destination="hkg-CI-Z18" id="vh7-dh-y57"/>
-                                            </connections>
-                                        </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2V-LZ-dVn" customClass="GID">
-                                            <rect key="frame" x="30" y="542" width="354" height="44"/>
-                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="utL-0b-woK"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <state key="normal" title="Register">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="registerBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="AeK-dN-iQk"/>
-                                            </connections>
-                                        </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Graduation Year (YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exx-ry-frk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="30" y="452" width="354" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="5hY-1x-k47"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                    <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <outlet property="delegate" destination="hkg-CI-Z18" id="hYc-AY-E3N"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Fiv-Yx-K7e" secondAttribute="trailing" id="2zg-fv-8NA"/>
-                                        <constraint firstItem="Fiv-Yx-K7e" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" id="4Tf-qw-dsi"/>
-                                        <constraint firstItem="KV0-6x-WUi" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" id="5EF-hX-6To"/>
-                                        <constraint firstItem="KV0-6x-WUi" firstAttribute="top" secondItem="uFV-fp-IDq" secondAttribute="top" id="5KZ-zC-6aF"/>
-                                        <constraint firstItem="4rr-3b-6qh" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" constant="30" id="5yD-Yf-wvi"/>
-                                        <constraint firstItem="Fiv-Yx-K7e" firstAttribute="top" secondItem="uFV-fp-IDq" secondAttribute="top" id="8LB-oZ-Wc8"/>
-                                        <constraint firstAttribute="trailing" secondItem="pBo-Xc-BO9" secondAttribute="trailing" constant="30" id="EOr-00-HLw"/>
-                                        <constraint firstItem="3g9-hR-sKu" firstAttribute="top" secondItem="pBo-Xc-BO9" secondAttribute="bottom" constant="20" id="FFF-6Y-wNX"/>
-                                        <constraint firstItem="pBo-Xc-BO9" firstAttribute="top" secondItem="KV0-6x-WUi" secondAttribute="bottom" constant="42" id="LBT-W0-Rrb"/>
-                                        <constraint firstItem="3g9-hR-sKu" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" constant="30" id="Lof-3I-j8w"/>
-                                        <constraint firstItem="N2V-LZ-dVn" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" constant="30" id="aX6-Lj-0L5"/>
-                                        <constraint firstItem="N2V-LZ-dVn" firstAttribute="top" secondItem="exx-ry-frk" secondAttribute="bottom" constant="40" id="evx-JI-sya"/>
-                                        <constraint firstItem="exx-ry-frk" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" constant="30" id="fKl-0o-TAN"/>
-                                        <constraint firstAttribute="trailing" secondItem="exx-ry-frk" secondAttribute="trailing" constant="30" id="gHF-Kt-H2z"/>
-                                        <constraint firstItem="pBo-Xc-BO9" firstAttribute="leading" secondItem="uFV-fp-IDq" secondAttribute="leading" constant="30" id="ht9-YB-r4S"/>
-                                        <constraint firstAttribute="trailing" secondItem="N2V-LZ-dVn" secondAttribute="trailing" constant="30" id="jWa-pa-r9S"/>
-                                        <constraint firstItem="exx-ry-frk" firstAttribute="top" secondItem="4rr-3b-6qh" secondAttribute="bottom" constant="20" id="mqd-98-uha"/>
-                                        <constraint firstItem="4rr-3b-6qh" firstAttribute="top" secondItem="3g9-hR-sKu" secondAttribute="bottom" constant="20" id="oFG-tQ-IEr"/>
-                                        <constraint firstAttribute="trailing" secondItem="3g9-hR-sKu" secondAttribute="trailing" constant="30" id="tst-jK-rRU"/>
-                                        <constraint firstAttribute="trailing" secondItem="4rr-3b-6qh" secondAttribute="trailing" constant="30" id="ubb-A4-vbc"/>
-                                        <constraint firstAttribute="trailing" secondItem="KV0-6x-WUi" secondAttribute="trailing" id="wCa-hn-ofw"/>
-                                    </constraints>
-                                </view>
-                            </tableView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="8ap-7G-FTc"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGK-2L-wgU">
+                                <rect key="frame" x="0.0" y="165" width="414" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="6ss-ga-41L"/>
+                                </constraints>
+                                <string key="text">Please pick a school using the picker below so that we can show you the most relevant information pertaining to the school that you attend.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Warning: You cannot change your school after picking without deleting your account." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZ3-dm-E1m">
+                                <rect key="frame" x="0.0" y="346" width="394" height="170"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="5mD-so-hoh"/>
+                                </constraints>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="School Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEx-j8-Sdh" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="20" y="521" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XPd-34-Xe5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="hkg-CI-Z18" id="g39-LN-os2"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="iGE-gY-3Yx" firstAttribute="top" secondItem="eDf-o9-hfh" secondAttribute="bottom" id="5kh-Pf-tXY"/>
+                            <constraint firstItem="Puh-7S-8cV" firstAttribute="leading" secondItem="mGK-2L-wgU" secondAttribute="leading" id="2s0-dU-dSe"/>
+                            <constraint firstItem="mGK-2L-wgU" firstAttribute="leading" secondItem="EZ3-dm-E1m" secondAttribute="leading" id="4aj-qK-JVh"/>
+                            <constraint firstItem="Puh-7S-8cV" firstAttribute="top" secondItem="eDf-o9-hfh" secondAttribute="bottom" constant="8" id="67P-FL-Qnv"/>
+                            <constraint firstItem="EZ3-dm-E1m" firstAttribute="top" secondItem="mGK-2L-wgU" secondAttribute="bottom" constant="5" id="6dC-Ff-xUh"/>
+                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="bottom" secondItem="1lU-8j-ewz" secondAttribute="bottom" constant="11" id="7Lw-Iv-kzW"/>
+                            <constraint firstItem="EZ3-dm-E1m" firstAttribute="trailing" secondItem="vEx-j8-Sdh" secondAttribute="trailing" id="BkW-b8-exC"/>
+                            <constraint firstItem="Puh-7S-8cV" firstAttribute="trailing" secondItem="mGK-2L-wgU" secondAttribute="trailing" id="CbS-i8-K1S"/>
                             <constraint firstItem="eDf-o9-hfh" firstAttribute="top" secondItem="1gB-G8-5Vm" secondAttribute="top" id="Ctq-eI-tym"/>
                             <constraint firstItem="eDf-o9-hfh" firstAttribute="leading" secondItem="1gB-G8-5Vm" secondAttribute="leading" id="D97-RE-YbC"/>
-                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="bottom" secondItem="iGE-gY-3Yx" secondAttribute="bottom" id="KLX-O5-eUV"/>
-                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="trailing" secondItem="iGE-gY-3Yx" secondAttribute="trailing" id="QJu-bH-P3x"/>
-                            <constraint firstItem="iGE-gY-3Yx" firstAttribute="leading" secondItem="1gB-G8-5Vm" secondAttribute="leading" id="T1n-a0-zxe"/>
+                            <constraint firstItem="vEx-j8-Sdh" firstAttribute="centerX" secondItem="1lU-8j-ewz" secondAttribute="centerX" id="EYb-ij-o7U"/>
+                            <constraint firstItem="vEx-j8-Sdh" firstAttribute="top" secondItem="EZ3-dm-E1m" secondAttribute="bottom" constant="5" id="Oeo-CA-rXU"/>
+                            <constraint firstItem="Puh-7S-8cV" firstAttribute="trailing" secondItem="eDf-o9-hfh" secondAttribute="trailing" id="ctG-9z-ph6"/>
                             <constraint firstItem="1gB-G8-5Vm" firstAttribute="trailing" secondItem="eDf-o9-hfh" secondAttribute="trailing" id="dBA-vN-dH7"/>
+                            <constraint firstItem="1lU-8j-ewz" firstAttribute="width" secondItem="vEx-j8-Sdh" secondAttribute="width" multiplier="0.15942" constant="314.37681159420288" id="hnJ-bi-vUO"/>
+                            <constraint firstItem="Puh-7S-8cV" firstAttribute="leading" secondItem="eDf-o9-hfh" secondAttribute="leading" id="nfR-ym-Jrw"/>
+                            <constraint firstItem="mGK-2L-wgU" firstAttribute="top" secondItem="Puh-7S-8cV" secondAttribute="bottom" constant="5" id="pkP-0l-Y8f"/>
+                            <constraint firstItem="EZ3-dm-E1m" firstAttribute="leading" secondItem="vEx-j8-Sdh" secondAttribute="leading" constant="-20" id="v5C-dH-zuv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1gB-G8-5Vm"/>
                     </view>
-                    <connections>
-                        <outlet property="fullNameTextField" destination="3g9-hR-sKu" id="4P7-cX-Q5O"/>
-                        <outlet property="graduationTextField" destination="exx-ry-frk" id="2JE-kQ-RnH"/>
-                        <outlet property="nickNameTextField" destination="pBo-Xc-BO9" id="sPd-AO-jDy"/>
-                        <outlet property="profileImageView" destination="KV0-6x-WUi" id="eUf-Xu-oUT"/>
-                        <outlet property="schoolNameTextField" destination="4rr-3b-6qh" id="EsJ-vb-wEH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7y-f4-EvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-875.36231884057975" y="-910.04464285714278"/>
+            <point key="canvasLocation" x="-2233.3333333333335" y="349.55357142857139"/>
         </scene>
         <!--Propose Club View Controller-->
         <scene sceneID="g3M-RD-p01">

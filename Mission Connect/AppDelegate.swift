@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        
-//        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
-//           self.gotoRouteScreen()
-//        }else {
+        gotoDummyScreen() // shows sign-in screen
+//        if UserDefaults.standard.bool(forKey: "isUserSignedIn") {
+//            self.gotoRouteScreen()
+//        } else {
 //            self.gotoDummyScreen()
 //        }
-        self.gotoDummyScreen()
+        
         return true
     }
     
@@ -52,8 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         
         guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
         let email: String = user.profile.email;
         let domain: String = email.components(separatedBy: "@")[1]
@@ -66,15 +65,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 print("Success for Firebase User!", user.userID as Any)
                 
-                if Auth.auth().currentUser != nil {
-                    
-                    self.gotoRouteScreen()
-                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("fullname").setValue(user.profile.name)
-                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("imgurl").setValue(user.profile.imageURL(withDimension: 200)?.absoluteString)
-                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("email").setValue(user.profile.email)
-                } else {
-                    
+                FIRHelperClass.sharedInstance.isExistUser(email: (Auth.auth().currentUser?.email)!) { (exist) in
+                    if exist {
+                        self.gotoRouteScreen()
+                    } else {
+//                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("fullname").setValue(user.profile.name)
+//                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("imgurl").setValue(user.profile.imageURL(withDimension: 200)?.absoluteString)
+//                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("email").setValue(user.profile.email)
+//                        
+                        self.gotoRegisterScreen(fullName: user.profile.name, imgUrl: user.profile.imageURL(withDimension: 200)!.absoluteString, email: user.profile.email, id: Auth.auth().currentUser!.uid)
+                    }
                 }
+//
+//                if Auth.auth().currentUser != nil // user is successfully authenticated
+//                {
+//                    self.gotoRouteScreen()
+//
+//                } else {
+//
+//                }
+                
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "isUserSignedIn")
             })
@@ -89,7 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         self.gotoDummyScreen()
-        
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "isUserSignedIn")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -121,10 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
 
     //MARK: - Helper methods for SideMenu
-    func gotoDummyScreen() {
+    func gotoDummyScreen() { // go to sign in screen
         let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RouteViewController") as! RouteViewController
        
-        navigationController = UINavigationController.init(rootViewController: objvc)
+        navigationController =  UINavigationController.init(rootViewController: objvc)
         navigationController.navigationBar.isHidden = true
         
         window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -132,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func gotoRouteScreen() {
+    func gotoRouteScreen() { // go to main app area
         sideMenuController.centerViewController?.closeSlider()
         let menu = sideMenuController.centerViewController as! UINavigationController
         let tab = menu.viewControllers.first as! CustomTabBarViewController
@@ -144,6 +155,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         window?.makeKeyAndVisible()
     }
     
+    func gotoRegisterScreen(fullName: String, imgUrl: String, email: String, id: String) {
+        let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        objvc.id = id
+        objvc.email = email
+        objvc.fullname = fullName
+        objvc.imgurl = imgUrl
+        
+        navigationController =  UINavigationController.init(rootViewController: objvc)
+        navigationController.navigationBar.isHidden = true
+        
+        window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        window!.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
     //MARK: - Tab Bar setup:  DO NOT TOUCH
     func setNavigationController(navigation:UINavigationController) {
         navigation.navigationBar.isTranslucent = false

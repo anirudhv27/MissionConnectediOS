@@ -13,12 +13,12 @@ class FIRHelperClass: NSObject {
 
     static let sharedInstance = FIRHelperClass()
     
-    func saveUserData(emailString: String, nickName:String, fullName: String, graduationYear:String, schoolName:String, imageURL: String) {
+    func saveUserData(emailString: String, fullName: String, schoolName:String, imgURL: String, id: String) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-        let userData : [String:Any] = ["AvatarImageURL":imageURL, "Email":emailString, "FullName":fullName, "NickName":nickName, "GraduationYear":graduationYear, "SchoolName":schoolName,"CreatedTimestamp": NSDate().timeIntervalSince1970]
+        let userData : [String:Any] = ["email":emailString, "fullName":fullName, "school":schoolName,"imgurl": imgURL, "isAdmin": false]
         
-        databaseReference.child("users").childByAutoId().setValue(userData)
+        databaseReference.child("users").child(id).setValue(userData)
         
        // print(databaseReference)
     }
@@ -34,25 +34,22 @@ class FIRHelperClass: NSObject {
                 let _ = storageRef.putData(data!, metadata: nil) { (metadata, error) in
                     //hideHud()
                 guard metadata != nil else {
+                    completion(false, nil)
+                    return
+                }
+                print("complete inside")
+                storageRef.downloadURL(completion: { (imageURL, error) in
+                    if error != nil {
                         completion(false, nil)
                         return
                     }
-                    print("complete inside")
-                   storageRef.downloadURL(completion: { (imageURL, error) in
-                        if error != nil {
-                            completion(false, nil)
-                            return
-                        }
-                       
-                    completion(false, imageURL)
-                    })
-                    
-                }
-    
+                   
+                completion(false, imageURL)
+                })
             }
-       
-            
         }
+    }
+    
     func updateEventImageURL(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
         let timeStamp = "event\(Date().timeIntervalSince1970).jpeg"
         let storageRef = Storage.storage().reference().child("eventimages").child(timeStamp)
@@ -95,7 +92,7 @@ class FIRHelperClass: NSObject {
         }
     }
     
-    func isExistUser(email:String, completion: @escaping (_ status: Bool) -> Void){
+    func isExistUser(email: String, completion: @escaping (_ status: Bool) -> Void){
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
         databaseReference.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -103,17 +100,20 @@ class FIRHelperClass: NSObject {
         
             let value = snapshot.value as? Dictionary<String,AnyObject>
             let keyList = value!.keys
+            var emailfound = false
             
             for str in keyList {
                 let tempDict = value![str] as? Dictionary<String,AnyObject>
-                let emailstr = "\(tempDict!["Email"] ?? ""  as AnyObject)"
+                let emailstr = "\(tempDict!["email"] ?? ""  as AnyObject)"
                 
                 if email == emailstr {
-                    completion(true)
+                    emailfound = true
                     break
                 }
             }
-            completion(false)
+            
+            completion(emailfound)
+            
         // ...
         }) { (error) in
         print(error.localizedDescription)
