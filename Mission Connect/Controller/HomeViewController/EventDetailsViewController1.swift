@@ -96,7 +96,7 @@ class EventDetailsViewController1: UIViewController {
         
         let subscribeActionBtn = UIAlertAction(title: "Join", style: .default, handler: { _ in
             USER_REF.child("events").child(eventKey!).child("isGoing").setValue(true)
-            self.ref.child("events").child(eventKey!).child("member_numbers").setValue(self.event!.numberOfAttendees! + 1)
+            self.ref.child("schools").child(schoolName).child("events").child(eventKey!).child("member_numbers").setValue(self.event!.numberOfAttendees! + 1)
             self.event!.numberOfAttendees! = self.event!.numberOfAttendees! + 1
             self.letBtn.backgroundColor = UIColor.red
             self.letBtn.setTitle("I can't go :(", for: .normal)
@@ -107,7 +107,7 @@ class EventDetailsViewController1: UIViewController {
         let unsubscribeActionBtn = UIAlertAction(title: "Leave", style: .default, handler: { _ in
             
             USER_REF.child("events").child(eventKey!).child("isGoing").setValue(false)
-            self.ref.child("events").child(eventKey!).child("member_numbers").setValue(self.event!.numberOfAttendees! - 1)
+            self.ref.child("schools").child(schoolName).child("events").child(eventKey!).child("member_numbers").setValue(self.event!.numberOfAttendees! - 1)
             self.event!.numberOfAttendees! = self.event!.numberOfAttendees! - 1
             self.letBtn.backgroundColor = UIColor.green
             self.letBtn.setTitle("I'm Going!", for: .normal)

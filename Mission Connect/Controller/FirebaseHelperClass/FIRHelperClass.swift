@@ -13,10 +13,10 @@ class FIRHelperClass: NSObject {
 
     static let sharedInstance = FIRHelperClass()
     
-    func saveUserData(emailString: String, fullName: String, schoolName:String, imgURL: String, id: String) {
+    func saveUserData(emailString: String, fullName: String, school:String, imgURL: String, id: String) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-        let userData : [String:Any] = ["email":emailString, "fullName":fullName, "school":schoolName,"imgurl": imgURL, "isAdmin": false]
+        let userData : [String:Any] = ["email":emailString, "fullname":fullName, "school":school,"imgurl": imgURL, "isAdmin": false]
         
         databaseReference.child("users").child(id).setValue(userData)
         
@@ -78,7 +78,7 @@ class FIRHelperClass: NSObject {
     func getAllClubList() {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
-        databaseReference.child("clubs").observeSingleEvent(of: .value, with: { (snapshot) in
+        databaseReference.child("schools").child(schoolName).child("clubs").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
         
             let value = snapshot.value as? Dictionary<String,AnyObject>
@@ -164,14 +164,14 @@ class FIRHelperClass: NSObject {
                     return
                 }
                 
-                guard let key = databaseReference.child("events").childByAutoId().key else { return }
+                guard let key = databaseReference.child("schools").child(schoolName).child("events").childByAutoId().key else { return }
                 
-                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0])
-                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0]) { (err, ref) in
+                databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0])
+                databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0]) { (err, ref) in
                     completion()
                 }
                 
-                databaseReference.child("clubs").child(clubName).child("events").child(key).setValue(true)
+                databaseReference.child("schools").child(schoolName).child("clubs").child(clubName).child("events").child(key).setValue(true)
                 databaseReference.child("users").observe(.childAdded) { (snapshot) in
                     if snapshot.childSnapshot(forPath: "clubs").hasChild(clubName){
                         if (snapshot.childSnapshot(forPath: "clubs").childSnapshot(forPath: clubName).value as! String == "Officer") {
@@ -215,7 +215,7 @@ class FIRHelperClass: NSObject {
                     print("Somthing's wrong!")
                     return
                 }
-                databaseReference.child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview]) { (err, ref) in
+                databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview]) { (err, ref) in
                     if err == nil {
                         completion()
                     }
@@ -251,8 +251,8 @@ class FIRHelperClass: NSObject {
                     return
                 }
                 
-                guard let key = databaseReference.child("clubs").childByAutoId().key else { return }
-                databaseReference.child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": false])
+                guard let key = databaseReference.child("schools").child(schoolName).child("clubs").childByAutoId().key else { return }
+                databaseReference.child("schools").child(schoolName).child("clubs").child(key).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": false])
                 for id in officers {
                     databaseReference.child("users").child(id).child("clubs").child(key).setValue("Officer")
                 }
@@ -263,7 +263,7 @@ class FIRHelperClass: NSObject {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
 
-        databaseReference.child("clubs").child(clubID).child("events").observeSingleEvent(of: .value) { (snapshot) in
+        databaseReference.child("schools").child(schoolName).child("clubs").child(clubID).child("events").observeSingleEvent(of: .value) { (snapshot) in
             let eventsDict = snapshot.value as? [String: Bool]
             var eventNames: [String] = []
             if (eventsDict != nil) {
@@ -295,7 +295,7 @@ class FIRHelperClass: NSObject {
                         return
                     }
                     
-                    databaseReference.child("clubs").child(clubID).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": true, "events": eventsDict as Any]) //need to include previous events over here
+                    databaseReference.child("schools").child(schoolName).child("clubs").child(clubID).setValue(["club_description": clubDescription, "club_image_url": url.absoluteString, "club_name": clubName, "club_preview": clubPreview, "member_numbers": officers.count, "isApproved": true, "events": eventsDict as Any]) //need to include previous events over here
                     
                     databaseReference.child("users").observeSingleEvent(of: .value) { (snapshot) in
                         for child in snapshot.children {

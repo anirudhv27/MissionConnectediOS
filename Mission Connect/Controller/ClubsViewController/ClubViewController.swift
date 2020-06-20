@@ -46,7 +46,7 @@ class ClubViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        CLUBS_REF = Database.database().reference().child("clubs")
+        CLUBS_REF = Database.database().reference().child("schools").child(schoolName).child("clubs")
         REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
         clubs = [Club]()
         fetchClubs()

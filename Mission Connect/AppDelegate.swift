@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+var schoolName: String = String()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
@@ -148,11 +150,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let menu = sideMenuController.centerViewController as! UINavigationController
         let tab = menu.viewControllers.first as! CustomTabBarViewController
         tab.currIndex = 0
-        navigationController = UINavigationController.init(rootViewController: sideMenuController)
-        navigationController.navigationBar.isHidden = true
-        window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        window!.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("school").observeSingleEvent(of: .value) { (snapshot) in
+            schoolName = snapshot.value as! String
+            self.navigationController = UINavigationController.init(rootViewController: self.sideMenuController)
+            self.navigationController.navigationBar.isHidden = true
+            self.window = UIWindow.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+            self.window!.rootViewController = self.navigationController
+            self.window?.makeKeyAndVisible()
+        }
     }
     
     func gotoRegisterScreen(fullName: String, imgUrl: String, email: String, id: String) {

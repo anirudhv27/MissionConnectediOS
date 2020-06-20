@@ -50,10 +50,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         addRefreshControl()
     }
     override func viewWillAppear(_ animated: Bool) {
-        CLUBS_REF = Database.database().reference().child("clubs")
+        CLUBS_REF = Database.database().reference().child("schools").child(schoolName).child("clubs")
         REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
         EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
-        EVENT_DETAILS_REF = Database.database().reference().child("events")
+        EVENT_DETAILS_REF = Database.database().reference().child("schools").child(schoolName).child("events")
         
         fetchClubs()
         fetchEvents()

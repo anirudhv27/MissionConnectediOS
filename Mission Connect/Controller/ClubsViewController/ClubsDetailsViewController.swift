@@ -85,13 +85,13 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = String(self.club.clubID!)
             USER_REF.child("clubs").child(clubKey).setValue("Member")
-            let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
+            let EVENTS_REF = self.ref.child("schools").child(schoolName).child("clubs").child(clubKey).child("events")
             EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
                 let event = snapshot.key
                 USER_REF.child("events").child(event).child("member_status").setValue("Member")
                 USER_REF.child("events").child(event).child("isGoing").setValue(false)
             })
-            self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! + 1)
+            self.ref.child("schools").child(schoolName).child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! + 1)
             self.club.numberOfMembers = self.club.numberOfMembers! + 1
             self.subscribeBtn.titleLabel?.text = "Unsubscribe"
             self.subscribeBtn.backgroundColor = UIColor.red
@@ -103,13 +103,13 @@ class ClubsDetailsViewController: UIViewController, UINavigationControllerDelega
             let USER_REF = self.ref.child("users").child(self.user!.uid)
             let clubKey = String(self.club.clubID!)
             USER_REF.child("clubs").child(clubKey).removeValue()
-            let EVENTS_REF = self.ref.child("clubs").child(clubKey).child("events")
+            let EVENTS_REF = self.ref.child("schools").child(schoolName).child("clubs").child(clubKey).child("events")
             EVENTS_REF.observe(.childAdded, with: { (snapshot) -> Void in
                 let event = snapshot.key
                 print(event)
                 USER_REF.child("events").child(event).removeValue()
             })
-            self.ref.child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! - 1)
+            self.ref.child("schools").child(schoolName).child("clubs").child(clubKey).child("member_numbers").setValue(self.club.numberOfMembers! - 1)
             self.club.numberOfMembers = self.club.numberOfMembers! - 1
             self.subscribeBtn.titleLabel?.text = "Subscribe"
             self.subscribeBtn.backgroundColor = UIColor.systemGreen

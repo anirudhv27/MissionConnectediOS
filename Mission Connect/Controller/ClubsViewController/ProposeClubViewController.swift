@@ -29,10 +29,10 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     var clubNames = [String]()
     var editClubID: String = ""
     
-    let CLUBS_REF = Database.database().reference().child("clubs")
+    let CLUBS_REF = Database.database().reference().child("schools").child(schoolName).child("clubs")
     let REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
     let EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
-    let EVENT_DETAILS_REF = Database.database().reference().child("events")
+    let EVENT_DETAILS_REF = Database.database().reference().child("schools").child(schoolName).child("events")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,6 +164,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func imageButtonPressed(_ sender: Any) {
         self.openImagePickerOption()
     }
+    
     @IBAction func clubNameButtonPressed(_ sender: Any) {
         let dataArray = clubNames
         let selectionMenu = RSSelectionMenu(selectionStyle: .single, dataSource: dataArray) { (cell, name, indexPath) in

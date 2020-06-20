@@ -58,7 +58,7 @@ class AddClubsTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func fetchClubs() {
         clubs = [Club]()
-    Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
+    Database.database().reference().child("schools").child(schoolName).child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let club = Club()
                 club.clubName = dictionary["club_name"] as? String

@@ -10,14 +10,11 @@ import UIKit
 import SkyFloatingLabelTextField
 import GoogleSignIn
 import Firebase
+import RSSelectionMenu
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
-    @IBOutlet weak var graduationTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var schoolNameTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var fullNameTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var nickNameTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var profileImageView: UIImageView!
     
     var user : GIDGoogleUser!
     var id: String!
@@ -25,145 +22,43 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     var fullname: String!
     var imgurl: String!
     
+    var schoolDict = [String: String]()
+    var ref: DatabaseReference!
+    var selectedNames = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //GIDSignIn.sharedInstance()?.presentingViewController = self
-        //GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-      //  graduationTextField.addto
-       // fullNameTextField.text = user.profile.name!
-        
+        ref = Database.database().reference()
+        fetchSchools()
     }
     
     func fetchSchools() {
-        
-    }
-    
-    //MARK:- ImagePickerMethods
-    func openImagePickerOption(){
-        
-        self.view.endEditing(true)
-        
-        let myActionSheet = UIAlertController()
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.openGallary()
-        })
-        let cmaeraAction = UIAlertAction(title: "Camera", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.openCamera()
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-        })
-        
-        myActionSheet.addAction(galleryAction)
-        myActionSheet.addAction(cmaeraAction)
-        myActionSheet.addAction(cancelAction)
-       
-        self.present(myActionSheet, animated: true, completion: nil)
-    }
-    
-    func openCamera(){
-        
-        DispatchQueue.main.async {
-            if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))  {
-                let imagePicker = UIImagePickerController()
-                imagePicker.sourceType = UIImagePickerController.SourceType.camera
-                imagePicker.delegate = self
-                imagePicker.allowsEditing = true
-                self .present(imagePicker, animated: true, completion: nil)
-            }
-            else {
-                let alert = UIAlertController(title: "Alert", message: "Camera is not supported", preferredStyle: UIAlertController.Style.alert)
-                let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
-            }
+        ref.child("schools").observe(.childAdded) { (snapshot) in
+            self.schoolDict.updateValue(snapshot.key , forKey: snapshot.childSnapshot(forPath: "school_name").value as! String)
         }
     }
     
-    func openGallary() {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true //2
-        imagePicker.sourceType = .photoLibrary //3
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        self.dismiss(animated: true, completion: nil)
-        
-        if  let pickedImage: UIImage = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage) {
-            //self.eventImageView.contentMode = .scaleAspectFill
-            self.profileImageView.image = pickedImage
+    @IBAction func schoolNameTextFieldBtnAction(_ sender: Any) {
+        let dataArray = Array(schoolDict.keys).sorted()
+        let selectionMenu = RSSelectionMenu(selectionStyle: .single, dataSource: dataArray) { (cell, name, indexPath) in
+            cell.textLabel?.text = name
+            cell.tintColor = .systemGreen
         }
-    }
-    
-    func addToolBar(textField: UITextField) {
-           let toolBar = UIToolbar()
-           toolBar.barStyle = .default
-           toolBar.isTranslucent = true
-           toolBar.tintColor = UIColor(red: 76 / 255, green: 217 / 255, blue: 100 / 255, alpha: 1)
-           let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-           let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-           let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-           toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        selectionMenu.cellSelectionStyle = .checkbox
+        
+        selectionMenu.setSelectedItems(items: selectedNames) { [weak self] (item, index, isSelected, selectedItems) in
 
-
-           toolBar.isUserInteractionEnabled = true
-           toolBar.sizeToFit()
-
-           textField.delegate = self
-           textField.inputAccessoryView = toolBar
-       }
-
-       @objc func donePressed() {
-           view.endEditing(true)
-       }
-
-       @objc func cancelPressed() {
-           view.endEditing(true) // or do something
-       }
-
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == graduationTextField  || textField == schoolNameTextField{
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= 100
+            // update your existing array with updated selected items, so when menu show menu next time, updated items will be default selected.
+            self?.selectedNames = selectedItems
+        }
+        
+        selectionMenu.show(style: .popover(sourceView: schoolNameTextField, size: nil), from: self)
+        selectionMenu.onDismiss = { [weak self] selectedItems in
+            if let name = selectedItems.first {
+                self?.schoolNameTextField.text = name
             }
         }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-         self.view.frame.origin.y = 0
-    }
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("textfield - \(textField.text ?? "")  string-\(string)")
-    
-        if textField == graduationTextField {
-            let yearString = "\(textField.text ?? "")\(string)"
-            if yearString.count > 0 {
-                let yearInt  = Int(yearString)!
-                if yearInt > 2025 {
-                    return false
-                }else {
-                    return true
-                }
-            }else {
-                 return true
-            }
-        }
-        
-        return true
-    }
-    
-    @IBAction func profileImageBtnAction(_ sender: Any) {
-        self.openImagePickerOption()
     }
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -194,29 +89,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func sendUserDataOnFirebase() {
        // let imageURL = uploadImageOnFirebase()
-        FIRHelperClass.sharedInstance.saveUserData(emailString: email, fullName: fullname, schoolName: self.schoolNameTextField.text!, imgURL: imgurl, id: id)
+        let schoolID = schoolDict[self.schoolNameTextField.text!]!
+        
+        FIRHelperClass.sharedInstance.saveUserData(emailString: email, fullName: fullname, school: schoolID, imgURL: imgurl, id: id)
         
         let alertController = UIAlertController.init(title: "Alert", message: "You have successfully registered.", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) in
-            
+            schoolName = self.schoolNameTextField.text!
             let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
             APPDELEGATE.gotoRouteScreen()
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func uploadImageOnFirebase() -> String {
-        FIRHelperClass.sharedInstance.updateProfileImage(image: self.profileImageView.image!) { (status, imageURL) in
-            if status == true {
-                //self.sendUserDataOnFirebase(imageURL: "\(imageURL!)")
-                print ("status=True, uploadImageOnFirebase")
-            }
-            else {
-                print ("status= False , uploadImageOnFirebase")
-            }
-        }
-        return "uploadImageOnFirebase"
     }
     
 }

@@ -100,10 +100,10 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         addRefreshControl()
     }
     override func viewWillAppear(_ animated: Bool) {
-        CLUBS_REF = Database.database().reference().child("clubs")
+        CLUBS_REF = Database.database().reference().child("schools").child(schoolName).child("clubs")
         REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("clubs")
         EVENT_REF = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events")
-        EVENT_DETAILS_REF = Database.database().reference().child("events")
+        EVENT_DETAILS_REF = Database.database().reference().child("schools").child(schoolName).child("events")
         fetchClubs()
         fetchEvents()
         refresh()
@@ -662,7 +662,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 }
             }
-            Database.database().reference().child("events").child(event.eventID!).removeValue { (error, ref) in
+            Database.database().reference().child("schools").child(schoolName).child("events").child(event.eventID!).removeValue { (error, ref) in
                 if error == nil {
 //                    self.eventTableView.reloadData()
 //                    self.fetchClubs()

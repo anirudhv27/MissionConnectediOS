@@ -45,7 +45,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
     
     func fetchClubs() {
         clubs = [Club]()
-        Database.database().reference().child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
+        Database.database().reference().child("schools").child(schoolName).child("clubs").observe(.childAdded, with: {(snapshot) -> Void in
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let club = Club()
                     club.clubName = dictionary["club_name"] as? String
@@ -100,12 +100,12 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
         let approve = UIContextualAction(style: .normal, title: "Approve") { (action, view, completion) in
             if self.searching {
                 let club = self.clubs.remove(at: indexPath.row)
-                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
+                Database.database().reference().child("schools").child(schoolName).child("clubs").child(club.clubID!).child("isApproved").setValue(true)
                 
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 let club = self.clubs.remove(at: indexPath.row)
-                Database.database().reference().child("clubs").child(club.clubID!).child("isApproved").setValue(true)
+                Database.database().reference().child("schools").child(schoolName).child("clubs").child(club.clubID!).child("isApproved").setValue(true)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             completion(true)
@@ -117,7 +117,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
                 let club = self.searchedClubs.remove(at: indexPath.row)
                 self.clubs.remove(at: self.clubs.firstIndex(of: club)!)
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
+                Database.database().reference().child("schools").child(schoolName).child("clubs").child(club.clubID!).removeValue()
                 Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
                     if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
                         Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()
@@ -126,7 +126,7 @@ class ApproveClubsListViewController: UIViewController, UITableViewDelegate, UIT
             } else {
                 let club = self.clubs.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                Database.database().reference().child("clubs").child(club.clubID!).removeValue()
+                Database.database().reference().child("schools").child(schoolName).child("clubs").child(club.clubID!).removeValue()
                 Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
                     if snapshot.childSnapshot(forPath: "clubs").hasChild(club.clubID!){
                         Database.database().reference().child("users").child(snapshot.key).child("clubs").child(club.clubID!).removeValue()

@@ -16,6 +16,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var sideMenuTableView: UITableView!
+    @IBOutlet weak var schoolNameLabel: UILabel!
     
     
     var menuList = [String]()
@@ -31,6 +32,11 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         self.profileImageView.layer.cornerRadius = 50.0
         self.profileImageView.clipsToBounds = true
         self.profileImageView.kf.setImage(with: Auth.auth().currentUser?.photoURL)
+        
+        Database.database().reference().child("schools").child(schoolName).child("school_name").observeSingleEvent(of: .value) { (snapshot) in
+            self.schoolNameLabel.text = snapshot.value as? String
+        }
+        
         profileNameLabel.text = Auth.auth().currentUser?.displayName
         profileNameLabel.adjustsFontForContentSizeCategory = true
     }

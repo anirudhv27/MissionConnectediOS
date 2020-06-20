@@ -19,7 +19,7 @@ class EventListTableViewController: UITableViewController {
     let df = DateFormatter()
     @IBOutlet weak var topLabel: UILabel!
     
-    let EVENTS_REF = Database.database().reference().child("events")
+    let EVENTS_REF = Database.database().reference().child("schools").child(schoolName).child("events")
     
     override func viewDidLoad() {
         super.viewDidLoad()
