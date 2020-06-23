@@ -26,6 +26,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     var ref: DatabaseReference!
     var selectedNames = [String]()
     
+    var domains = [String]()
+    var special = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -39,6 +42,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func schoolNameTextFieldBtnAction(_ sender: Any) {
+        domains = []
+        special = []
         let dataArray = Array(schoolDict.keys).sorted()
         let selectionMenu = RSSelectionMenu(selectionStyle: .single, dataSource: dataArray) { (cell, name, indexPath) in
             cell.textLabel?.text = name
@@ -57,12 +62,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         selectionMenu.onDismiss = { [weak self] selectedItems in
             if let name = selectedItems.first {
                 self?.schoolNameTextField.text = name
+                self!.ref.child("schools").child(self!.schoolDict[name]!).observeSingleEvent(of: .value) { (snapshot) in
+                    self!.domains = snapshot.childSnapshot(forPath: "domains").value as! [String]
+                    self!.special = snapshot.childSnapshot(forPath: "special_users").value as! [String]
+                }
             }
         }
-    }
-    
-    @IBAction func backBtnAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func registerBtnAction(_ sender: Any) {
@@ -71,12 +76,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         if schoolNameTextField.titleLabel?.text?.count == 0 {
             message = "Please enter School Name"
         } else {
-            
-            
-           // self.uploadImageOnFirebase()
-            self.sendUserDataOnFirebase()
-            return
-          
+            if domains.contains(String(email.split(separator: "@")[1])) || special.contains(email) {
+                self.sendUserDataOnFirebase()
+                return
+            } else {
+                message = "Invalid email for this school. Please login with a different email or pick a different school."
+            }
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
@@ -101,6 +106,39 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    @IBAction func backButtonPressed(_ sender: Any) {
+        let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in
+            
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let defaults = UserDefaults.standard
+                defaults.set(false, forKey: "isUserSignedIn")
+                GIDSignIn.sharedInstance()?.signOut()
+                GIDSignIn.sharedInstance()?.disconnect()
+              
+                let storyboard = UIStoryboard(name: "Other", bundle: nil)
+                let initial = storyboard.instantiateInitialViewController()
+                self.navigationController?.popToRootViewController(animated: true)
+                UIApplication.shared.keyWindow?.rootViewController = initial
+                
+            } catch let signOutError as NSError {
+              print ("Error signing out: %@", signOutError)
+            }
+        }
+        
+        let noAction = UIAlertAction.init(title: "No", style: .cancel) { (action) in
+            
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
 }

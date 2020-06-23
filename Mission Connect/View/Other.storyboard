@@ -946,13 +946,13 @@
                                 <rect key="frame" x="0.0" y="448" width="414" height="448"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Sign In using your FUSD GAFE Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0q-2w-MOe">
-                                        <rect key="frame" x="20" y="60" width="374" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="20" y="60" width="374" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOH-Qj-NWS" customClass="GIDSignInButton">
-                                        <rect key="frame" x="20" y="116" width="374" height="40"/>
+                                        <rect key="frame" x="20" y="113" width="374" height="40"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="zT7-Wx-e6O"/>
@@ -1014,6 +1014,7 @@
         <!--Register View Controller-->
         <scene sceneID="UZq-1V-Tun">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7y-f4-EvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RegisterViewController" id="hkg-CI-Z18" customClass="RegisterViewController" customModule="Mission_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4VS-Uz-MKY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1030,7 +1031,7 @@
                                         </constraints>
                                         <state key="normal" image="backBlack"/>
                                         <connections>
-                                            <action selector="backBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="zrF-Hf-Bbc"/>
+                                            <action selector="backButtonPressed:" destination="hkg-CI-Z18" eventType="touchUpInside" id="lXX-bD-xky"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vF-DG-3Ev">
@@ -1165,7 +1166,6 @@
                         <outlet property="schoolNameTextField" destination="vEx-j8-Sdh" id="NHR-ZJ-Eca"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v7y-f4-EvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2233.3333333333335" y="349.55357142857139"/>
         </scene>
