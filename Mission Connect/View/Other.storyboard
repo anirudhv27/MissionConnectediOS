@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LfA-ch-93n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LfA-ch-93n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1014,7 +1014,6 @@
         <!--Register View Controller-->
         <scene sceneID="UZq-1V-Tun">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v7y-f4-EvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RegisterViewController" id="hkg-CI-Z18" customClass="RegisterViewController" customModule="Mission_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4VS-Uz-MKY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1050,29 +1049,59 @@
                                     <constraint firstAttribute="height" constant="50" id="qfl-sy-n9v"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Warning: You cannot change your school after picking without deleting your account." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZ3-dm-E1m">
-                                <rect key="frame" x="0.0" y="352" width="414" height="170"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Warning: You cannot change your school after picking without deleting your account." textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZ3-dm-E1m">
+                                <rect key="frame" x="0.0" y="484" width="414" height="67"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="5mD-so-hoh"/>
+                                    <constraint firstAttribute="height" constant="67" id="5mD-so-hoh"/>
                                 </constraints>
                                 <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGK-2L-wgU">
-                                <rect key="frame" x="0.0" y="168" width="414" height="176"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGK-2L-wgU">
+                                <rect key="frame" x="0.0" y="384" width="414" height="92"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="176" id="6ss-ga-41L"/>
+                                    <constraint firstAttribute="height" constant="92" id="6ss-ga-41L"/>
                                 </constraints>
                                 <string key="text">Please pick a school using the picker below so that we can show you the most relevant information pertaining to the school that you attend.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VW-hL-Los">
+                                <rect key="frame" x="20" y="559" width="374" height="50"/>
+                                <connections>
+                                    <action selector="schoolNameTextFieldBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="lqm-R2-Mah"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Pick Your School" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puh-7S-8cV">
+                                <rect key="frame" x="0.0" y="102" width="414" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="8ap-7G-FTc"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lU-8j-ewz" customClass="GID">
+                                <rect key="frame" x="20" y="805" width="374" height="32"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="Fg0-lq-qmc"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="study" translatesAutoresizingMaskIntoConstraints="NO" id="bT5-sV-Pqg">
+                                <rect key="frame" x="20" y="168" width="374" height="208"/>
+                            </imageView>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="School Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEx-j8-Sdh" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="20" y="530" width="374" height="50"/>
+                                <rect key="frame" x="20" y="559" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="XPd-34-Xe5"/>
                                 </constraints>
@@ -1102,62 +1131,35 @@
                                     <outlet property="delegate" destination="hkg-CI-Z18" id="g39-LN-os2"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VW-hL-Los">
-                                <rect key="frame" x="20" y="530" width="374" height="50"/>
-                                <connections>
-                                    <action selector="schoolNameTextFieldBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="lqm-R2-Mah"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Pick Your School" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puh-7S-8cV">
-                                <rect key="frame" x="0.0" y="102" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="8ap-7G-FTc"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lU-8j-ewz" customClass="GID">
-                                <rect key="frame" x="20" y="793" width="374" height="44"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="2Py-NM-OHf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="registerBtnAction:" destination="hkg-CI-Z18" eventType="touchUpInside" id="Fg0-lq-qmc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="4VW-hL-Los" firstAttribute="top" secondItem="EZ3-dm-E1m" secondAttribute="bottom" constant="8" symbolic="YES" id="9RG-3E-jIu"/>
+                            <constraint firstItem="1lU-8j-ewz" firstAttribute="leading" secondItem="1gB-G8-5Vm" secondAttribute="leading" constant="20" id="7Mr-xE-rVn"/>
+                            <constraint firstItem="4VW-hL-Los" firstAttribute="top" secondItem="EZ3-dm-E1m" secondAttribute="bottom" constant="8" id="9RG-3E-jIu"/>
                             <constraint firstItem="Puh-7S-8cV" firstAttribute="trailing" secondItem="eDf-o9-hfh" secondAttribute="trailing" id="9qR-Bq-x4M"/>
+                            <constraint firstItem="mGK-2L-wgU" firstAttribute="top" secondItem="bT5-sV-Pqg" secondAttribute="bottom" constant="8" id="Asc-B2-Yqa"/>
                             <constraint firstItem="eDf-o9-hfh" firstAttribute="top" secondItem="1gB-G8-5Vm" secondAttribute="top" id="Ctq-eI-tym"/>
                             <constraint firstItem="eDf-o9-hfh" firstAttribute="leading" secondItem="1gB-G8-5Vm" secondAttribute="leading" id="D97-RE-YbC"/>
-                            <constraint firstItem="vEx-j8-Sdh" firstAttribute="trailing" secondItem="1lU-8j-ewz" secondAttribute="trailing" id="DD4-Bd-MCS"/>
                             <constraint firstItem="mGK-2L-wgU" firstAttribute="width" secondItem="Puh-7S-8cV" secondAttribute="width" id="DWF-ac-sBA"/>
-                            <constraint firstItem="vEx-j8-Sdh" firstAttribute="centerX" secondItem="1lU-8j-ewz" secondAttribute="centerX" id="EYb-ij-o7U"/>
+                            <constraint firstAttribute="trailing" secondItem="4VW-hL-Los" secondAttribute="trailing" constant="20" id="EoC-XC-2kL"/>
                             <constraint firstItem="4VW-hL-Los" firstAttribute="centerY" secondItem="vEx-j8-Sdh" secondAttribute="centerY" id="Fdw-Cb-WrJ"/>
-                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="bottom" secondItem="1lU-8j-ewz" secondAttribute="bottom" constant="25" id="Mx5-F9-Lwu"/>
+                            <constraint firstItem="4VW-hL-Los" firstAttribute="leading" secondItem="4VS-Uz-MKY" secondAttribute="leading" constant="20" id="KZS-M3-Q31"/>
+                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="trailing" secondItem="1lU-8j-ewz" secondAttribute="trailing" constant="20" id="MmO-GC-G7K"/>
+                            <constraint firstItem="bT5-sV-Pqg" firstAttribute="top" secondItem="Puh-7S-8cV" secondAttribute="bottom" constant="8" id="PoL-jV-ZZJ"/>
                             <constraint firstItem="4VW-hL-Los" firstAttribute="leading" secondItem="vEx-j8-Sdh" secondAttribute="leading" id="Qee-qB-P0B"/>
                             <constraint firstItem="mGK-2L-wgU" firstAttribute="leading" secondItem="EZ3-dm-E1m" secondAttribute="leading" id="Unl-gb-BnI"/>
-                            <constraint firstItem="mGK-2L-wgU" firstAttribute="top" secondItem="Puh-7S-8cV" secondAttribute="bottom" constant="8" symbolic="YES" id="bWh-YK-Nap"/>
+                            <constraint firstItem="mGK-2L-wgU" firstAttribute="top" secondItem="Puh-7S-8cV" secondAttribute="bottom" constant="224" id="bWh-YK-Nap"/>
                             <constraint firstItem="Puh-7S-8cV" firstAttribute="top" secondItem="eDf-o9-hfh" secondAttribute="bottom" constant="8" symbolic="YES" id="cFy-1s-n1G"/>
-                            <constraint firstItem="vEx-j8-Sdh" firstAttribute="leading" secondItem="1lU-8j-ewz" secondAttribute="leading" id="cXZ-4L-2LY"/>
                             <constraint firstItem="4VW-hL-Los" firstAttribute="trailing" secondItem="vEx-j8-Sdh" secondAttribute="trailing" id="d2x-iK-MVt"/>
                             <constraint firstAttribute="trailing" secondItem="eDf-o9-hfh" secondAttribute="trailing" id="d5A-FP-4vE"/>
+                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="bottom" secondItem="1lU-8j-ewz" secondAttribute="bottom" constant="25" id="dMf-BS-gbq"/>
                             <constraint firstItem="EZ3-dm-E1m" firstAttribute="width" secondItem="Puh-7S-8cV" secondAttribute="width" id="eMe-zo-O33"/>
-                            <constraint firstItem="1lU-8j-ewz" firstAttribute="leading" secondItem="1gB-G8-5Vm" secondAttribute="leading" constant="20" id="g0e-Nr-r6I"/>
+                            <constraint firstItem="bT5-sV-Pqg" firstAttribute="leading" secondItem="4VW-hL-Los" secondAttribute="leading" id="iV7-Je-fn3"/>
+                            <constraint firstItem="bT5-sV-Pqg" firstAttribute="trailing" secondItem="vEx-j8-Sdh" secondAttribute="trailing" id="iYV-ZQ-Tl8"/>
                             <constraint firstItem="Puh-7S-8cV" firstAttribute="leading" secondItem="eDf-o9-hfh" secondAttribute="leading" id="oLP-Mi-3X9"/>
                             <constraint firstItem="Puh-7S-8cV" firstAttribute="leading" secondItem="mGK-2L-wgU" secondAttribute="leading" id="pHm-Us-Vyy"/>
                             <constraint firstItem="4VW-hL-Los" firstAttribute="bottom" secondItem="vEx-j8-Sdh" secondAttribute="bottom" id="s7u-en-641"/>
                             <constraint firstItem="EZ3-dm-E1m" firstAttribute="top" secondItem="mGK-2L-wgU" secondAttribute="bottom" constant="8" symbolic="YES" id="wNO-Ll-fXB"/>
-                            <constraint firstItem="1gB-G8-5Vm" firstAttribute="trailing" secondItem="1lU-8j-ewz" secondAttribute="trailing" constant="20" id="xAt-Wz-y9w"/>
                             <constraint firstItem="vEx-j8-Sdh" firstAttribute="centerX" secondItem="EZ3-dm-E1m" secondAttribute="centerX" id="zJQ-28-CaH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1gB-G8-5Vm"/>
@@ -1166,6 +1168,7 @@
                         <outlet property="schoolNameTextField" destination="vEx-j8-Sdh" id="NHR-ZJ-Eca"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7y-f4-EvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2233.3333333333335" y="349.55357142857139"/>
         </scene>
@@ -1178,16 +1181,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOT-Dp-FGF">
-                                <rect key="frame" x="0.0" y="44" width="375" height="54"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="55"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Propose a New Club" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI1-mz-XHA">
-                                        <rect key="frame" x="64" y="17" width="247" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Clubs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI1-mz-XHA">
+                                        <rect key="frame" x="64" y="17" width="247" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMw-9v-qVr">
-                                        <rect key="frame" x="8" y="8" width="48" height="46"/>
+                                        <rect key="frame" x="8" y="8" width="48" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="6XL-5A-2CJ"/>
                                         </constraints>
@@ -1209,7 +1212,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asW-Uc-NGG">
-                                <rect key="frame" x="0.0" y="141" width="375" height="577"/>
+                                <rect key="frame" x="0.0" y="107" width="375" height="611"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeL-St-gKs">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="691"/>
@@ -1402,38 +1405,25 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="LeL-St-gKs" secondAttribute="bottom" constant="-70" id="Dfs-yF-fm2"/>
-                                    <constraint firstItem="LeL-St-gKs" firstAttribute="top" secondItem="asW-Uc-NGG" secondAttribute="top" id="FxL-3S-6Jc"/>
+                                    <constraint firstAttribute="bottom" secondItem="LeL-St-gKs" secondAttribute="bottom" constant="-73" id="XPr-6Y-p4H"/>
                                     <constraint firstItem="LeL-St-gKs" firstAttribute="width" secondItem="asW-Uc-NGG" secondAttribute="width" id="ew4-WN-JkH"/>
+                                    <constraint firstItem="LeL-St-gKs" firstAttribute="top" secondItem="xaf-mt-fNC" secondAttribute="top" id="h7r-s3-mdL"/>
                                     <constraint firstAttribute="trailing" secondItem="LeL-St-gKs" secondAttribute="trailing" id="jNz-FA-W9k"/>
                                     <constraint firstItem="LeL-St-gKs" firstAttribute="leading" secondItem="asW-Uc-NGG" secondAttribute="leading" id="vGF-Az-zLH"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="xaf-mt-fNC"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="nr3-zn-Inb"/>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rqv-V7-JRP">
-                                <rect key="frame" x="16" y="103" width="343" height="32"/>
-                                <segments>
-                                    <segment title="Propose"/>
-                                    <segment title="Update"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="StQ-Qx-Us6" eventType="valueChanged" id="IoX-3f-SKu"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="TOT-Dp-FGF" firstAttribute="top" secondItem="Rrx-z8-RaN" secondAttribute="top" id="6Hn-ai-74R"/>
-                            <constraint firstItem="asW-Uc-NGG" firstAttribute="top" secondItem="Rqv-V7-JRP" secondAttribute="bottom" constant="7" id="6vD-aG-MiE"/>
-                            <constraint firstItem="Rqv-V7-JRP" firstAttribute="width" secondItem="NLF-Tg-jXy" secondAttribute="width" multiplier="0.402857" constant="202" id="UQU-nO-wnY"/>
+                            <constraint firstItem="asW-Uc-NGG" firstAttribute="top" secondItem="TOT-Dp-FGF" secondAttribute="bottom" constant="8" id="6Tj-Ke-B73"/>
                             <constraint firstItem="TOT-Dp-FGF" firstAttribute="centerX" secondItem="BZM-JO-tJ1" secondAttribute="centerX" id="XJE-Vr-qpD"/>
                             <constraint firstItem="asW-Uc-NGG" firstAttribute="leading" secondItem="Rrx-z8-RaN" secondAttribute="leading" id="ZjD-M1-QCq"/>
                             <constraint firstItem="Rrx-z8-RaN" firstAttribute="bottom" secondItem="asW-Uc-NGG" secondAttribute="bottom" constant="7" id="gLt-PX-DJg"/>
-                            <constraint firstItem="Rqv-V7-JRP" firstAttribute="centerX" secondItem="TOT-Dp-FGF" secondAttribute="centerX" id="kuA-SZ-XJG"/>
                             <constraint firstItem="TOT-Dp-FGF" firstAttribute="leading" secondItem="Rrx-z8-RaN" secondAttribute="leading" id="o72-cO-tNo"/>
                             <constraint firstItem="asW-Uc-NGG" firstAttribute="trailing" secondItem="Rrx-z8-RaN" secondAttribute="trailing" id="r8S-U9-1Nh"/>
-                            <constraint firstItem="Rqv-V7-JRP" firstAttribute="top" secondItem="TOT-Dp-FGF" secondAttribute="bottom" constant="5" id="tGD-uq-TgB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rrx-z8-RaN"/>
                     </view>
@@ -1444,14 +1434,13 @@
                         <outlet property="clubNameButton" destination="NLF-Tg-jXy" id="ec2-Mg-mbX"/>
                         <outlet property="clubNameTextField" destination="7a3-VQ-w3k" id="wwp-ud-sqZ"/>
                         <outlet property="clubPreviewTextField" destination="wBl-5d-E79" id="D7s-6I-ab9"/>
-                        <outlet property="editPublishSegmentedControl" destination="Rqv-V7-JRP" id="Rm3-OV-xvp"/>
                         <outlet property="headerLabel" destination="JI1-mz-XHA" id="RLW-dk-Nfg"/>
                         <outlet property="pickOfficersTextField" destination="Oen-1I-mnw" id="zf7-Ob-XWU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0e-Em-4B0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2829.5999999999999" y="428.63568215892059"/>
+            <point key="canvasLocation" x="2828.2608695652175" y="428.23660714285711"/>
         </scene>
         <!--Approve Clubs List View Controller-->
         <scene sceneID="XXp-UP-gRe">
@@ -1598,5 +1587,6 @@
         <image name="home" width="24" height="24"/>
         <image name="menu" width="30" height="30"/>
         <image name="share" width="24" height="24"/>
+        <image name="study" width="1000" height="667"/>
     </resources>
 </document>

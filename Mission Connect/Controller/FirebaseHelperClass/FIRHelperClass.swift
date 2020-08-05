@@ -24,7 +24,7 @@ class FIRHelperClass: NSObject {
     }
     
     func updateProfileImage(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
-        let timeStamp = "user\(Date().timeIntervalSince1970).jpeg"
+        let timeStamp = "user\(Int(Date().timeIntervalSince1970)).jpeg"
         let storageRef = Storage.storage().reference().child("userimages").child(timeStamp)
           
             
@@ -51,7 +51,7 @@ class FIRHelperClass: NSObject {
     }
     
     func updateEventImageURL(image: UIImage, completion: @escaping (_ status: Bool, _ imageURL: URL?) -> Void) {
-        let timeStamp = "event\(Date().timeIntervalSince1970).jpeg"
+        let timeStamp = "event\(Int(Date().timeIntervalSince1970)).jpeg"
         let storageRef = Storage.storage().reference().child("eventimages").child(timeStamp)
         let data = image.pngData()
             //  showHud()
@@ -144,7 +144,7 @@ class FIRHelperClass: NSObject {
             print("Somthing's wrong!")
             return
         }
-        let imageName = "event\(Date().timeIntervalSince1970)"
+        let imageName = "event\(Int(Date().timeIntervalSince1970))"
         
         let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
         
@@ -167,6 +167,7 @@ class FIRHelperClass: NSObject {
                 guard let key = databaseReference.child("schools").child(schoolName).child("events").childByAutoId().key else { return }
                 
                 databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0])
+                
                 databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": 0]) { (err, ref) in
                     completion()
                 }
@@ -185,8 +186,8 @@ class FIRHelperClass: NSObject {
                 }
             }
         }
-        
     }
+    
     func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String, completion: @escaping () -> ()) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
@@ -197,7 +198,7 @@ class FIRHelperClass: NSObject {
             print("Somthing's wrong!")
             return
         }
-        let imageName = "event\(Date().timeIntervalSince1970)"
+        let imageName = "event\(Int(Date().timeIntervalSince1970))"
         
         let imageReference = Storage.storage().reference().child("eventimages").child(imageName)
         
@@ -231,7 +232,7 @@ class FIRHelperClass: NSObject {
             print("Somthing's wrong!")
             return
         }
-        let imageName = "club\(Date().timeIntervalSince1970)"
+        let imageName = "club\(Int(Date().timeIntervalSince1970))"
         
         let imageReference = Storage.storage().reference().child("clubimages").child(imageName)
         
@@ -275,7 +276,7 @@ class FIRHelperClass: NSObject {
                 return
             }
             
-            let imageName = "club\(Date().timeIntervalSince1970)"
+            let imageName = "club\(Int(Date().timeIntervalSince1970))"
             
             let imageReference = Storage.storage().reference().child("clubimages").child(imageName)
             

@@ -27,7 +27,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     var selectedNames = [String]()
     
     var domains = [String]()
-    var special = [String]()
+    var specialUsers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @IBAction func schoolNameTextFieldBtnAction(_ sender: Any) {
         domains = []
-        special = []
+        specialUsers = []
         let dataArray = Array(schoolDict.keys).sorted()
         let selectionMenu = RSSelectionMenu(selectionStyle: .single, dataSource: dataArray) { (cell, name, indexPath) in
             cell.textLabel?.text = name
@@ -64,7 +64,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
                 self?.schoolNameTextField.text = name
                 self!.ref.child("schools").child(self!.schoolDict[name]!).observeSingleEvent(of: .value) { (snapshot) in
                     self!.domains = snapshot.childSnapshot(forPath: "domains").value as! [String]
-                    self!.special = snapshot.childSnapshot(forPath: "special_users").value as! [String]
+                    self!.specialUsers = snapshot.childSnapshot(forPath: "special_users").value as! [String]
                 }
             }
         }
@@ -76,7 +76,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         if schoolNameTextField.titleLabel?.text?.count == 0 {
             message = "Please enter School Name"
         } else {
-            if domains.contains(String(email.split(separator: "@")[1])) || special.contains(email) {
+            if domains.contains(String(email.split(separator: "@")[1])) || specialUsers.contains(email) {
                 self.sendUserDataOnFirebase()
                 return
             } else {

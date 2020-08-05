@@ -426,11 +426,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     //MARK: - UICollectionViewDelegate and dataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isAdmin{
-            return clubs.count + 2
-        } else {
-            return clubs.count + 1
-        }
+        return clubs.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -438,68 +434,29 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.titleLabel.adjustsFontSizeToFitWidth = true
         var currClub: Club!
         cell.imageview.image = UIImage(named: "add")
-        
-        if isAdmin{
-            if indexPath.row == 0{
-                currClub = nil
-                cell.imageview.layer.cornerRadius = 10.0
-                cell.imageview.clipsToBounds = true
-                cell.titleLabel.text = "Approve Clubs"
-                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.contentMode = .center
-                cell.titleLabel.textColor = .black
-                cell.layer.borderWidth = 2.0
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.cornerRadius = 10.0
-            } else if indexPath.row == 1 {
-                currClub = nil
-                cell.imageview.layer.cornerRadius = 10.0
-                cell.imageview.clipsToBounds = true
-                cell.titleLabel.text = "Propose/Update Club"
-                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.contentMode = .center
-                cell.titleLabel.textColor = .black
-                cell.layer.borderWidth = 2.0
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.cornerRadius = 10.0
-            } else {
-                currClub = clubs[indexPath.row - 2]
-                cell.imageview.layer.cornerRadius = 10.0
-                cell.imageview.clipsToBounds = true
-                cell.imageview.contentMode = .scaleAspectFill
-                cell.layer.borderWidth = 2.0
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.cornerRadius = 10.0
-                cell.titleLabel.text = currClub.clubName
-                cell.titleLabel.textColor = .white
-                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
-            }
+        if indexPath.row == 0 {
+            currClub = nil
+            cell.imageview.layer.cornerRadius = 10.0
+            cell.imageview.clipsToBounds = true
+            cell.titleLabel.text = "Propose/Update Club"
+            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+            cell.imageview.contentMode = .center
+            cell.titleLabel.textColor = .black
+            cell.layer.borderWidth = 2.0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 10.0
         } else {
-            if indexPath.row == 0 {
-                currClub = nil
-                cell.imageview.layer.cornerRadius = 10.0
-                cell.imageview.clipsToBounds = true
-                cell.titleLabel.text = "Propose/Update Club"
-                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.contentMode = .center
-                cell.titleLabel.textColor = .black
-                cell.layer.borderWidth = 2.0
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.cornerRadius = 10.0
-            } else {
-                currClub = clubs[indexPath.row - 1]
-                cell.imageview.layer.cornerRadius = 10.0
-                cell.imageview.clipsToBounds = true
-                cell.imageview.contentMode = .scaleAspectFill
-                cell.layer.borderWidth = 2.0
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.cornerRadius = 10.0
-                cell.titleLabel.text = currClub.clubName
-                cell.titleLabel.textColor = .white
-                cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
-                cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
-            }
+            currClub = clubs[indexPath.row - 1]
+            cell.imageview.layer.cornerRadius = 10.0
+            cell.imageview.clipsToBounds = true
+            cell.imageview.contentMode = .scaleAspectFill
+            cell.layer.borderWidth = 2.0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 10.0
+            cell.titleLabel.text = currClub.clubName
+            cell.titleLabel.textColor = .white
+            cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
+            cell.imageview.kf.setImage(with: URL(string: currClub.clubImageURL ?? ""))
         }
         return cell
     }
@@ -511,57 +468,27 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         var currClub: Club!
-        if isAdmin{
-            if indexPath.row == 0{
-                currClub = nil
-                let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ApproveClubsListViewController") as! ApproveClubsListViewController
-                self.navigationController?.pushViewController(objvc, animated: true)
-            } else if indexPath.row == 1 {
-                let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ProposeClubViewController") as! ProposeClubViewController
-                self.navigationController?.pushViewController(objvc, animated: true)
-            }
-            else {
-                currClub = clubs[indexPath.row - 2]
-                self.clubNametextField.text = currClub.clubName
-                let cell = myCollectionView.cellForItem(at: indexPath)
-                cell?.layer.borderWidth = 2.0
-                cell?.layer.borderColor = UIColor.systemGreen.cgColor
-                cell?.layer.cornerRadius = 10.0
-                self.currClubID = currClub.clubID!
-                self.eventImageView.kf.setImage(with: URL (string: currClub.clubImageURL!))
-                self.eventImageView.contentMode = .scaleAspectFill
-                
-                addEventBtn.setTitleColor(.black, for: .normal)
-                allEventBtn.setTitleColor(.gray, for: .normal)
-                self.topTableView.isScrollEnabled = true
-                self.eventView.isHidden = true
-                
-                isFromEdit = false
-            }
+        if indexPath.row == 0 {
+            let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ProposeClubViewController") as! ProposeClubViewController
+            self.navigationController?.pushViewController(objvc, animated: true)
         } else {
-            if indexPath.row == 0 {
-                let objvc = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "ProposeClubViewController") as! ProposeClubViewController
-                self.navigationController?.pushViewController(objvc, animated: true)
-            } else {
-                currClub = clubs[indexPath.row - 1]
-                self.clubNametextField.text = currClub.clubName
-                let cell = myCollectionView.cellForItem(at: indexPath)
-                cell?.layer.borderWidth = 2.0
-                cell?.layer.borderColor = UIColor.systemGreen.cgColor
-                cell?.layer.cornerRadius = 10.0
-                self.currClubID = currClub.clubID!
-                self.eventImageView.kf.setImage(with: URL (string: currClub.clubImageURL!))
-                self.eventImageView.contentMode = .scaleAspectFill
-                
-                addEventBtn.setTitleColor(.black, for: .normal)
-                allEventBtn.setTitleColor(.gray, for: .normal)
-                self.topTableView.isScrollEnabled = true
-                self.eventView.isHidden = true
-                
-                isFromEdit = false
-            }
+            currClub = clubs[indexPath.row - 1]
+            self.clubNametextField.text = currClub.clubName
+            let cell = myCollectionView.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = 2.0
+            cell?.layer.borderColor = UIColor.systemGreen.cgColor
+            cell?.layer.cornerRadius = 10.0
+            self.currClubID = currClub.clubID!
+            self.eventImageView.kf.setImage(with: URL (string: currClub.clubImageURL!))
+            self.eventImageView.contentMode = .scaleAspectFill
+            
+            addEventBtn.setTitleColor(.black, for: .normal)
+            allEventBtn.setTitleColor(.gray, for: .normal)
+            self.topTableView.isScrollEnabled = true
+            self.eventView.isHidden = true
+            
+            isFromEdit = false
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

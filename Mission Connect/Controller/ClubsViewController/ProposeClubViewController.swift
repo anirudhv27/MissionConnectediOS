@@ -18,7 +18,6 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var clubDescriptionTextView: UITextView!
     @IBOutlet weak var clubImageView: UIImageView!
     @IBOutlet weak var pickOfficersTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var editPublishSegmentedControl: UISegmentedControl!
     @IBOutlet weak var clubNameButton: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
     
@@ -52,16 +51,16 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         clubPreviewTextField.addDoneButtonOnKeyboard()
         self.clubDescriptionTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         
-        clubNameButton.isEnabled = false;
-        clubNameTextField.isUserInteractionEnabled = true;
+        clubNameButton.isEnabled = true;
+        clubNameTextField.isUserInteractionEnabled = false;
         clubNameTextField.text = ""
         clubPreviewTextField.text = ""
         pickOfficersTextField.text = ""
         clubDescriptionTextView.text = ""
         clubImageView.contentMode = .center
         clubImageView.image = UIImage.init(named: "add")
-        
-        editPublishSegmentedControl.selectedSegmentIndex = 0
+        headerLabel.text = "Update Club Info"
+        selectedDataArray = []
         
         hideKeyboardWhenTappedAround()
         fetchUsers()
@@ -258,11 +257,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func publishButtonIsPressed(_ sender: Any) {
         var message = ""
         if clubNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
-            if (editPublishSegmentedControl.selectedSegmentIndex == 0) {
-                message = "Please enter a club name."
-            } else {
-                message = "Please select a club to update."
-            }
+            message = "Please select a club to update."
         }else if clubPreviewTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
             message = "Please enter a short club preview."
         }else if pickOfficersTextField.text?.count == 0{
@@ -278,13 +273,9 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                 selectedIDs.append(allUsersDict[name]!)
             }
             
-            if (editPublishSegmentedControl.selectedSegmentIndex == 0) {
-                FIRHelperClass.sharedInstance.createClub(clubName: clubNameTextField.text!, clubPreview: clubPreviewTextField.text!, clubDescription: clubDescriptionTextView.text!, image: clubImageView.image!, officers: selectedIDs)
-                message = "Club proposed successfully!"
-            } else {
-                FIRHelperClass.sharedInstance.editClub(clubID: editClubID, clubName: clubNameTextField.text!, clubPreview: clubPreviewTextField.text!, clubDescription: clubDescriptionTextView.text!, image: clubImageView.image!, officers: selectedIDs)
-                message = "Club info successfully updated!"
-            }
+            FIRHelperClass.sharedInstance.editClub(clubID: editClubID, clubName: clubNameTextField.text!, clubPreview: clubPreviewTextField.text!, clubDescription: clubDescriptionTextView.text!, image: clubImageView.image!, officers: selectedIDs)
+            message = "Club info successfully updated!"
+            
             
             clubNameTextField.text = ""
             clubPreviewTextField.text = ""
@@ -305,35 +296,6 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
         
-    }
-    
-    @IBAction func indexChanged(_ sender: Any) {
-        switch editPublishSegmentedControl.selectedSegmentIndex {
-        case 0:
-            clubNameButton.isEnabled = false;
-            clubNameTextField.isUserInteractionEnabled = true;
-            clubNameTextField.text = ""
-            clubPreviewTextField.text = ""
-            pickOfficersTextField.text = ""
-            clubDescriptionTextView.text = ""
-            clubImageView.contentMode = .center
-            clubImageView.image = UIImage.init(named: "add")
-            headerLabel.text = "Propose a New Club"
-            selectedDataArray = []
-        case 1:
-            clubNameButton.isEnabled = true;
-            clubNameTextField.isUserInteractionEnabled = false;
-            clubNameTextField.text = ""
-            clubPreviewTextField.text = ""
-            pickOfficersTextField.text = ""
-            clubDescriptionTextView.text = ""
-            clubImageView.contentMode = .center
-            clubImageView.image = UIImage.init(named: "add")
-            headerLabel.text = "Update Club Info"
-            selectedDataArray = []
-        default:
-            break
-        }
     }
     
     @objc func tapDone(sender: Any) {

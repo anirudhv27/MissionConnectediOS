@@ -110,6 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         events = [Event]()
         eventNames = [String]()
         goingEvents = [Event]()
+        
         EVENT_REF.observe(.childAdded, with: { (snapshot) -> Void in
             self.eventNames.append(snapshot.key)
         })
@@ -145,7 +146,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.eventTableView.reloadData()
         })
         
-        //MUST SEE THIS IN MULTI APP TESTING
+        //MARK:- MUST SEE THIS IN MULTI APP TESTING
         EVENT_DETAILS_REF.observe(.childRemoved, with: { (snapshot) -> Void in
             
             if self.eventNames.contains(snapshot.key){
