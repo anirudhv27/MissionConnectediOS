@@ -198,7 +198,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                         }
                     }
                     self?.pickOfficersTextField.text = nameList.joined(separator: ", ")
-                }                
+                }
             } else {
                 self?.clubNameTextField.text = ""
                 self?.clubPreviewTextField.text = ""
@@ -234,6 +234,9 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                     nameList.append(snapshot.childSnapshot(forPath: "fullname").value as! String)
                     self?.pickOfficersTextField.text = nameList.joined(separator: ", ")
                 }
+            }
+            if (selectedList.count == 0) {
+                self?.pickOfficersTextField.text = ""
             }
             // update value label
             selectionMenu.reloadInputViews()

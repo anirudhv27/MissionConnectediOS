@@ -191,6 +191,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     df.dateFormat = "MM-dd-yyyy"
                     event.eventDate = df.date(from: dateString!)
                     event.eventID = snapshot.key
+                    event.numberOfAttendees = dictionary["member_numbers"] as? Int
                     
                     if (event.eventDate!.addingTimeInterval(86400).timeIntervalSinceNow.sign == .plus) {
                         let index = self.events.firstIndex { (curr_event) -> Bool in
@@ -341,6 +342,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if goingEvents.contains(events[indexPath.row]) {
                 action = UIContextualAction(style: .destructive, title: "Can't Go", handler: { (action, view, completionHandler) in
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+                    Database.database().reference().child("schools").child(schoolName).child("events").child(event.eventID!).child("member_numbers").setValue(event.numberOfAttendees! - 1)
+                    
                     //self.goingEvents.remove(at: self.goingEvents.firstIndex(of: event)!)
                     self.fetchClubs()
                     self.fetchEvents()
@@ -354,6 +357,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             } else {
                 action = UIContextualAction(style: .normal, title: "I'm Going!", handler: { (action, view, completionHandler) in
                     Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(true)
+                    Database.database().reference().child("schools").child(schoolName).child("events").child(event.eventID!).child("member_numbers").setValue(event.numberOfAttendees! + 1)
+                    
                     //self.goingEvents.append(event)
                     self.fetchClubs()
                     self.fetchEvents()
@@ -368,6 +373,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let event = self.goingEvents[indexPath.row]
             action = UIContextualAction(style: .destructive, title: "Can't Go", handler: { (action, view, completionHandler) in
                 Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("events").child(event.eventID!).child("isGoing").setValue(false)
+                Database.database().reference().child("schools").child(schoolName).child("events").child(event.eventID!).child("member_numbers").setValue(event.numberOfAttendees! - 1)
     //                self.fetchClubs()
     //                self.fetchEvents()
                 self.goingEvents.remove(at: indexPath.row)

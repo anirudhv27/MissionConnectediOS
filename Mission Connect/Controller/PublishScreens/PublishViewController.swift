@@ -52,6 +52,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var isFromStartDate = true
     var currClubID: String = ""
+    var currMemberNumbers = 0
     
     var isFromEdit = false
     
@@ -375,7 +376,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             message = "Please enter an EVENT IMAGE."
         }else {
             if isFromEdit{
-                FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID, completion: {
+                FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID, memberNumbers: currMemberNumbers, completion: {
                     self.fetchClubs()
                     self.fetchEvents()
                     self.refresh()
@@ -569,6 +570,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         eventStartDateTextField.text = df.string(from: event.eventDate ?? Date())
         currEventID = event.eventID!
         currClubID = event.event_club!
+        currMemberNumbers = event.numberOfAttendees!
         self.topTableView.isScrollEnabled = true
         
         addEventBtn.titleLabel?.text = "Edit Event"
