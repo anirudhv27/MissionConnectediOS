@@ -256,6 +256,9 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func publishButtonIsPressed(_ sender: Any) {
         var message = ""
+        var okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
+            
+        }
         if clubNameTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
             message = "Please select a club to update."
         }else if clubPreviewTextField.text?.trimmingCharacters(in: .whitespaces).count == 0{
@@ -287,12 +290,13 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
             selectedDataArray = [String]()
             selectedIDs = [String]()
             editClubID = ""
+            okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
         let alertController = UIAlertController.init(title: "Alert", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
-            
-        }
+        
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
         

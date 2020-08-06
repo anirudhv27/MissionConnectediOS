@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>167066098237-6g0opqj6qkf1mb6g37h668b2vkb7rd56.apps.googleusercontent.com</string>
+	<string>527167996378-01u99v0udkht3loqu8fgfhsu2s3o33fk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.167066098237-6g0opqj6qkf1mb6g37h668b2vkb7rd56</string>
+	<string>com.googleusercontent.apps.527167996378-01u99v0udkht3loqu8fgfhsu2s3o33fk</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDowlXXf72zRT_Quh9uqAqP2icj9GOgFi0</string>
+	<string>AIzaSyBR28LKIdpvmcF41qz3BEMCMx4mRJ7MZCU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>167066098237</string>
+	<string>527167996378</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.anirudhvaliveru.Mission-Connect</string>
+	<string>com.valiveru.Mission-Connect</string>
 	<key>PROJECT_ID</key>
-	<string>mission-connect-f33f9</string>
+	<string>mission-connected</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mission-connect-f33f9.appspot.com</string>
+	<string>mission-connected.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:167066098237:ios:b36936d31ff30e9ba4a854</string>
+	<string>1:527167996378:ios:91877e0d9312c12c4a80e3</string>
 	<key>DATABASE_URL</key>
-	<string>https://mission-connect-f33f9.firebaseio.com</string>
+	<string>https://mission-connected.firebaseio.com</string>
 </dict>
 </plist>

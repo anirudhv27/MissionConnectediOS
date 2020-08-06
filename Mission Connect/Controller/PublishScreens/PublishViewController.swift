@@ -438,7 +438,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             currClub = nil
             cell.imageview.layer.cornerRadius = 10.0
             cell.imageview.clipsToBounds = true
-            cell.titleLabel.text = "Propose/Update Club"
+            cell.titleLabel.text = "Update Clubs"
             cell.imageview.sizeThatFits(CGSize.init(width: 132.0, height: 90.0))
             cell.imageview.contentMode = .center
             cell.titleLabel.textColor = .black

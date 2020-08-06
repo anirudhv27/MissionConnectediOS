@@ -99,18 +99,20 @@ class FIRHelperClass: NSObject {
             // Get user value
         
             let value = snapshot.value as? Dictionary<String,AnyObject>
-            let keyList = value!.keys
             var emailfound = false
             
-            for str in keyList {
-                let tempDict = value![str] as? Dictionary<String,AnyObject>
-                let emailstr = "\(tempDict!["email"] ?? ""  as AnyObject)"
-                
-                if email == emailstr {
-                    emailfound = true
-                    break
+            if let keyList = value?.keys {
+                for str in keyList {
+                    let tempDict = value![str] as? Dictionary<String,AnyObject>
+                    let emailstr = "\(tempDict!["email"] ?? ""  as AnyObject)"
+                    
+                    if email == emailstr {
+                        emailfound = true
+                        break
+                    }
                 }
             }
+            
             
             completion(emailfound)
             
