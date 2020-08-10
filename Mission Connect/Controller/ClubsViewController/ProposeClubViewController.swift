@@ -197,6 +197,7 @@ class ProposeClubViewController: UIViewController, UIImagePickerControllerDelega
                             nameList.append(snap.childSnapshot(forPath: "fullname").value as! String)
                         }
                     }
+                    
                     self?.pickOfficersTextField.text = nameList.joined(separator: ", ")
                 }
             } else {

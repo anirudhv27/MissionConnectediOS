@@ -502,7 +502,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if events.count == 0 {
             if clubs.count == 0 {
-                tableView.setEmptyView(title: "You are not an officer of any clubs!", message: "If you would like to propose a new club at our school, please propose one above and follow the school guidelines for club formation!")
+                tableView.setEmptyView(title: "You are not an officer of any clubs!", message: "If you become a club officer, your club events will show up here! If you would like to start a new club at your school, please follow the school guidelines for club formation!")
             } else {
                 tableView.setEmptyView(title: "Your clubs have no events!", message: "Please add events in the \"Add Event\" tab as needed so that your members stay updated!")
             }

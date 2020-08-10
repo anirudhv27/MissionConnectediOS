@@ -130,9 +130,15 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
             let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
             let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in
                 
+                let objVC = UIStoryboard.init(name: "Other", bundle: nil).instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
+                objVC.currIndex = 0
+                centeralNavController.setViewControllers([objVC], animated: false)
+                    
                 let firebaseAuth = Auth.auth()
+                
                 do {
                     try firebaseAuth.signOut()
+                    
                     let defaults = UserDefaults.standard
                     defaults.set(false, forKey: "isUserSignedIn")
                     GIDSignIn.sharedInstance()?.signOut()
