@@ -190,7 +190,7 @@ class FIRHelperClass: NSObject {
         }
     }
     
-    func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String, completion: @escaping () -> ()) {
+    func editEvent(startDate: Date, eventName: String, clubName:String, eventDescription:String, image: UIImage, preview: String, key: String, memberNumbers: Int, completion: @escaping () -> ()) {
         var databaseReference = DatabaseReference()
         databaseReference = Database.database().reference()
         let df = DateFormatter()
@@ -218,7 +218,7 @@ class FIRHelperClass: NSObject {
                     print("Somthing's wrong!")
                     return
                 }
-                databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview]) { (err, ref) in
+                databaseReference.child("schools").child(schoolName).child("events").child(key).setValue(["event_image_url": url.absoluteString, "event_date": df.string(from: startDate), "event_name": eventName, "event_description": eventDescription, "event_club": clubName, "event_preview": preview, "member_numbers": memberNumbers]) { (err, ref) in
                     if err == nil {
                         completion()
                     }

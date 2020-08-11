@@ -17,9 +17,9 @@ extension UITableView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = UIColor.black
-        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         messageLabel.textColor = UIColor.lightGray
-        messageLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 17)
+        messageLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 14)
         emptyView.addSubview(titleLabel)
         emptyView.addSubview(messageLabel)
         titleLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true

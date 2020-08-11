@@ -52,6 +52,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var isFromStartDate = true
     var currClubID: String = ""
+    var currMemberNumbers = 0
     
     var isFromEdit = false
     
@@ -375,7 +376,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
             message = "Please enter an EVENT IMAGE."
         }else {
             if isFromEdit{
-                FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID, completion: {
+                FIRHelperClass.sharedInstance.editEvent(startDate: currDate, eventName: eventNameTextField.text!, clubName: currClubID, eventDescription: descriptionTextView.text!, image: eventImageView.image!, preview: eventEnddatetextField.text!, key: currEventID, memberNumbers: currMemberNumbers, completion: {
                     self.fetchClubs()
                     self.fetchEvents()
                     self.refresh()
@@ -501,7 +502,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if events.count == 0 {
             if clubs.count == 0 {
-                tableView.setEmptyView(title: "You are not an officer of any clubs!", message: "If you would like to propose a new club at our school, please propose one above and follow the school guidelines for club formation!")
+                tableView.setEmptyView(title: "You are not an officer of any clubs!", message: "If you become a club officer, your club events will show up here! If you would like to start a new club at your school, please follow the school guidelines for club formation!")
             } else {
                 tableView.setEmptyView(title: "Your clubs have no events!", message: "Please add events in the \"Add Event\" tab as needed so that your members stay updated!")
             }
@@ -569,6 +570,7 @@ class PublishViewController: UIViewController, UICollectionViewDelegate, UIColle
         eventStartDateTextField.text = df.string(from: event.eventDate ?? Date())
         currEventID = event.eventID!
         currClubID = event.event_club!
+        currMemberNumbers = event.numberOfAttendees!
         self.topTableView.isScrollEnabled = true
         
         addEventBtn.titleLabel?.text = "Edit Event"

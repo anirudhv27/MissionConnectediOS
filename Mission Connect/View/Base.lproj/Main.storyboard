@@ -47,9 +47,10 @@
                                     <constraint firstAttribute="height" constant="54" id="oYr-y7-B29"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="For more information, visit avaliveru.wixsite.com/missionconnect.       For any inqueries, please contact avaliveru@gmail.com" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Fmg-mR-9z3">
-                                <rect key="frame" x="0.0" y="360" width="414" height="176"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Fmg-mR-9z3">
+                                <rect key="frame" x="0.0" y="106" width="414" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">For more information, visit avaliveru.wixsite.com/missionconnect.       For any inquiries, please contact missionconnected2020@gmail.com</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -59,10 +60,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="9hs-0f-cib" firstAttribute="leading" secondItem="Ein-DO-8ub" secondAttribute="leading" id="4uC-6Q-syL"/>
-                            <constraint firstItem="Ein-DO-8ub" firstAttribute="bottom" secondItem="Fmg-mR-9z3" secondAttribute="bottom" constant="326" id="54s-cb-amR"/>
+                            <constraint firstItem="Ein-DO-8ub" firstAttribute="bottom" secondItem="Fmg-mR-9z3" secondAttribute="bottom" id="54s-cb-amR"/>
                             <constraint firstItem="9hs-0f-cib" firstAttribute="trailing" secondItem="Ein-DO-8ub" secondAttribute="trailing" id="7qe-rL-C05"/>
                             <constraint firstItem="Fmg-mR-9z3" firstAttribute="leading" secondItem="Ein-DO-8ub" secondAttribute="leading" id="RPd-Uu-LIU"/>
-                            <constraint firstItem="Fmg-mR-9z3" firstAttribute="top" secondItem="9hs-0f-cib" secondAttribute="bottom" constant="262" id="fn8-Qh-zNn"/>
+                            <constraint firstItem="Fmg-mR-9z3" firstAttribute="top" secondItem="9hs-0f-cib" secondAttribute="bottom" constant="8" id="fn8-Qh-zNn"/>
                             <constraint firstItem="Ein-DO-8ub" firstAttribute="trailing" secondItem="Fmg-mR-9z3" secondAttribute="trailing" id="ftQ-ej-YFa"/>
                             <constraint firstItem="9hs-0f-cib" firstAttribute="top" secondItem="Ein-DO-8ub" secondAttribute="top" id="wMg-AW-ssC"/>
                         </constraints>
