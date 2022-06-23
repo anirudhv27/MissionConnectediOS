@@ -107,6 +107,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         let alert = UIAlertController.init(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "Yes", style: .default) { (action) in
